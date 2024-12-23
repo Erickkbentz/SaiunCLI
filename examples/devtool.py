@@ -67,7 +67,7 @@ if __name__ == "__main__":
             hello_command,
             count_command
         ],
-        global_options=[
+        options=[
             Option(
                 flags=["-v", "--verbose"],
                 description="Enable verbose output.",
