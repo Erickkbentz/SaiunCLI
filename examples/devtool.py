@@ -83,16 +83,6 @@ if __name__ == "__main__":
                 description="Enable debug output.",
                 action="store_true",
             ),
-            Option(
-                flags=["-V", "--version"],
-                description="Display the version of the tool.",
-                action="version",
-            ),
-            Option(
-                flags=["-h", "--help"],
-                description="Display the help message.",
-                action="help",
-            )
         ]
     )
 
