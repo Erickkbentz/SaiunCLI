@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include src/
+
+exclude *.pyc
+exclude __pycache__/*
+exclude tests/*
+exclude examples/*
