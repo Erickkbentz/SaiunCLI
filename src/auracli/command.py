@@ -1,5 +1,7 @@
 from typing import List, Optional, Dict, Any
-from auracli.option import Option
+
+from auracli import Option
+from auracli._utils import _validate_options
 
 class Command:
     def __init__(
@@ -15,6 +17,8 @@ class Command:
         self.description = description
         self.options = options or []
         self.subcommands = subcommands or []
+
+        _validate_options(self.options)
 
     def add_option(self, option: Option):
         pass

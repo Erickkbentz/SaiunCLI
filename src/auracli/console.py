@@ -2,7 +2,7 @@ import logging
 
 from typing import Any, Dict, List, Optional
 from rich.console import Console
-from auracli.theme import Theme
+from auracli import Theme
 
 class AuraConsole:
     def __init__(

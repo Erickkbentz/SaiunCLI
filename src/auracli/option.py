@@ -3,8 +3,7 @@ from typing import Any, List, Optional, Literal
 class Option:
     def __init__(
             self,
-            flag: str,
-            short_flag: Optional[str] = None,
+            flags: List[str],
             message: Optional[str] = None,
             required: Optional[bool] = False,
             action: Optional[
@@ -15,8 +14,6 @@ class Option:
                     "append",
                     "extend",
                     "count",
-                    "help",
-                    "version"
                 ]
             ] = "store",
             default: Optional[str] = None,
@@ -25,8 +22,7 @@ class Option:
             choices: Optional[List[Any]] = None,
             type: Optional[type] = str,
     ):
-        self.flag = flag
-        self.short_flag = short_flag
+        self.flags = flags
         self.message = message
         self.required = required
         self.action = action
