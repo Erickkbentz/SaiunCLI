@@ -31,3 +31,6 @@ dependencies = [
 [project.urls]
 homepage = "https://github.com/Erickkbentz/AuraCLI"
 repository = "https://github.com/Erickkbentz/AuraCLI"
+
+[tool.setuptools.packages.find]
+where = ["src"]
