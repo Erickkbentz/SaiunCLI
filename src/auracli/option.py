@@ -76,6 +76,9 @@ class Option:
                 f"Too many flags detected: {flags}. Only 2 flags are allowed per option."
             )
 
+        if len(flags) == 0:
+            raise ValueError(f"No flags detected: {flags}. At least 1 flag is required per option.")
+
         long_flags = 0
         short_flags = 0
         for flag in flags:
@@ -96,15 +99,20 @@ class Option:
                 f"Too many short flags detected: {flags}. "
                 + "At most 1 long flag and 1 short flag are allowed per option."
             )
-        if long_flags == 0:
-            raise ValueError(
-                f"Missing long flag: {flags}. At least 1 long flag is required per option."
-            )
 
     @property
-    def name(self) -> str:
+    def long_name(self) -> str:
         long_flag = next(flag for flag in self.flags if _is_long_flag(flag))
-        return long_flag[2:]
+        if long_flag.startswith("--"):
+            return long_flag[2:]
+        return None
+
+    @property
+    def short_name(self) -> str:
+        short_flag = next(flag for flag in self.flags if _is_short_flag(flag))
+        if short_flag.startswith("-"):
+            return short_flag[1:]
+        return None
 
     def validate(self, value: Any) -> bool:
         """Validate the value of the option."""

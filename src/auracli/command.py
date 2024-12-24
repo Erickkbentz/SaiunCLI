@@ -138,17 +138,44 @@ class Command:
         return self.inherited_options + self.options
 
     @property
-    def all_option_names(self) -> List[Option]:
+    def all_option_long_names(self) -> List[str]:
         """
-        Gather all options available to the command.
+        Gather all long option names available to the command.
         """
         option_names = []
         for option in self.all_options:
-            option_names.extend(option.name)
+            option_names.extend(option.long_name)
         return option_names
 
     @property
-    def all_comands(self) -> List["Command"]:
+    def all_option_short_names(self) -> List[str]:
+        """
+        Gather all short option names available to the command.
+        """
+        option_names = []
+        for option in self.all_options:
+            option_names.extend(option.short_name)
+        return option_names
+
+    @property
+    def all_option_names(self) -> List[str]:
+        """
+        Gather all option names available to the command.
+        """
+        return self.all_option_long_names + self.all_option_short_names
+
+    @property
+    def all_option_flags(self) -> List[str]:
+        """
+        Gather all option flags available to the command.
+        """
+        option_flags = []
+        for option in self.all_options:
+            option_flags.extend(option.flags)
+        return option_flags
+
+    @property
+    def all_commands(self) -> List["Command"]:
         """
         Gather all commands available to the command.
         """

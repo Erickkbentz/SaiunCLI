@@ -20,6 +20,31 @@ def base_handler(args):
 
 if __name__ == "__main__":
 
+    mycli = AuraCLI(
+        title="My Super Cool CLI Tool",
+        description="A simple tool to demonstrate auracli.",
+        version="1.0.0",
+        console=console,
+        handler=base_handler,
+        options=[
+            Option(
+                flags=["-v", "--verbose"],
+                description="Enable verbose output.",
+                action="store_true",
+            ),
+            Option(
+                flags=["-q", "--quiet"],
+                description="Enable quiet output.",
+                action="store_true",
+            ),
+            Option(
+                flags=["-d", "--debug"],
+                description="Enable debug output.",
+                action="store_true",
+            ),
+        ],
+    )
+
     hello_command = Command(
         name="hello",
         handler=hello_handler,
@@ -60,30 +85,6 @@ if __name__ == "__main__":
         ],
     )
 
-    mycli = AuraCLI(
-        title="My Super Cool CLI Tool",
-        description="A simple tool to demonstrate auracli.",
-        version="1.0.0",
-        console=console,
-        handler=base_handler,
-        subcommands=[hello_command, count_command],
-        options=[
-            Option(
-                flags=["-v", "--verbose"],
-                description="Enable verbose output.",
-                action="store_true",
-            ),
-            Option(
-                flags=["-q", "--quiet"],
-                description="Enable quiet output.",
-                action="store_true",
-            ),
-            Option(
-                flags=["-d", "--debug"],
-                description="Enable debug output.",
-                action="store_true",
-            ),
-        ],
-    )
+    mycli.add_subcommands([hello_command, count_command])
 
     mycli.run()
