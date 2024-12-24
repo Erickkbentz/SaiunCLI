@@ -82,13 +82,13 @@ class Command:
     def add_option(self, option: Option):
         """Add an option to the command."""
         self.options.append(option)
-        _validate_options(self.all_options)
+        self._validate_options(self.all_options)
         pass
 
     def add_options(self, options: List[Option]):
         """Add multiple options to the command."""
         self.options.extend(options)
-        _validate_options(self.all_options)
+        self._validate_options(self.all_options)
         pass
 
     def add_subcommand(self, subcommand: "Command"):
