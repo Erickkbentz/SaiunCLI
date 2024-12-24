@@ -1,0 +1,10 @@
+##!/bin/bash
+set -e
+
+echo "Running pre-commit checks..."
+
+black --check .
+flake8
+pytest tests
+
+echo "All checks passed!"

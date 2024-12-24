@@ -20,3 +20,9 @@ def auracli():
             )
         ],
     )
+
+
+def test_auracli(auracli: AuraCLI):
+    assert auracli.title == "My Super Cool CLI Tool"
+    assert auracli.version == "1.0.0"
+    assert auracli.handler == dummy_handler
