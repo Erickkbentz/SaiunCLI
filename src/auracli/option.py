@@ -1,5 +1,12 @@
 from typing import Any, List, Optional, Literal
 
+from auracli._utils import _validate_flags
+
+_CONSTANT_UNIVERSAL_FLAGS = {
+    "help": ["-h", "--help"],
+    "version": ["-V", "--version"],
+}
+
 class Option:
     def __init__(
             self,
@@ -31,6 +38,8 @@ class Option:
         self.prompt_message = prompt_message
         self.choices = choices
         self.type = type
+
+        _validate_flags(self.flags)
 
     def validate(self, value: Any) -> bool:
         """Validate the value of the option."""

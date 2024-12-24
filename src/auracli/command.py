@@ -3,6 +3,8 @@ from typing import List, Optional, Dict, Any
 from auracli import Option
 from auracli._utils import _validate_options
 
+_ROOT_COMMAND_NAME = "root"
+
 class Command:
     _parent: "Command" = None
 
@@ -12,8 +14,8 @@ class Command:
             handler: callable = None,
             usage: Optional[str] = None,
             description: Optional[str] = None,
-            inherit_options: Optional[bool] = False,
             options: Optional[List[Option]] = None,
+            inherit_options: Optional[bool] = False,
             subcommands: Optional[List["Command"]] = None,
     ):
         self.name = name
