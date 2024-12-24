@@ -1,6 +1,9 @@
 from typing import Optional, List
 
-from auracli import AuraConsole, Theme, Command, Option, Argument
+from auracli.console import AuraConsole
+from auracli.theme import Theme
+from auracli.option import Option
+from auracli.argument import Argument
 from auracli.command import Command, _ROOT_COMMAND_NAME
 
 

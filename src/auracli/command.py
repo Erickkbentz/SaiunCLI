@@ -1,6 +1,7 @@
 from typing import List, Optional, Dict, Any
 
-from auracli import Option, Argument
+from auracli.option import Option
+from auracli.argument import Argument
 
 _ROOT_COMMAND_NAME = "root"
 
@@ -79,7 +80,8 @@ class Command:
         for argument in arguments:
             if argument.name in name_set:
                 raise ValueError(
-                    f"Duplicate argument detected: {argument.name}. Arguments must be unique between commands."
+                    f"Duplicate argument detected: {argument.name}. "
+                    + "Arguments must be unique between commands."
                 )
             name_set.add(argument.name)
 

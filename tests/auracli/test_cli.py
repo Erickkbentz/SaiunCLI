@@ -1,6 +1,6 @@
 import pytest
 
-from auracli import AuraCLI, Command, Option
+from auracli import AuraCLI, Option
 
 
 def dummy_handler():

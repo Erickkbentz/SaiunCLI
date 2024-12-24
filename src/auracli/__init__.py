@@ -1,3 +1,4 @@
+# flake8: noqa
 from .command import Command
 from .option import Option
 from .argument import Argument

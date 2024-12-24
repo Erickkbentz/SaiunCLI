@@ -40,12 +40,14 @@ class Option:
                 The help message to display for the option.
             required (Optional[bool]):
                 Whether the option is required.
-            action (Optional[Literal["store", "store_true", "store_false", "append", "extend", "count"]]):
-                The action to take with the option.
+            action (Optional[
+                Literal["store", "store_true", "store_false", "append", "extend", "count"]
+            ]):
+                The action to take with the option. Default is "store".
             default (Optional[str]):
                 The default value for the option.
             prompt (Optional[bool]):
-                Whether to prompt the user for the option.
+                Whether to prompt the user for the option. Default is False.
             prompt_message (Optional[str]):
                 The message to display when prompting the user for the option.
             choices (Optional[List[Any]]):
@@ -86,11 +88,13 @@ class Option:
 
         if long_flags > 1:
             raise ValueError(
-                f"Too many long flags detected: {flags}. At most 1 long flag and 1 short flag are allowed per option."
+                f"Too many long flags detected: {flags}. "
+                + "At most 1 long flag and 1 short flag are allowed per option."
             )
         if short_flags > 1:
             raise ValueError(
-                f"Too many short flags detected: {flags}. At most 1 long flag and 1 short flag are allowed per option."
+                f"Too many short flags detected: {flags}. "
+                + "At most 1 long flag and 1 short flag are allowed per option."
             )
         if long_flags == 0:
             raise ValueError(
