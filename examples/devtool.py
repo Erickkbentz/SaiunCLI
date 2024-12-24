@@ -15,7 +15,6 @@ def base_handler(args):
     console.print(args)
 
 if __name__ == "__main__":
-    console = AuraConsole(theme=theme)
 
     hello_command = Command(
         name="hello",
@@ -61,7 +60,7 @@ if __name__ == "__main__":
         title="My Super Cool CLI Tool",
         description="A simple tool to demonstrate auracli.",
         version="1.0.0",
-        theme=theme,
+        console=console,
         handler=base_handler,
         subcommands=[
             hello_command,
