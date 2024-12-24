@@ -1,0 +1,8 @@
+##!/bin/bash
+set -e
+
+echo "Running pre-push checks..."
+
+pytest tests
+
+echo "All checks passed!"
