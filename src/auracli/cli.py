@@ -1,20 +1,22 @@
 from typing import Optional, List
 
-from auracli import AuraConsole, Theme,  Command, Option
+from auracli import AuraConsole, Theme, Command, Option, Argument
 from auracli.command import Command, _ROOT_COMMAND_NAME
+
 
 class AuraCLI(Command):
     def __init__(
-            self,
-            title: str,
-            version: Optional[str] = None,
-            theme: Optional[Theme] = None,
-            console: Optional[AuraConsole] = None,
-            handler: callable = None,
-            usage: Optional[str] = None,
-            description: Optional[str] = None,
-            options: Optional[List[Option]] = None,
-            subcommands: Optional[List[Command]] = None,
+        self,
+        title: str,
+        version: Optional[str] = None,
+        theme: Optional[Theme] = None,
+        console: Optional[AuraConsole] = None,
+        handler: callable = None,
+        usage: Optional[str] = None,
+        description: Optional[str] = None,
+        options: Optional[List[Option]] = None,
+        arguments: Optional[List[Argument]] = None,
+        subcommands: Optional[List[Command]] = None,
     ):
         """
         Initialize an AuraCLI object.
@@ -36,6 +38,8 @@ class AuraCLI(Command):
                 The description of the base CLI command.
             options (Optional[List[Option]]):
                 The options available for the base CLI command.
+            arguments (Optional[List[Argument]]):
+                The arguments available for the base CLI command
             subcommands (Optional[List[Command]]):
                 The subcommands available for the base CLI command.
         """
@@ -46,6 +50,8 @@ class AuraCLI(Command):
             description=description,
             options=options,
             inherit_options=False,
+            arguments=arguments,
+            inherit_arguments=False,
             subcommands=subcommands,
         )
 
