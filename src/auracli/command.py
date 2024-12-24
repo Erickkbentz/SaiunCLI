@@ -1,7 +1,6 @@
 from typing import List, Optional, Dict, Any
 
 from auracli import Option
-from auracli._utils import _validate_options
 
 _ROOT_COMMAND_NAME = "root"
 
@@ -18,6 +17,25 @@ class Command:
             inherit_options: Optional[bool] = False,
             subcommands: Optional[List["Command"]] = None,
     ):
+        """
+        Initialize a Command object.
+
+        Args:
+            name (str):
+                The name of the command.
+            handler (callable):
+                The function to execute when the command is called.
+            usage (Optional[str]):
+                The usage message for the command.
+            description (Optional[str]):
+                The description of the command.
+            options (Optional[List[Option]]):
+                The options available for the command.
+            inherit_options (Optional[bool]):
+                Whether to inherit options from parent commands.
+            subcommands (Optional[List[Command]]):
+                The subcommands available for the command.
+        """
         self.name = name
         self.handler = handler
         self.usage = usage
@@ -29,7 +47,18 @@ class Command:
         for subcommand in self.subcommands:
             subcommand._parent = self
 
-        _validate_options(self.all_options)
+        self._validate_options(self.all_options)
+
+    def _validate_options(self, options: List[Option]):
+        """
+        Ensure there are no duplicate flags across all options.
+        """
+        flag_set = set()
+        for option in options:
+            for flag in option.flags:
+                if flag in flag_set:
+                    raise ValueError(f"Duplicate flag detected: {flag}. Flags must be unique between commands.")
+                flag_set.add(flag)
 
     @property
     def inherited_options(self) -> List[Option]:
