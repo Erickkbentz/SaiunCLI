@@ -76,6 +76,9 @@ class Command:
 
     @property
     def all_options(self) -> List[Option]:
+        """
+        Gather all options available to the command.
+        """
         return self.inherited_options + self.options
 
 
