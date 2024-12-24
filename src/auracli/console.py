@@ -4,27 +4,20 @@ from typing import Any, Dict, List, Optional
 from rich.console import Console
 from auracli import Theme
 
+
 class AuraConsole:
     def __init__(
-            self,
-            theme: Optional[Theme] = None,
+        self,
+        theme: Optional[Theme] = None,
     ):
         self.theme = theme
         self.console = Console()
         self.logger = self._setup_logging()
 
-    def _setup_logging(
-            self, 
-            logger_name: Optional[str] = "auracli"
-        ) -> logging.Logger:
+    def _setup_logging(self, logger_name: Optional[str] = "auracli") -> logging.Logger:
         return logging.getLogger(logger_name)
 
-    def log(
-            self, 
-            message: str, 
-            level: Optional[int] = logging.INFO, 
-            style: Optional[str] = None
-    ):
+    def log(self, message: str, level: Optional[int] = logging.INFO, style: Optional[str] = None):
         if style:
             message = f"[{style}]{message}[/{style}]"
         self.console.log(message)

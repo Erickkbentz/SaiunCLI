@@ -1,11 +1,12 @@
 from typing import Dict, Optional
 
+
 class Theme:
     BASE_THEME_FILE = ".auracli-theme"
 
     def __init__(
-            self,
-            styles: Optional[Dict[str, str]] = None,
+        self,
+        styles: Optional[Dict[str, str]] = None,
     ):
         self.styles = styles
 
@@ -22,9 +23,6 @@ class Theme:
 
         if not parser.has_section("auracli.styles"):
             raise ValueError("Invalid theme file, missing [auracli.styles] section.")
-        
-        styles = {
-            key: value
-            for key, value in parser.items("auracli.styles")
-        }
+
+        styles = {key: value for key, value in parser.items("auracli.styles")}
         return cls(styles=styles)

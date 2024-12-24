@@ -3,16 +3,20 @@ from auracli import AuraCLI, AuraConsole, Command, Option, Theme
 theme = Theme()
 console = AuraConsole(theme=theme)
 
+
 def hello_handler(name: str, count: int):
     for i in range(count):
         console.print(f"Hello, {name}!")
 
+
 def count_handler(a: int, b: int):
     console.print(f"{a} + {b} = {a + b}")
+
 
 def base_handler(args):
     console.print("Base command executed.")
     console.print(args)
+
 
 if __name__ == "__main__":
 
@@ -32,8 +36,8 @@ if __name__ == "__main__":
                 description="The number of times to print the name.",
                 type=int,
                 default=1,
-            )
-        ]
+            ),
+        ],
     )
 
     count_command = Command(
@@ -52,8 +56,8 @@ if __name__ == "__main__":
                 description="The second number.",
                 type=int,
                 required=True,
-            )
-        ]
+            ),
+        ],
     )
 
     mycli = AuraCLI(
@@ -62,10 +66,7 @@ if __name__ == "__main__":
         version="1.0.0",
         console=console,
         handler=base_handler,
-        subcommands=[
-            hello_command,
-            count_command
-        ],
+        subcommands=[hello_command, count_command],
         options=[
             Option(
                 flags=["-v", "--verbose"],
@@ -82,7 +83,7 @@ if __name__ == "__main__":
                 description="Enable debug output.",
                 action="store_true",
             ),
-        ]
+        ],
     )
 
     mycli.run()

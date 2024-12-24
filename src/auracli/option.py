@@ -7,27 +7,28 @@ _CONSTANT_UNIVERSAL_FLAGS = {
     "version": ["-V", "--version"],
 }
 
+
 class Option:
     def __init__(
-            self,
-            flags: List[str],
-            message: Optional[str] = None,
-            required: Optional[bool] = False,
-            action: Optional[
-                Literal[
-                    "store",
-                    "store_true",
-                    "store_false",
-                    "append",
-                    "extend",
-                    "count",
-                ]
-            ] = "store",
-            default: Optional[str] = None,
-            prompt: Optional[bool] = False,
-            prompt_message: Optional[str] = None,
-            choices: Optional[List[Any]] = None,
-            type: Optional[type] = str,
+        self,
+        flags: List[str],
+        message: Optional[str] = None,
+        required: Optional[bool] = False,
+        action: Optional[
+            Literal[
+                "store",
+                "store_true",
+                "store_false",
+                "append",
+                "extend",
+                "count",
+            ]
+        ] = "store",
+        default: Optional[str] = None,
+        prompt: Optional[bool] = False,
+        prompt_message: Optional[str] = None,
+        choices: Optional[List[Any]] = None,
+        type: Optional[type] = str,
     ):
         """
         Initialize an Option object.
@@ -69,27 +70,37 @@ class Option:
         Ensure there are only 2 flags. At most 1 short flag and 1 long flag.
         """
         if len(flags) > 2:
-            raise ValueError(f"Too many flags detected: {flags}. Only 2 flags are allowed per option.")
+            raise ValueError(
+                f"Too many flags detected: {flags}. Only 2 flags are allowed per option."
+            )
 
         long_flags = 0
         short_flags = 0
         for flag in flags:
             if not _is_flag(flag):
-                raise ValueError(f"Invalid flag detected: {flag}. Flags must start with '-' or '--'.")
+                raise ValueError(
+                    f"Invalid flag detected: {flag}. Flags must start with '-' or '--'."
+                )
             long_flags += 1 if _is_long_flag(flag) else 0
             short_flags += 1 if _is_short_flag(flag) else 0
 
         if long_flags > 1:
-            raise ValueError(f"Too many long flags detected: {flags}. At most 1 long flag and 1 short flag are allowed per option.")
+            raise ValueError(
+                f"Too many long flags detected: {flags}. At most 1 long flag and 1 short flag are allowed per option."
+            )
         if short_flags > 1:
-            raise ValueError(f"Too many short flags detected: {flags}. At most 1 long flag and 1 short flag are allowed per option.")
+            raise ValueError(
+                f"Too many short flags detected: {flags}. At most 1 long flag and 1 short flag are allowed per option."
+            )
         if long_flags == 0:
-            raise ValueError(f"Missing long flag: {flags}. At least 1 long flag is required per option.")
-
+            raise ValueError(
+                f"Missing long flag: {flags}. At least 1 long flag is required per option."
+            )
 
     @property
     def name(self) -> str:
         long_flag = next(flag for flag in self.flags if _is_long_flag(flag))
+        return long_flag[2:]
 
     def validate(self, value: Any) -> bool:
         """Validate the value of the option."""
@@ -98,8 +109,7 @@ class Option:
     def parse(self, raw_value: str) -> Any:
         """Parse the raw value from the command line."""
         pass
-    
+
     def handle(self, value: Optional[Any]) -> Any:
         """Handle the value of the option based on Option setup."""
         pass
-
