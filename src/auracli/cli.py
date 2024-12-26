@@ -22,6 +22,7 @@ class AuraCLI(Command):
         options: Optional[List[Option]] = None,
         arguments: Optional[List[Argument]] = None,
         global_options: Optional[List[Option]] = None,
+        global_arguments: Optional[List[Argument]] = None,
         subcommands: Optional[List[Command]] = None,
     ):
         """
@@ -44,10 +45,12 @@ class AuraCLI(Command):
                 The description of the base CLI command.
             options (Optional[List[Option]]):
                 The options available for the base CLI command.
-            global_options (Optional[List[Option]]):
-                The global options available for the base CLI command and any subcommands.
             arguments (Optional[List[Argument]]):
                 The arguments available for the base CLI command
+            global_options (Optional[List[Option]]):
+                The global options available for the base CLI command and any subcommands.
+            global_arguments (Optional[List[Argument]]):
+                The global arguments available for the base CLI command and any subcommands.
             subcommands (Optional[List[Command]]):
                 The subcommands available for the base CLI command.
         """
@@ -67,7 +70,20 @@ class AuraCLI(Command):
         self.version = version
         self.theme = theme
         self.global_options = global_options or []
+        self.global_arguments = global_arguments or []
         self.console = console or AuraConsole(theme=self.theme)
+
+    def add_global_option(self, option: Option):
+        self.global_options.append(option)
+
+    def add_global_options(self, options: List[Option]):
+        self.global_options.extend(options)
+
+    def add_global_argument(self, argument: Argument):
+        self.global_arguments.append(argument)
+
+    def add_global_arguments(self, arguments: List[Argument]):
+        self.global_arguments.extend(arguments)
 
     def display_version(self):
         pass
@@ -91,7 +107,6 @@ class AuraCLI(Command):
         if not option:
             # TODO: This should automatically display the help message
             raise ValueError(f"Invalid Option: {flag}, for available options use --help")
-        print("Option found: ", option.name)
         flag_action = option.action
 
         if flag_action == "store_true":
@@ -228,11 +243,12 @@ class AuraCLI(Command):
     def _process_argument(
         self, arg: str, latest_command: Command, parsed: Dict[str, Any], arg_index: int
     ):
-        if not latest_command.arguments:
+        all_arguments = self.global_arguments + latest_command.arguments
+        if not all_arguments:
             raise ValueError(f"Invalid argument: {arg}")
-        if arg_index >= len(latest_command.arguments):
+        if arg_index >= len(all_arguments):
             raise ValueError(f"Too many arguments: {arg}")
-        argument: Argument = latest_command.arguments[arg_index]
+        argument: Argument = all_arguments[arg_index]
         resolved_value = argument.type(arg)
         if argument.choices:
             if resolved_value not in argument.choices:
@@ -248,7 +264,8 @@ class AuraCLI(Command):
         .. code-block:: python
             {
                 "commands": List[str],
-                "parsed_args": Dict[str, Any],
+                "parsed_kwargs": Dict[str, Any],
+                "parsed_args": List
             }
 
         Returns:
@@ -261,14 +278,12 @@ class AuraCLI(Command):
             "parsed_args": [],
         }
         cli_args = sys.argv[1:]
-        print(f"\nCLI Args: {cli_args}")
 
         latest_command = self
         positional_args_count = 0
 
         while cli_args:
             arg = cli_args.pop(0)
-            print(f"Processing arg: {arg}")
             if _is_flag(arg):
                 if _is_short_stack_flag(arg):
                     short_flags = _split_short_stack_flags(arg)
@@ -276,12 +291,12 @@ class AuraCLI(Command):
                     cli_args = short_flags + cli_args
                 self._process_flag(arg, latest_command, parsed, cli_args)
             else:
-                found_command = self.find_subcommand(arg)
+                found_command = latest_command.find_subcommand(arg)
                 if found_command:
                     latest_command = found_command
                     parsed["commands"].append(arg)
                     continue
-                self._process_argument(arg, latest_command, parsed, cli_args, positional_args_count)
+                self._process_argument(arg, latest_command, parsed, positional_args_count)
         return parsed
 
     def run(self, args: Optional[List[str]] = None):

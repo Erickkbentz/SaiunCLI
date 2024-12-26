@@ -194,6 +194,16 @@ class Command:
         self.options.extend(options)
         self._validate_options(self.all_options)
 
+    def add_argument(self, argument: Argument):
+        """Add an argument to the command."""
+        self.arguments.append(argument)
+        self._validate_arguments(self.all_arguments)
+
+    def add_arguments(self, arguments: List[Argument]):
+        """Add multiple arguments to the command."""
+        self.arguments.extend(arguments)
+        self._validate_arguments(self.all_arguments)
+
     def add_subcommand(self, subcommand: "Command"):
         """Add a subcommand to the command."""
         subcommand._parent = self

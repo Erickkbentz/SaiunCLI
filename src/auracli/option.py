@@ -13,7 +13,7 @@ class Option:
         self,
         name: Optional[str] = None,
         flags: Optional[List[str]] = None,
-        message: Optional[str] = None,
+        description: Optional[str] = None,
         required: Optional[bool] = False,
         action: Optional[
             Literal[
@@ -41,8 +41,8 @@ class Option:
             flags (List[str]):
                 The flags to use for the option. At most 1 short flag and 1 long flag are allowed.
                 If not provided, the name parameter will be used as the long flag.
-            message (Optional[str]):
-                The help message to display for the option.
+            description (Optional[str]):
+                The description to display for the option.
             required (Optional[bool]):
                 Whether the option is required.
             action (Optional[
@@ -70,7 +70,7 @@ class Option:
         if not self.name:
             self.name = self.long_name or self.short_name
 
-        self.message = message
+        self.description = description
         self.required = required
         self.action = action
         self.default = default

@@ -5,7 +5,7 @@ class Argument:
     def __init__(
         self,
         name: str,
-        message: Optional[str] = None,
+        description: Optional[str] = None,
         required: Optional[bool] = False,
         default: Optional[str] = None,
         choices: Optional[List[Any]] = None,
@@ -17,8 +17,8 @@ class Argument:
         Args:
             name (str):
                 The name of the argument.
-            message (Optional[str]):
-                The help message to display for the argument.
+            description (Optional[str]):
+                The description to display for the argument.
             required (Optional[bool]):
                 Whether the argument is required.
             default (Optional[str]):
@@ -29,7 +29,7 @@ class Argument:
                 The type of the argument.
         """
         self.name = name
-        self.message = message
+        self.description = description
         self.required = required
         self.default = default
         self.choices = choices
