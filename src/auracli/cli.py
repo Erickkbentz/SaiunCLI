@@ -1,10 +1,12 @@
-from typing import Optional, List
+import sys
+from typing import Optional, List, Dict, Any
 
 from auracli.console import AuraConsole
 from auracli.theme import Theme
 from auracli.option import Option
 from auracli.argument import Argument
 from auracli.command import Command, _ROOT_COMMAND_NAME
+from auracli._utils import _is_flag, _is_short_stack_flag, _split_short_stack_flags
 
 
 class AuraCLI(Command):
@@ -73,11 +75,214 @@ class AuraCLI(Command):
     def display_cli_help(self):
         pass
 
-    def display_command_help(self, command: Command):
+    def display_command_help(self, command: List[str]):
         pass
 
-    def parse_args(self, args: List[str]):
-        pass
+    def _flag_to_global_option(self, flag: str) -> Optional[Option]:
+        for option in self.global_options:
+            if flag in option.flags:
+                return option
+        return None
+
+    def _process_flag(
+        self, flag: str, latest_command: Command, parsed: Dict[str, Any], cli_args: List[str]
+    ):
+        option = latest_command.flag_to_option(flag) or self._flag_to_global_option(flag)
+        if not option:
+            # TODO: This should automatically display the help message
+            raise ValueError(f"Invalid Option: {flag}, for available options use --help")
+        print("Option found: ", option.name)
+        flag_action = option.action
+
+        if flag_action == "store_true":
+            parsed["parsed_kwargs"][option.name] = True
+        elif flag_action == "store_false":
+            parsed["parsed_kwargs"][option.name] = False
+        elif flag_action == "count":
+            if option.name in parsed["parsed_kwargs"]:
+                parsed["parsed_kwargs"][option.name] += 1
+            else:
+                parsed["parsed_kwargs"][option.name] = 1
+        elif flag_action == "store":
+            value = cli_args.pop(0)
+            resolved_value = option.type(value)
+            if option.choices:
+                if resolved_value not in option.choices:
+                    raise ValueError(f"Invalid choice: {value}, for available choices use --help")
+            if option.name in parsed["parsed_kwargs"]:
+                raise ValueError(f"Duplicate option: {flag}")
+
+            if option.nargs:
+                resolved_value = [resolved_value]
+                if isinstance(option.nargs, int):
+                    for i in range(option.nargs - 1):
+                        if cli_args and not _is_flag(cli_args[0]):
+                            value = cli_args.pop(0)
+                            resolved_v = option.type(value)
+                            if option.choices:
+                                if resolved_v not in option.choices:
+                                    raise ValueError(
+                                        f"Invalid choice: {value}, for available choices use --help"
+                                    )
+                            resolved_value.append(option.type(value))
+                        else:
+                            raise ValueError(f"Expected {option.nargs} arguments for {flag}")
+                else:
+                    while cli_args and not _is_flag(cli_args[0]):
+                        value = cli_args.pop(0)
+                        resolved_v = option.type(value)
+                        if option.choices:
+                            if resolved_v not in option.choices:
+                                raise ValueError(
+                                    f"Invalid choice: {value}, for available choices use --help"
+                                )
+                        resolved_value.append(option.type(value))
+
+            parsed["parsed_kwargs"][option.name] = resolved_value
+
+        elif flag_action == "append":
+            if option.nargs:
+                resolved_value = []
+                if isinstance(option.nargs, int):
+                    for i in range(option.nargs):
+                        if cli_args and not _is_flag(cli_args[0]):
+                            value = cli_args.pop(0)
+                            resolved_v = option.type(value)
+                            if option.choices:
+                                if resolved_v not in option.choices:
+                                    raise ValueError(
+                                        f"Invalid choice: {value}, for available choices use --help"
+                                    )
+                            resolved_value.append(option.type(value))
+                        else:
+                            raise ValueError(f"Expected {option.nargs} arguments for {flag}")
+                else:
+                    while cli_args and not _is_flag(cli_args[0]):
+                        value = cli_args.pop(0)
+                        resolved_v = option.type(value)
+                        if option.choices:
+                            if resolved_v not in option.choices:
+                                raise ValueError(
+                                    f"Invalid choice: {value}, for available choices use --help"
+                                )
+                        resolved_value.append(option.type(value))
+                if option.name in parsed["parsed_kwargs"]:
+                    parsed["parsed_kwargs"][option.name].append(resolved_value)
+                else:
+                    parsed["parsed_kwargs"][option.name] = resolved_value
+            else:
+                value = cli_args.pop(0)
+                resolved_value = option.type(value)
+                if option.choices:
+                    if resolved_value not in option.choices:
+                        raise ValueError(
+                            f"Invalid choice: {value}, for available choices use --help"
+                        )
+                if option.name not in parsed["parsed_kwargs"]:
+                    parsed["parsed_kwargs"][option.name] = []
+                parsed["parsed_kwargs"][option.name].append(resolved_value)
+        elif flag_action == "extend":
+            if option.nargs:
+                resolved_value = []
+                if isinstance(option.nargs, int):
+                    for i in range(option.nargs):
+                        if cli_args and not _is_flag(cli_args[0]):
+                            value = cli_args.pop(0)
+                            resolved_v = option.type(value)
+                            if option.choices:
+                                if resolved_v not in option.choices:
+                                    raise ValueError(
+                                        f"Invalid choice: {value}, for available choices use --help"
+                                    )
+                            resolved_value.append(option.type(value))
+                        else:
+                            raise ValueError(f"Expected {option.nargs} arguments for {flag}")
+                else:
+                    while cli_args and not _is_flag(cli_args[0]):
+                        value = cli_args.pop(0)
+                        resolved_v = option.type(value)
+                        if option.choices:
+                            if resolved_v not in option.choices:
+                                raise ValueError(
+                                    f"Invalid choice: {value}, for available choices use --help"
+                                )
+                        resolved_value.append(option.type(value))
+                if option.name in parsed["parsed_kwargs"]:
+                    parsed["parsed_kwargs"][option.name].extend(resolved_value)
+                else:
+                    parsed["parsed_kwargs"][option.name] = resolved_value
+            else:
+                value = cli_args.pop(0)
+                resolved_value = option.type(value)
+                if option.choices:
+                    if resolved_value not in option.choices:
+                        raise ValueError(
+                            f"Invalid choice: {value}, for available choices use --help"
+                        )
+                if option.name not in parsed["parsed_kwargs"]:
+                    parsed["parsed_kwargs"][option.name] = []
+                parsed["parsed_kwargs"][option.name].append(resolved_value)
+        else:
+            raise ValueError(f"Invalid action: {flag_action}")
+
+    def _process_argument(
+        self, arg: str, latest_command: Command, parsed: Dict[str, Any], arg_index: int
+    ):
+        if not latest_command.arguments:
+            raise ValueError(f"Invalid argument: {arg}")
+        if arg_index >= len(latest_command.arguments):
+            raise ValueError(f"Too many arguments: {arg}")
+        argument: Argument = latest_command.arguments[arg_index]
+        resolved_value = argument.type(arg)
+        if argument.choices:
+            if resolved_value not in argument.choices:
+                raise ValueError(f"Invalid choice: {arg}, for available choices use --help")
+
+        parsed["parsed_args"].append(resolved_value)
+
+    def parse_cli(self) -> Dict[str, Any]:
+        """Return the commands and arguments parsed from the command string.
+
+        Returns a dictionary with the structure:
+
+        .. code-block:: python
+            {
+                "commands": List[str],
+                "parsed_args": Dict[str, Any],
+            }
+
+        Returns:
+            Dict[str, Any]:
+                The parsed command and arguments.
+        """
+        parsed = {
+            "commands": ["root"],
+            "parsed_kwargs": {},
+            "parsed_args": [],
+        }
+        cli_args = sys.argv[1:]
+        print(f"\nCLI Args: {cli_args}")
+
+        latest_command = self
+        positional_args_count = 0
+
+        while cli_args:
+            arg = cli_args.pop(0)
+            print(f"Processing arg: {arg}")
+            if _is_flag(arg):
+                if _is_short_stack_flag(arg):
+                    short_flags = _split_short_stack_flags(arg)
+                    arg = short_flags.pop(0)
+                    cli_args = short_flags + cli_args
+                self._process_flag(arg, latest_command, parsed, cli_args)
+            else:
+                found_command = self.find_subcommand(arg)
+                if found_command:
+                    latest_command = found_command
+                    parsed["commands"].append(arg)
+                    continue
+                self._process_argument(arg, latest_command, parsed, cli_args, positional_args_count)
+        return parsed
 
     def run(self, args: Optional[List[str]] = None):
         pass

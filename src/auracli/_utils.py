@@ -30,7 +30,7 @@ def _is_long_flag(flag: str) -> bool:
     return len(flag) > 2 and flag[:2] == "--" and flag[2:].isalpha()
 
 
-def _split_short_stack_flag(flag: str) -> List[str]:
+def _split_short_stack_flags(flag: str) -> List[str]:
     """
     Split a short stack flag into individual short flags.
     """

@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict, Any
+from typing import List, Optional
 
 from auracli.option import Option
 from auracli.argument import Argument
@@ -17,7 +17,7 @@ class Command:
         description: Optional[str] = None,
         options: Optional[List[Option]] = None,
         inherit_options: Optional[bool] = False,
-        arguments: Optional[Argument] = None,
+        arguments: Optional[List[Argument]] = None,
         inherit_arguments: Optional[bool] = False,
         subcommands: Optional[List["Command"]] = None,
     ):
@@ -175,23 +175,13 @@ class Command:
         return option_flags
 
     @property
-    def all_commands(self) -> List["Command"]:
+    def all_subcommand_names(self) -> List[str]:
         """
-        Gather all commands available to the command.
+        Gather all subcommand names available to the command.
         """
-        commands = [self]
+        command_names = []
         for subcommand in self.subcommands:
-            commands.extend(subcommand.all_commands)
-        return commands
-
-    @property
-    def all_command_names(self) -> List[str]:
-        """
-        Gather all command names available to the command.
-        """
-        command_names = [self.name]
-        for subcommand in self.subcommands:
-            command_names.extend(subcommand.all_command_names)
+            command_names.extend(subcommand.all_subcommand_names)
         return command_names
 
     def add_option(self, option: Option):
@@ -215,13 +205,6 @@ class Command:
             subcommand._parent = self
         self.subcommands.extend(subcommands)
 
-    def argument_by_index(self, index: int) -> Optional[Argument]:
-        """Get an argument by index."""
-        try:
-            return self.all_arguments[index]
-        except IndexError:
-            return None
-
     def flag_to_option(self, flag: str) -> Optional[Option]:
         """Get an option by flag."""
         for option in self.all_options:
@@ -229,5 +212,12 @@ class Command:
                 return option
         return None
 
-    def execute(self, args: Dict[str, Any]):
-        self.handler(args)
+    def find_subcommand(self, name: str) -> Optional["Command"]:
+        """Find a subcommand by name."""
+        for subcommand in self.subcommands:
+            if subcommand.name == name:
+                return subcommand
+        return None
+
+    def execute(self, **handler_args):
+        self.handler(**handler_args)
