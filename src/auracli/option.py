@@ -25,8 +25,6 @@ class Option:
             ]
         ] = "store",
         default: Optional[str] = None,
-        prompt: Optional[bool] = False,
-        prompt_message: Optional[str] = None,
         choices: Optional[List[Any]] = None,
         type: Optional[type] = str,
     ):
@@ -46,10 +44,6 @@ class Option:
                 The action to take with the option. Default is "store".
             default (Optional[str]):
                 The default value for the option.
-            prompt (Optional[bool]):
-                Whether to prompt the user for the option. Default is False.
-            prompt_message (Optional[str]):
-                The message to display when prompting the user for the option.
             choices (Optional[List[Any]]):
                 The choices available for the option.
             type (Optional[type]):
@@ -60,8 +54,6 @@ class Option:
         self.required = required
         self.action = action
         self.default = default
-        self.prompt = prompt
-        self.prompt_message = prompt_message
         self.choices = choices
         self.type = type
 

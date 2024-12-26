@@ -8,8 +8,9 @@ AuraCLI is actively being developed. Some features may be incomplete or subject 
 ## Features
 
 - Customizable Themes: Easily style your CLI with themes and override defaults.
-Command and Subcommand Support: Define commands and nested subcommands with specific options and arguments.
+- Command and Subcommand Support: Define commands and nested subcommands with specific options and arguments.
 - Inherited Options and Arguments: Configure options to be inherited across subcommands.
+- Global Options: Define options that apply globally across all commands and subcommands.
 - Modern Styling: Leverage rich to make CLI output visually appealing, including tables, progress bars, and spinners.
 - User-Friendly Argument Parsing: Parse both positional arguments and flags in a structured and intuitive manner.
 - Dynamic Command Registration: Add commands programmatically during runtime.
@@ -23,4 +24,5 @@ Command and Subcommand Support: Define commands and nested subcommands with spec
 | Nested Commands    | ✅       | ✅     | ❌        |
 | Dynamic Commands   | ✅       | ✅     | ❌        |
 | Option Inheritance | ✅       | ❌     | ❌        |
+| Global Options     | ✅       | ❌     | ❌        |
 | Easy Theming       | ✅       | ❌     | ❌        |

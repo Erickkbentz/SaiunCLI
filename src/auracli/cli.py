@@ -19,6 +19,7 @@ class AuraCLI(Command):
         description: Optional[str] = None,
         options: Optional[List[Option]] = None,
         arguments: Optional[List[Argument]] = None,
+        global_options: Optional[List[Option]] = None,
         subcommands: Optional[List[Command]] = None,
     ):
         """
@@ -41,6 +42,8 @@ class AuraCLI(Command):
                 The description of the base CLI command.
             options (Optional[List[Option]]):
                 The options available for the base CLI command.
+            global_options (Optional[List[Option]]):
+                The global options available for the base CLI command and any subcommands.
             arguments (Optional[List[Argument]]):
                 The arguments available for the base CLI command
             subcommands (Optional[List[Command]]):
@@ -61,6 +64,7 @@ class AuraCLI(Command):
         self.title = title
         self.version = version
         self.theme = theme
+        self.global_options = global_options or []
         self.console = console or AuraConsole(theme=self.theme)
 
     def display_version(self):
@@ -70,6 +74,9 @@ class AuraCLI(Command):
         pass
 
     def display_command_help(self, command: Command):
+        pass
+
+    def parse_args(self, args: List[str]):
         pass
 
     def run(self, args: Optional[List[str]] = None):
