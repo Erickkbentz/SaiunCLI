@@ -53,4 +53,4 @@ def test_parse_command_happy_cases(mock_argv, test_case, auracli: AuraCLI):
 
     parsed_cli = auracli.parse_cli()
 
-    assert parsed_cli == test_case.get("expected_parse_cli")
+    assert parsed_cli.__dict__ == test_case["expected_parse_cli"].__dict__

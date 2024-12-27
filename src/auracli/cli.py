@@ -9,6 +9,47 @@ from auracli.command import Command, _ROOT_COMMAND_NAME
 from auracli._utils import _is_flag, _is_short_stack_flag, _split_short_stack_flags
 
 
+class ParsedCLI:
+    def __init__(
+        self, commands: List[str], parsed_options: Dict[str, Any], parsed_args: Dict[str, Any]
+    ):
+        """
+        Initialize a ParsedCLI object.
+
+        Args:
+            commands (List[str]): List of commands parsed from the CLI input.
+            parsed_options (Dict[str, Any]): Dictionary of option names and their values.
+            parsed_args (Dict[str, Any]): Dictionary of argument names and their values.
+        """
+        self.commands = commands
+        self.parsed_options = parsed_options
+        self.parsed_args = parsed_args
+
+    def __repr__(self):
+        """String representation for debugging."""
+        repr = "<ParsedCLI(commands=%s, parsed_options=%s, parsed_args=%s" % (
+            self.commands,
+            self.parsed_options,
+            self.parsed_args,
+        )
+        for key, value in self.parsed_options.items():
+            repr += f", {key}={value}"
+        for key, value in self.parsed_args.items():
+            repr += f", {key}={value}"
+        repr += ")>"
+        return repr
+
+    def __getattr__(self, name: str):
+        """
+        Allow direct access to `parsed_options` or `parsed_args` values as attributes.
+        """
+        if name in self.parsed_options:
+            return self.parsed_options[name]
+        if name in self.parsed_args:
+            return self.parsed_args[name]
+        raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+
+
 class AuraCLI(Command):
     def __init__(
         self,
@@ -27,6 +68,9 @@ class AuraCLI(Command):
     ):
         """
         Initialize an AuraCLI object.
+
+        Operations for displaying "help" and "version" information are handled automatically
+        and reserve the flags ["--help", "-h"] and ["--version", "-V"] respectively.
 
         Args:
             title (str):
@@ -110,21 +154,21 @@ class AuraCLI(Command):
         flag_action = option.action
 
         if flag_action == "store_true":
-            parsed["parsed_kwargs"][option.name] = True
+            parsed["parsed_options"][option.name] = True
         elif flag_action == "store_false":
-            parsed["parsed_kwargs"][option.name] = False
+            parsed["parsed_options"][option.name] = False
         elif flag_action == "count":
-            if option.name in parsed["parsed_kwargs"]:
-                parsed["parsed_kwargs"][option.name] += 1
+            if option.name in parsed["parsed_options"]:
+                parsed["parsed_options"][option.name] += 1
             else:
-                parsed["parsed_kwargs"][option.name] = 1
+                parsed["parsed_options"][option.name] = 1
         elif flag_action == "store":
             value = cli_args.pop(0)
             resolved_value = option.type(value)
             if option.choices:
                 if resolved_value not in option.choices:
                     raise ValueError(f"Invalid choice: {value}, for available choices use --help")
-            if option.name in parsed["parsed_kwargs"]:
+            if option.name in parsed["parsed_options"]:
                 raise ValueError(f"Duplicate option: {flag}")
 
             if option.nargs:
@@ -153,7 +197,7 @@ class AuraCLI(Command):
                                 )
                         resolved_value.append(option.type(value))
 
-            parsed["parsed_kwargs"][option.name] = resolved_value
+            parsed["parsed_options"][option.name] = resolved_value
 
         elif flag_action == "append":
             if option.nargs:
@@ -181,10 +225,10 @@ class AuraCLI(Command):
                                     f"Invalid choice: {value}, for available choices use --help"
                                 )
                         resolved_value.append(option.type(value))
-                if option.name in parsed["parsed_kwargs"]:
-                    parsed["parsed_kwargs"][option.name].append(resolved_value)
+                if option.name in parsed["parsed_options"]:
+                    parsed["parsed_options"][option.name].append(resolved_value)
                 else:
-                    parsed["parsed_kwargs"][option.name] = resolved_value
+                    parsed["parsed_options"][option.name] = resolved_value
             else:
                 value = cli_args.pop(0)
                 resolved_value = option.type(value)
@@ -193,9 +237,9 @@ class AuraCLI(Command):
                         raise ValueError(
                             f"Invalid choice: {value}, for available choices use --help"
                         )
-                if option.name not in parsed["parsed_kwargs"]:
-                    parsed["parsed_kwargs"][option.name] = []
-                parsed["parsed_kwargs"][option.name].append(resolved_value)
+                if option.name not in parsed["parsed_options"]:
+                    parsed["parsed_options"][option.name] = []
+                parsed["parsed_options"][option.name].append(resolved_value)
         elif flag_action == "extend":
             if option.nargs:
                 resolved_value = []
@@ -222,10 +266,10 @@ class AuraCLI(Command):
                                     f"Invalid choice: {value}, for available choices use --help"
                                 )
                         resolved_value.append(option.type(value))
-                if option.name in parsed["parsed_kwargs"]:
-                    parsed["parsed_kwargs"][option.name].extend(resolved_value)
+                if option.name in parsed["parsed_options"]:
+                    parsed["parsed_options"][option.name].extend(resolved_value)
                 else:
-                    parsed["parsed_kwargs"][option.name] = resolved_value
+                    parsed["parsed_options"][option.name] = resolved_value
             else:
                 value = cli_args.pop(0)
                 resolved_value = option.type(value)
@@ -234,16 +278,16 @@ class AuraCLI(Command):
                         raise ValueError(
                             f"Invalid choice: {value}, for available choices use --help"
                         )
-                if option.name not in parsed["parsed_kwargs"]:
-                    parsed["parsed_kwargs"][option.name] = []
-                parsed["parsed_kwargs"][option.name].append(resolved_value)
+                if option.name not in parsed["parsed_options"]:
+                    parsed["parsed_options"][option.name] = []
+                parsed["parsed_options"][option.name].append(resolved_value)
         else:
             raise ValueError(f"Invalid action: {flag_action}")
 
     def _process_argument(
         self, arg: str, latest_command: Command, parsed: Dict[str, Any], arg_index: int
     ):
-        all_arguments = self.global_arguments + latest_command.arguments
+        all_arguments = self.global_arguments + latest_command.all_arguments
         if not all_arguments:
             raise ValueError(f"Invalid argument: {arg}")
         if arg_index >= len(all_arguments):
@@ -254,28 +298,27 @@ class AuraCLI(Command):
             if resolved_value not in argument.choices:
                 raise ValueError(f"Invalid choice: {arg}, for available choices use --help")
 
-        parsed["parsed_args"].append(resolved_value)
+        parsed["parsed_args"][argument.name] = resolved_value
 
-    def parse_cli(self) -> Dict[str, Any]:
+    def _set_defaults_for_command(self, command: Command, parsed: Dict[str, Any]):
+        for option in command.all_options:
+            if option.default and option.name not in parsed["parsed_options"]:
+                parsed["parsed_options"][option.name] = option.default
+
+        for argument in command.all_arguments:
+            if argument.default and len(parsed["parsed_args"]) < len(command.all_arguments):
+                parsed["parsed_args"][argument.name] = argument.default
+
+    def parse_cli(self) -> ParsedCLI:
         """Return the commands and arguments parsed from the command string.
 
-        Returns a dictionary with the structure:
-
-        .. code-block:: python
-            {
-                "commands": List[str],
-                "parsed_kwargs": Dict[str, Any],
-                "parsed_args": List
-            }
-
         Returns:
-            Dict[str, Any]:
-                The parsed command and arguments.
+            ParsedCLI: The parsed commands and arguments.
         """
         parsed = {
             "commands": ["root"],
-            "parsed_kwargs": {},
-            "parsed_args": [],
+            "parsed_options": {},
+            "parsed_args": {},
         }
         cli_args = sys.argv[1:]
 
@@ -297,7 +340,13 @@ class AuraCLI(Command):
                     parsed["commands"].append(arg)
                     continue
                 self._process_argument(arg, latest_command, parsed, positional_args_count)
-        return parsed
+                positional_args_count += 1
+
+        return ParsedCLI(
+            commands=parsed["commands"],
+            parsed_options=parsed["parsed_options"],
+            parsed_args=parsed["parsed_args"],
+        )
 
     def run(self, args: Optional[List[str]] = None):
         pass
