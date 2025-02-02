@@ -1,20 +1,16 @@
 import sys
 from typing import Optional, List, Dict, Any
 
+from rich.console import Console
+from rich.text import Text
+
+from auracli.constants import _ROOT_COMMAND_NAME, _HELP_NAME, _VERSION_NAME, _GLOBAL_FLAGS
 from auracli.console import AuraConsole
 from auracli.theme import Theme
 from auracli.option import Option
 from auracli.argument import Argument
 from auracli.command import Command
 from auracli._utils import _is_flag, _is_short_stack_flag, _split_short_stack_flags, _validate_flags
-
-_ROOT_COMMAND_NAME = "root"
-_HELP_NAME = "help"
-_VERSION_NAME = "version"
-_GLOBAL_FLAGS = {
-    _HELP_NAME: ["-h", "--help"],
-    _VERSION_NAME: ["-V", "--version"],
-}
 
 
 class ParsedCLI:
@@ -125,10 +121,9 @@ class AuraCLI(Command):
                 The subcommands available for the base CLI command.
         """
         self._version_flags = version_flags or _GLOBAL_FLAGS[_VERSION_NAME]
-        _validate_flags(self._version_flags)
         self._help_flags = help_flags or _GLOBAL_FLAGS[_HELP_NAME]
         _validate_flags(self._help_flags)
-
+        _validate_flags(self._version_flags)
         if any(flag in self._help_flags for flag in self._version_flags):
             raise ValueError("Duplicate flags detected for help and version operations.")
 
@@ -143,6 +138,7 @@ class AuraCLI(Command):
             inherit_arguments=False,
             subcommands=subcommands,
         )
+
 
         self.title = title
         self.version = version
@@ -174,8 +170,11 @@ class AuraCLI(Command):
     ):
         if flag in self._help_flags:
             parsed[_HELP_NAME] = True
+            return
+            
         if flag in self._version_flags:
             parsed[_VERSION_NAME] = True
+            return
 
         option = latest_command.flag_to_option(flag) or self._flag_to_global_option(flag)
         if not option:
@@ -387,8 +386,133 @@ class AuraCLI(Command):
     def display_version(self):
         pass
 
-    def display_help(self, command: List[str]):
-        pass
+    def display_help(self, command: Command):
+        """Display help information for the CLI tool.
+
+        Args:
+            command (List[str]): 
+                The command to display help for.
+        """
+        options = command.all_options
+        arguments = command.all_arguments
+        subcommands = command.subcommands
+
+        from rich.highlighter import RegexHighlighter
+        from rich.panel import Panel
+        from rich.table import Table
+        from rich.theme import Theme
+
+        class OptionHighlighter(RegexHighlighter):
+            highlights = [
+                r"(?P<short_flag>\-\w)",
+                r"(?P<long_flag>\-\-[\w\-]+)"
+            ]
+
+        highlighter = OptionHighlighter()
+        console = Console(
+            theme=Theme(
+                {
+                    "long_flag": "bold cyan",
+                    "short_flag": "bold green",
+                }
+            ),
+            highlighter=highlighter
+        )
+        console.print(
+            f"[b]{self.title}[/b] [magenta][i]v{self.version}[/i][/magenta]\n",
+            justify="center",
+        )
+        console.print(
+            f"[dim]{self.description}[/dim]\n\n",
+            justify="center",
+        )
+
+        # If subcommands are available, display them
+        if subcommands:
+            subcommands_table = Table(
+                highlight=True,
+                box=None,
+                show_header=False
+            )
+            for subcommand in subcommands:
+                help_message = ""
+                if subcommand.description:
+                    help_message = Text.from_markup(subcommand.description)
+                    subcommand_name = f"[magenta]{subcommand.name}[/magenta]"
+                    subcommands_table.add_row(
+                        subcommand_name,
+                        help_message
+                    )
+            console.print(
+                Panel(
+                    subcommands_table,
+                    border_style="dim",
+                    title_align="left",
+                    title="Subcommands"
+                )
+            )
+
+
+        # If options are available, display them
+        if options:
+            options_table = Table(
+                highlight=True,
+                box=None,
+                show_header=False
+            )
+            for option in options:
+                help_message = ""
+                if option.description:
+                    help_message = Text.from_markup(option.description)
+
+                if len(option.flags) == 2:
+                    opt1 = highlighter(option.flags[0])
+                    opt2 = highlighter(option.flags[1])
+                else:
+                    opt1 = highlighter(option.flags[0])
+                    opt2 = ""
+        
+                options_table.add_row(
+                    opt1,
+                    opt2,
+                    help_message
+                )
+            console.print(
+                Panel(
+                    options_table,
+                    border_style="dim",
+                    title_align="left",
+                    title="Options"
+                )
+            )
+
+        # If subcommands are available, display them
+        if arguments:
+            argument_table = Table(
+                highlight=True,
+                box=None,
+                show_header=False
+            )
+            for argument in arguments:
+                help_message = ""
+                if argument.description:
+                    help_message = Text.from_markup(argument.description)
+                    argument_name = f"[Magenta]{argument.name}[/Magenta]"
+                    argument_table.add_row(
+                        argument_name,
+                        help_message
+                    )
+            console.print(
+                Panel(
+                    argument_table,
+                    border_style="dim",
+                    title_align="left",
+                    title="Arguments"
+                )
+            )
+
+
+            
 
     def run(self, parsed_cli: Optional[ParsedCLI] = None):
         """Executes CLI tool based handlers, options, and arguments in
@@ -410,7 +534,9 @@ class AuraCLI(Command):
 
         if parsed_cli.help:
             self.display_help(command)
+            return
         if parsed_cli.version:
             self.display_version()
+            return
         kwargs = parsed_cli.handler_kwargs_dict()
         command.handler(**kwargs)

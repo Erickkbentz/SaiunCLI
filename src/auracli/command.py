@@ -7,6 +7,9 @@ from auracli.argument import Argument
 class Command:
     _parent: "Command" = None
 
+    _help_flags = ["-h", "--help"]
+    _version_flags = ["-V", "--version"]
+
     def __init__(
         self,
         name: str,
@@ -54,18 +57,11 @@ class Command:
 
         for subcommand in self.subcommands:
             subcommand._parent = self
-
-        self._init_help_version_flags()
-        for subcommand in self.subcommands:
-            subcommand._parent = self
-            subcommand._init_help_version_flags()
-
+            subcommand._version_flags = self._version_flags
+            subcommand._help_flags = self._help_flags
+    
         self._validate_options(self.all_options)
-
-    def _init_help_version_flags(self):
-        self._version_flags = self._parent._version_flags if self._parent else []
-        self._help_flags = self._parent._help_flags if self._parent else []
-
+    
     def _validate_options(self, options: List[Option]):
         """
         Ensure there are no duplicate flags across all options.
@@ -214,14 +210,16 @@ class Command:
     def add_subcommand(self, subcommand: "Command"):
         """Add a subcommand to the command."""
         subcommand._parent = self
-        subcommand._init_help_version_flags()
+        subcommand._version_flags = self._version_flags
+        subcommand._help_flags = self._help_flags
         self.subcommands.append(subcommand)
 
     def add_subcommands(self, subcommands: List["Command"]):
         """Add multiple subcommands to the command."""
         for subcommand in subcommands:
             subcommand._parent = self
-            subcommand._init_help_version_flags()
+            subcommand._version_flags = self._version_flags
+            subcommand._help_flags = self._help_flags
         self.subcommands.extend(subcommands)
 
     def flag_to_option(self, flag: str) -> Optional[Option]:
