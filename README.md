@@ -2,6 +2,8 @@
 
 AuraCLI is a Python framework for creating visually appealing, user-friendly, and highly customizable Command-Line Interface (CLI) tools. It leverages the power of [`rich`](https://github.com/Textualize/rich?tab=readme-ov-file) for styling and formatting, making it easy to build modern CLI applications that are both functional and beautiful.
 
+![preview image](https://raw.githubusercontent.com/Erickkbentz/AuraCLI/main/public/aura_cli_preview.png)
+
 ## Project Status: 🚧 Under Construction 🚧
 AuraCLI is actively being developed. Some features may be incomplete or subject to change. Stay tuned for updates and improvements!
 
