@@ -36,6 +36,14 @@ dev = [
     "build",
     "twine"
 ]
+all = [
+    "rich>=13.0,<14",
+    "pytest>=7.0,<8",
+    "black>=22.0,<23",
+    "flake8",
+    "build",
+    "twine"
+]
 
 [project.urls]
 homepage = "https://github.com/Erickkbentz/AuraCLI"
