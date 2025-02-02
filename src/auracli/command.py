@@ -30,8 +30,6 @@ class Command:
                 The name of the command.
             handler (callable):
                 The function to execute when the command is called.
-            usage (Optional[str]):
-                The usage message for the command.
             description (Optional[str]):
                 The description of the command.
             options (Optional[List[Option]]):
@@ -47,7 +45,6 @@ class Command:
         """
         self.name = name
         self.handler = handler
-        self.usage = usage
         self.description = description
         self.options = options or []
         self.inherit_options = inherit_options
@@ -59,9 +56,9 @@ class Command:
             subcommand._parent = self
             subcommand._version_flags = self._version_flags
             subcommand._help_flags = self._help_flags
-    
+
         self._validate_options(self.all_options)
-    
+
     def _validate_options(self, options: List[Option]):
         """
         Ensure there are no duplicate flags across all options.

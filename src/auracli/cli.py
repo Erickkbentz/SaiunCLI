@@ -3,10 +3,13 @@ from typing import Optional, List, Dict, Any
 
 from rich.console import Console
 from rich.text import Text
+from rich.style import Style
+from rich.highlighter import RegexHighlighter
+from rich.panel import Panel
+from rich.table import Table
+from rich.theme import Theme
 
 from auracli.constants import _ROOT_COMMAND_NAME, _HELP_NAME, _VERSION_NAME, _GLOBAL_FLAGS
-from auracli.console import AuraConsole
-from auracli.theme import Theme
 from auracli.option import Option
 from auracli.argument import Argument
 from auracli.command import Command
@@ -64,15 +67,18 @@ class ParsedCLI:
         return {**self.parsed_options, **self.parsed_args}
 
 
+class OptionHighlighter(RegexHighlighter):
+    highlights = [r"(?P<short_flag>\-\w)", r"(?P<long_flag>\-\-[\w\-]+)"]
+
+
 class AuraCLI(Command):
     def __init__(
         self,
         title: str,
         version: Optional[str] = None,
         theme: Optional[Theme] = None,
-        console: Optional[AuraConsole] = None,
+        console: Optional[Console] = None,
         handler: callable = None,
-        usage: Optional[str] = None,
         description: Optional[str] = None,
         options: Optional[List[Option]] = None,
         arguments: Optional[List[Argument]] = None,
@@ -95,12 +101,10 @@ class AuraCLI(Command):
                 The version of the CLI tool.
             theme (Optional[Theme]):
                 The theme to use for the CLI tool.
-            console (Optional[AuraConsole]):
+            console (Optional[Console]):
                 The console to use for the CLI tool.
             handler (callable):
                 The function to execute when the base CLI command is called.
-            usage (Optional[str]):
-                The usage message for the base CLI command.
             description (Optional[str]):
                 The description of the base CLI command.
             options (Optional[List[Option]]):
@@ -130,7 +134,6 @@ class AuraCLI(Command):
         super().__init__(
             name=_ROOT_COMMAND_NAME,
             handler=handler,
-            usage=usage,
             description=description,
             options=options,
             inherit_options=False,
@@ -138,14 +141,26 @@ class AuraCLI(Command):
             inherit_arguments=False,
             subcommands=subcommands,
         )
-
-
         self.title = title
         self.version = version
         self.theme = theme
         self.global_options = global_options or []
         self.global_arguments = global_arguments or []
-        self.console = console or AuraConsole(theme=self.theme)
+        self.console = console
+        self._cli_command = None
+
+        highlighter = OptionHighlighter()
+        self._highlighter = highlighter
+        if not self.console:
+            self.console = Console(
+                theme=Theme(
+                    {
+                        "long_flag": Style(color="cyan", bold=True),
+                        "short_flag": Style(color="green", bold=True),
+                    }
+                ),
+                highlighter=highlighter,
+            )
 
     def add_global_option(self, option: Option):
         self.global_options.append(option)
@@ -171,7 +186,7 @@ class AuraCLI(Command):
         if flag in self._help_flags:
             parsed[_HELP_NAME] = True
             return
-            
+
         if flag in self._version_flags:
             parsed[_VERSION_NAME] = True
             return
@@ -351,6 +366,7 @@ class AuraCLI(Command):
             _VERSION_NAME: False,
             _HELP_NAME: False,
         }
+        self._cli_command = sys.argv[0]
         cli_args = sys.argv[1:]
 
         latest_command = self
@@ -384,135 +400,113 @@ class AuraCLI(Command):
         )
 
     def display_version(self):
+        """Display the version of the CLI tool."""
+        self.console.print(
+            f"[magenta][i]v{self.version}[/i][/magenta]\n",
+            justify="left",
+        )
         pass
 
     def display_help(self, command: Command):
         """Display help information for the CLI tool.
 
         Args:
-            command (List[str]): 
+            command (List[str]):
                 The command to display help for.
         """
         options = command.all_options
         arguments = command.all_arguments
         subcommands = command.subcommands
 
-        from rich.highlighter import RegexHighlighter
-        from rich.panel import Panel
-        from rich.table import Table
-        from rich.theme import Theme
-
-        class OptionHighlighter(RegexHighlighter):
-            highlights = [
-                r"(?P<short_flag>\-\w)",
-                r"(?P<long_flag>\-\-[\w\-]+)"
-            ]
-
-        highlighter = OptionHighlighter()
-        console = Console(
-            theme=Theme(
-                {
-                    "long_flag": "bold cyan",
-                    "short_flag": "bold green",
-                }
-            ),
-            highlighter=highlighter
-        )
-        console.print(
+        self.console.print(
             f"[b]{self.title}[/b] [magenta][i]v{self.version}[/i][/magenta]\n",
             justify="center",
         )
-        console.print(
+        self.console.print(
             f"[dim]{self.description}[/dim]\n\n",
             justify="center",
         )
 
+        # Display Usage
+        commands_string = f"[b]{self._cli_command}[/] "
+        current_command = command
+        subcommand_string = ""
+        while current_command and current_command.name != _ROOT_COMMAND_NAME:
+            subcommand_string += f"[b]{current_command.name}[/] " + subcommand_string
+            current_command = current_command._parent
+        commands_string += subcommand_string
+        self.console.print(
+            f"Usage: {commands_string}[b][SUBCOMMANDS][/]|[b][OPTIONS][/]|[b][ARGUMENTS][/]\n"
+        )
+
         # If subcommands are available, display them
         if subcommands:
-            subcommands_table = Table(
-                highlight=True,
-                box=None,
-                show_header=False
-            )
+            subcommands_table = Table(highlight=True, box=None, show_header=False)
             for subcommand in subcommands:
-                help_message = ""
+                help_message = (
+                    Text.from_markup(subcommand.description) if subcommand.description else Text("")
+                )
                 if subcommand.description:
-                    help_message = Text.from_markup(subcommand.description)
-                    subcommand_name = f"[magenta]{subcommand.name}[/magenta]"
-                    subcommands_table.add_row(
-                        subcommand_name,
-                        help_message
-                    )
-            console.print(
+                    subcommand_name = Text(subcommand.name, style=Style(color="magenta"))
+                    subcommand_name.pad_right(5)
+
+                    subcommands_table.add_row(subcommand_name, help_message)
+            self.console.print(
                 Panel(
-                    subcommands_table,
-                    border_style="dim",
-                    title_align="left",
-                    title="Subcommands"
+                    subcommands_table, border_style="dim", title_align="left", title="Subcommands"
                 )
             )
 
+        options_table = Table(highlight=True, box=None, show_header=False)
 
-        # If options are available, display them
-        if options:
-            options_table = Table(
-                highlight=True,
-                box=None,
-                show_header=False
-            )
-            for option in options:
-                help_message = ""
-                if option.description:
-                    help_message = Text.from_markup(option.description)
+        for option in options:
+            help_message = Text("")
+            if option.description:
+                help_message = Text.from_markup(option.description)
+            if len(option.flags) == 2:
+                opt1 = self._highlighter(option.flags[0])
+                opt2 = self._highlighter(option.flags[1])
+            else:
+                opt1 = self._highlighter(option.flags[0])
+                opt2 = Text("")
+            opt2.pad_right(5)
+            options_table.add_row(opt1, opt2, help_message)
 
-                if len(option.flags) == 2:
-                    opt1 = highlighter(option.flags[0])
-                    opt2 = highlighter(option.flags[1])
-                else:
-                    opt1 = highlighter(option.flags[0])
-                    opt2 = ""
-        
-                options_table.add_row(
-                    opt1,
-                    opt2,
-                    help_message
-                )
-            console.print(
-                Panel(
-                    options_table,
-                    border_style="dim",
-                    title_align="left",
-                    title="Options"
-                )
-            )
+        # Add help and version flags to the options table
+        if len(self._version_flags) == 2:
+            version_flag1 = self._highlighter(self._version_flags[0])
+            version_flag2 = self._highlighter(self._version_flags[1])
+        else:
+            version_flag1 = self._highlighter(self._version_flags[0])
+            version_flag2 = Text("")
+        version_flag2.pad_right(5)
+        options_table.add_row(version_flag1, version_flag2, Text("Display the version."))
+
+        if len(self._help_flags) == 2:
+            help_flag1 = self._highlighter(self._help_flags[0])
+            help_flag2 = self._highlighter(self._help_flags[1])
+        else:
+            help_flag1 = self._highlighter(self._help_flags[0])
+            help_flag2 = Text("")
+        help_flag2.pad_right(5)
+        options_table.add_row(help_flag1, help_flag2, Text("Display this help message and exit."))
+
+        self.console.print(
+            Panel(options_table, border_style="dim", title_align="left", title="Options")
+        )
 
         # If subcommands are available, display them
         if arguments:
-            argument_table = Table(
-                highlight=True,
-                box=None,
-                show_header=False
-            )
+            argument_table = Table(highlight=True, box=None, show_header=False)
             for argument in arguments:
                 help_message = ""
                 if argument.description:
                     help_message = Text.from_markup(argument.description)
-                    argument_name = f"[Magenta]{argument.name}[/Magenta]"
-                    argument_table.add_row(
-                        argument_name,
-                        help_message
-                    )
-            console.print(
-                Panel(
-                    argument_table,
-                    border_style="dim",
-                    title_align="left",
-                    title="Arguments"
-                )
+                    argument_name = f"[magenta]{argument.name}[/magenta]"
+                    argument_table.add_row(argument_name, help_message)
+            self.console.print(
+                Panel(argument_table, border_style="dim", title_align="left", title="Arguments")
             )
-
-
-            
 
     def run(self, parsed_cli: Optional[ParsedCLI] = None):
         """Executes CLI tool based handlers, options, and arguments in

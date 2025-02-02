@@ -1,21 +1,20 @@
-from auracli import AuraCLI, AuraConsole, Command, Option, Theme
+from auracli import AuraCLI, Command, Option, Theme
 
 theme = Theme()
-console = AuraConsole(theme=theme)
 
 
 def hello_handler(name: str, count: int):
     for i in range(count):
-        console.print(f"Hello, {name}!")
+        print(f"Hello, {name}!")
 
 
 def count_handler(a: int, b: int):
-    console.print(f"{a} + {b} = {a + b}")
+    print(f"{a} + {b} = {a + b}")
 
 
 def base_handler(**args):
-    console.print("Base command executed.")
-    console.print(f"{args}")
+    print("Base command executed.")
+    print(f"{args}")
 
 
 if __name__ == "__main__":
@@ -24,7 +23,6 @@ if __name__ == "__main__":
         title="My Super Cool CLI Tool",
         description="A simple tool to demonstrate auracli.",
         version="1.0.0",
-        console=console,
         handler=base_handler,
         help_flags=[],
         version_flags=[],
