@@ -13,9 +13,9 @@ def count_handler(a: int, b: int):
     console.print(f"{a} + {b} = {a + b}")
 
 
-def base_handler(args):
+def base_handler(**args):
     console.print("Base command executed.")
-    console.print(args)
+    console.print(f"{args}")
 
 
 if __name__ == "__main__":
@@ -26,6 +26,8 @@ if __name__ == "__main__":
         version="1.0.0",
         console=console,
         handler=base_handler,
+        help_flags=[],
+        version_flags=[],
         options=[
             Option(
                 flags=["-v", "--verbose"],

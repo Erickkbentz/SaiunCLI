@@ -3,8 +3,6 @@ from typing import List, Optional
 from auracli.option import Option
 from auracli.argument import Argument
 
-_ROOT_COMMAND_NAME = "root"
-
 
 class Command:
     _parent: "Command" = None
@@ -57,7 +55,16 @@ class Command:
         for subcommand in self.subcommands:
             subcommand._parent = self
 
+        self._init_help_version_flags()
+        for subcommand in self.subcommands:
+            subcommand._parent = self
+            subcommand._init_help_version_flags()
+
         self._validate_options(self.all_options)
+
+    def _init_help_version_flags(self):
+        self._version_flags = self._parent._version_flags if self._parent else []
+        self._help_flags = self._parent._help_flags if self._parent else []
 
     def _validate_options(self, options: List[Option]):
         """
@@ -66,7 +73,7 @@ class Command:
         flag_set = set()
         for option in options:
             for flag in option.flags:
-                if flag in flag_set:
+                if flag in flag_set or flag in self._version_flags or flag in self._help_flags:
                     raise ValueError(
                         f"Duplicate flag detected: {flag}. Flags must be unique between commands."
                     )
@@ -78,10 +85,10 @@ class Command:
         """
         name_set = set()
         for argument in arguments:
-            if argument.name in name_set:
+            if argument.name in name_set or argument.name in self.all_option_names:
                 raise ValueError(
-                    f"Duplicate argument detected: {argument.name}. "
-                    + "Arguments must be unique between commands."
+                    f"Duplicate name detected: {argument.name}. "
+                    + "Argument names must be unique between commands and options."
                 )
             name_set.add(argument.name)
 
@@ -207,12 +214,14 @@ class Command:
     def add_subcommand(self, subcommand: "Command"):
         """Add a subcommand to the command."""
         subcommand._parent = self
+        subcommand._init_help_version_flags()
         self.subcommands.append(subcommand)
 
     def add_subcommands(self, subcommands: List["Command"]):
         """Add multiple subcommands to the command."""
         for subcommand in subcommands:
             subcommand._parent = self
+            subcommand._init_help_version_flags()
         self.subcommands.extend(subcommands)
 
     def flag_to_option(self, flag: str) -> Optional[Option]:

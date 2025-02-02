@@ -1,11 +1,6 @@
 from typing import Any, List, Optional, Literal, Union
 
-from auracli._utils import _is_long_flag, _is_short_flag, _is_flag
-
-_CONSTANT_UNIVERSAL_FLAGS = {
-    "help": ["-h", "--help"],
-    "version": ["-V", "--version"],
-}
+from auracli._utils import _is_long_flag, _is_short_flag, _validate_flags
 
 
 class Option:
@@ -16,14 +11,7 @@ class Option:
         description: Optional[str] = None,
         required: Optional[bool] = False,
         action: Optional[
-            Literal[
-                "store",
-                "store_true",
-                "store_false",
-                "append",
-                "extend",
-                "count",
-            ]
+            Literal["store", "store_true", "store_false", "append", "extend", "count"]
         ] = "store",
         default: Optional[str] = None,
         choices: Optional[List[Any]] = None,
@@ -78,40 +66,7 @@ class Option:
         self.type = type
         self.nargs = nargs
 
-        self._validate_flags(self.flags)
-
-    def _validate_flags(self, flags: List[str]):
-        """
-        Ensure there are only 2 flags. At most 1 short flag and 1 long flag.
-        """
-        if len(flags) > 2:
-            raise ValueError(
-                f"Too many flags detected: {flags}. Only 2 flags are allowed per option."
-            )
-
-        if len(flags) == 0:
-            raise ValueError(f"No flags detected: {flags}. At least 1 flag is required per option.")
-
-        long_flags = 0
-        short_flags = 0
-        for flag in flags:
-            if not _is_flag(flag):
-                raise ValueError(
-                    f"Invalid flag detected: {flag}. Flags must start with '-' or '--'."
-                )
-            long_flags += 1 if _is_long_flag(flag) else 0
-            short_flags += 1 if _is_short_flag(flag) else 0
-
-        if long_flags > 1:
-            raise ValueError(
-                f"Too many long flags detected: {flags}. "
-                + "At most 1 long flag and 1 short flag are allowed per option."
-            )
-        if short_flags > 1:
-            raise ValueError(
-                f"Too many short flags detected: {flags}. "
-                + "At most 1 long flag and 1 short flag are allowed per option."
-            )
+        _validate_flags(self.flags)
 
     @property
     def long_name(self) -> str:

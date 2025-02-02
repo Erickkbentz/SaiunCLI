@@ -14,6 +14,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                 commands=["root"],
                 parsed_options={},
                 parsed_args={},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 1 - Subcommand
@@ -30,6 +32,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                 commands=["root", "subcommand"],
                 parsed_options={},
                 parsed_args={},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 2 - Root with Global Option
@@ -46,6 +50,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                 commands=["root"],
                 parsed_options={"verbose": True},
                 parsed_args={},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 3 - Root with Global Argument
@@ -61,6 +67,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                 commands=["root"],
                 parsed_options={},
                 parsed_args={"arg1": "val1"},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 4 - Root with Options
@@ -81,7 +89,11 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
             ],
             "command": ["root", "--name", "Alice", "--count", "3"],
             "expected_parse_cli": ParsedCLI(
-                commands=["root"], parsed_options={"name": "Alice", "count": 3}, parsed_args={}
+                commands=["root"],
+                parsed_options={"name": "Alice", "count": 3},
+                parsed_args={},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 5 - Root with Arguments
@@ -101,6 +113,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                 commands=["root"],
                 parsed_options={},
                 parsed_args={"arg1": "val1", "arg2": "val2"},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 6 - Root with Global Option, Global Argument, Options, and Arguments
@@ -147,6 +161,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                 commands=["root"],
                 parsed_options={"verbose": True, "name": "Alice", "count": 3},
                 parsed_args={"arg1": "val1", "arg2": "val2", "arg3": "val3"},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 7 - Subcommand with Global Option, Global Argument, Options, and Arguments
@@ -211,6 +227,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                 commands=["root", "subcommand"],
                 parsed_options={"verbose": True, "name": "Alice", "count": 3},
                 parsed_args={"arg1": "val1", "arg2": "val2", "arg3": "val3"},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 8 - Short Stacked Flags
@@ -242,6 +260,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                 commands=["root"],
                 parsed_options={"v": True, "q": True, "d": True, "D": False},
                 parsed_args={},
+                help=False,
+                version=False,
             ),
         },
         # Test Case 9 - Multiple Nested Subcommands with Inheritance
@@ -342,6 +362,8 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                     "arg3": "val3",
                     "arg4": "val4",
                 },
+                help=False,
+                version=False,
             ),
         },
     ],

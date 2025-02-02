@@ -5,13 +5,26 @@ from auracli.console import AuraConsole
 from auracli.theme import Theme
 from auracli.option import Option
 from auracli.argument import Argument
-from auracli.command import Command, _ROOT_COMMAND_NAME
-from auracli._utils import _is_flag, _is_short_stack_flag, _split_short_stack_flags
+from auracli.command import Command
+from auracli._utils import _is_flag, _is_short_stack_flag, _split_short_stack_flags, _validate_flags
+
+_ROOT_COMMAND_NAME = "root"
+_HELP_NAME = "help"
+_VERSION_NAME = "version"
+_GLOBAL_FLAGS = {
+    _HELP_NAME: ["-h", "--help"],
+    _VERSION_NAME: ["-V", "--version"],
+}
 
 
 class ParsedCLI:
     def __init__(
-        self, commands: List[str], parsed_options: Dict[str, Any], parsed_args: Dict[str, Any]
+        self,
+        commands: List[str],
+        parsed_options: Dict[str, Any],
+        parsed_args: Dict[str, Any],
+        help: bool = False,
+        version: bool = False,
     ):
         """
         Initialize a ParsedCLI object.
@@ -24,6 +37,8 @@ class ParsedCLI:
         self.commands = commands
         self.parsed_options = parsed_options
         self.parsed_args = parsed_args
+        self.help = help
+        self.version = version
 
     def __repr__(self):
         """String representation for debugging."""
@@ -49,6 +64,9 @@ class ParsedCLI:
             return self.parsed_args[name]
         raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
 
+    def handler_kwargs_dict(self):
+        return {**self.parsed_options, **self.parsed_args}
+
 
 class AuraCLI(Command):
     def __init__(
@@ -62,6 +80,8 @@ class AuraCLI(Command):
         description: Optional[str] = None,
         options: Optional[List[Option]] = None,
         arguments: Optional[List[Argument]] = None,
+        help_flags: Optional[List[str]] = None,
+        version_flags: Optional[List[str]] = None,
         global_options: Optional[List[Option]] = None,
         global_arguments: Optional[List[Argument]] = None,
         subcommands: Optional[List[Command]] = None,
@@ -91,6 +111,12 @@ class AuraCLI(Command):
                 The options available for the base CLI command.
             arguments (Optional[List[Argument]]):
                 The arguments available for the base CLI command
+            help_flags (Optional[List[str]]):
+                The flag overrides for CLI help operation.
+                Defaults to ["-h", "--help"] if not provided.
+            version_flags (Optional[List[str]]):
+                The flag overrides for CLI version operation.
+                Defaults to ["-V", "--version"] if not provided.
             global_options (Optional[List[Option]]):
                 The global options available for the base CLI command and any subcommands.
             global_arguments (Optional[List[Argument]]):
@@ -98,6 +124,14 @@ class AuraCLI(Command):
             subcommands (Optional[List[Command]]):
                 The subcommands available for the base CLI command.
         """
+        self._version_flags = version_flags or _GLOBAL_FLAGS[_VERSION_NAME]
+        _validate_flags(self._version_flags)
+        self._help_flags = help_flags or _GLOBAL_FLAGS[_HELP_NAME]
+        _validate_flags(self._help_flags)
+
+        if any(flag in self._help_flags for flag in self._version_flags):
+            raise ValueError("Duplicate flags detected for help and version operations.")
+
         super().__init__(
             name=_ROOT_COMMAND_NAME,
             handler=handler,
@@ -129,15 +163,6 @@ class AuraCLI(Command):
     def add_global_arguments(self, arguments: List[Argument]):
         self.global_arguments.extend(arguments)
 
-    def display_version(self):
-        pass
-
-    def display_cli_help(self):
-        pass
-
-    def display_command_help(self, command: List[str]):
-        pass
-
     def _flag_to_global_option(self, flag: str) -> Optional[Option]:
         for option in self.global_options:
             if flag in option.flags:
@@ -147,6 +172,11 @@ class AuraCLI(Command):
     def _process_flag(
         self, flag: str, latest_command: Command, parsed: Dict[str, Any], cli_args: List[str]
     ):
+        if flag in self._help_flags:
+            parsed[_HELP_NAME] = True
+        if flag in self._version_flags:
+            parsed[_VERSION_NAME] = True
+
         option = latest_command.flag_to_option(flag) or self._flag_to_global_option(flag)
         if not option:
             # TODO: This should automatically display the help message
@@ -169,7 +199,7 @@ class AuraCLI(Command):
                 if resolved_value not in option.choices:
                     raise ValueError(f"Invalid choice: {value}, for available choices use --help")
             if option.name in parsed["parsed_options"]:
-                raise ValueError(f"Duplicate option: {flag}")
+                raise ValueError(f"Duplicate option: {flag}.")
 
             if option.nargs:
                 resolved_value = [resolved_value]
@@ -319,6 +349,8 @@ class AuraCLI(Command):
             "commands": ["root"],
             "parsed_options": {},
             "parsed_args": {},
+            _VERSION_NAME: False,
+            _HELP_NAME: False,
         }
         cli_args = sys.argv[1:]
 
@@ -342,11 +374,43 @@ class AuraCLI(Command):
                 self._process_argument(arg, latest_command, parsed, positional_args_count)
                 positional_args_count += 1
 
+        self._set_defaults_for_command(latest_command, parsed)
+
         return ParsedCLI(
             commands=parsed["commands"],
             parsed_options=parsed["parsed_options"],
             parsed_args=parsed["parsed_args"],
+            help=parsed[_HELP_NAME],
+            version=parsed[_VERSION_NAME],
         )
 
-    def run(self, args: Optional[List[str]] = None):
+    def display_version(self):
         pass
+
+    def display_help(self, command: List[str]):
+        pass
+
+    def run(self, parsed_cli: Optional[ParsedCLI] = None):
+        """Executes CLI tool based handlers, options, and arguments in
+            the ParsedCLI.
+
+
+        Args:
+            parsed_cli (Optional[ParsedCLI]):
+                If not provided, CLI will be parsed by calling `self.parse_cli()`
+        """
+        parsed_cli = parsed_cli or self.parse_cli()
+
+        command_name = parsed_cli.commands[-1]
+
+        if command_name == _ROOT_COMMAND_NAME:
+            command = self
+        else:
+            command = self.find_subcommand(command_name)
+
+        if parsed_cli.help:
+            self.display_help(command)
+        if parsed_cli.version:
+            self.display_version()
+        kwargs = parsed_cli.handler_kwargs_dict()
+        command.handler(**kwargs)
