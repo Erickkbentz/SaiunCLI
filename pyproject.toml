@@ -36,13 +36,19 @@ dev = [
     "build",
     "twine"
 ]
+docs = [
+    "mkdocs-material",
+    "mkdocstrings-python"
+]
 all = [
     "rich>=13.0,<14",
     "pytest>=7.0,<8",
     "black>=22.0,<23",
     "flake8",
     "build",
-    "twine"
+    "twine",
+    "mkdocs-material",
+    "mkdocstrings-python"
 ]
 
 [project.urls]
