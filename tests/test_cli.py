@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch
 
-from auracli import AuraCLI
+from saiuncli.cli import CLI
 
 from .data import (
     dummy_handler,
@@ -11,7 +11,7 @@ from .data import (
 
 @pytest.fixture(scope="function")
 def auracli():
-    return AuraCLI(
+    return CLI(
         title="My Super Cool CLI Tool",
         version="1.0.0",
         handler=dummy_handler,
@@ -19,7 +19,7 @@ def auracli():
     )
 
 
-def test_auracli(auracli: AuraCLI):
+def test_auracli(auracli: CLI):
     assert auracli.title == "My Super Cool CLI Tool"
     assert auracli.version == "1.0.0"
     assert auracli.handler == dummy_handler
@@ -31,7 +31,7 @@ def test_auracli(auracli: AuraCLI):
     ids=PARSE_CLI_HAPPY_CASE_TESTS["ids"],
 )
 @patch("sys.argv", new_callable=list)
-def test_parse_command_happy_cases(mock_argv, test_case, auracli: AuraCLI):
+def test_parse_command_happy_cases(mock_argv, test_case, auracli: CLI):
     if test_case.get("cli_subcommands"):
         for subcommand in test_case["cli_subcommands"]:
             auracli.add_subcommand(subcommand)

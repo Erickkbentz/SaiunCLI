@@ -1,4 +1,7 @@
-from auracli import AuraCLI, Command, Option, Theme
+from saiuncli.cli import CLI
+from saiuncli.command import Command
+from saiuncli.option import Option
+from saiuncli.theme import Theme
 
 theme = Theme()
 
@@ -19,9 +22,9 @@ def base_handler(**args):
 
 if __name__ == "__main__":
 
-    mycli = AuraCLI(
+    mycli = CLI(
         title="My Super Cool CLI Tool",
-        description="A simple tool to demonstrate auracli.",
+        description="A simple tool to demonstrate saiuncli.",
         version="1.0.0",
         handler=base_handler,
         help_flags=[],

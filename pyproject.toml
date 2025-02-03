@@ -3,7 +3,7 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "AuraCLI"
+name = "SaiunCLI"
 version = "0.1.0"
 description = "A Python framework for making CLI tools prettier and customizable."
 authors = [
@@ -46,8 +46,8 @@ all = [
 ]
 
 [project.urls]
-homepage = "https://github.com/Erickkbentz/AuraCLI"
-repository = "https://github.com/Erickkbentz/AuraCLI"
+homepage = "https://github.com/Erickkbentz/SaiunCLI"
+repository = "https://github.com/Erickkbentz/SaiunCLI"
 
 [tool.setuptools.packages.find]
 where = ["src"]

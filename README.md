@@ -1,11 +1,11 @@
-# AuraCLI ✨
+# SaiunCLI ✨
 
-AuraCLI is a Python framework for creating visually appealing, user-friendly, and highly customizable Command-Line Interface (CLI) tools. It leverages the power of [`rich`](https://github.com/Textualize/rich?tab=readme-ov-file) for styling and formatting, making it easy to build modern CLI applications that are both functional and beautiful.
+SaiunCLI is a Python framework for creating visually appealing, user-friendly, and highly customizable Command-Line Interface (CLI) tools. It leverages the power of [`rich`](https://github.com/Textualize/rich?tab=readme-ov-file) for styling and formatting, making it easy to build modern CLI applications that are both functional and beautiful.
 
-![preview image](https://raw.githubusercontent.com/Erickkbentz/AuraCLI/main/public/aura_cli_preview.png)
+![preview image](https://raw.githubusercontent.com/Erickkbentz/SaiunCLI/main/public/saiun_cli_preview.png)
 
 ## Project Status: 🚧 Under Construction 🚧
-AuraCLI is actively being developed. Some features may be incomplete or subject to change. Stay tuned for updates and improvements!
+SaiunCLI is actively being developed. Some features may be incomplete or subject to change. Stay tuned for updates and improvements!
 
 ## Features
 
@@ -20,7 +20,7 @@ AuraCLI is actively being developed. Some features may be incomplete or subject 
 - Intuitive Developer Experience: Focus on functionality without worrying about low-level details.
 
 ## Comparison with Other Tools
-| Feature            | AuraCLI | Click | Argparse |
+| Feature            | SaiunCLI | Click | Argparse |
 |--------------------|---------|-------|----------|
 | Custom Styling     | ✅       | ❌     | ❌        |
 | Nested Commands    | ✅       | ✅     | ❌        |
@@ -31,18 +31,21 @@ AuraCLI is actively being developed. Some features may be incomplete or subject 
 
 
 ## Installation
-You can install `auracli` with pip.
+You can install `saiuncli` with pip.
 
 ```
-pip install auracli
+pip install saiuncli
 ```
 
 ## Usage
 
 ```
-from auracli import AuraCLI, Command, Option, Theme
+from saiuncli.cli import CLI
+from saiuncli.command import Command
+from saiuncli.option import Option
+from saiuncli.theme import Theme
 
-# Custom AuraCLI Theme
+# Custom CLI Theme
 theme = Theme()
 
 
@@ -62,10 +65,10 @@ def base_handler(**args):
 
 if __name__ == "__main__":
 
-    # Create AuraCLI
-    mycli = AuraCLI(
+    # Create CLI
+    mycli = CLI(
         title="My Super Cool CLI Tool",
-        description="A simple tool to demonstrate auracli.",
+        description="A simple tool to demonstrate saiuncli.",
         version="1.0.0",
         handler=base_handler, # Command Handler
         help_flags=[],

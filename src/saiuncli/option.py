@@ -1,6 +1,6 @@
 from typing import Any, List, Optional, Literal, Union
 
-from auracli._utils import _is_long_flag, _is_short_flag, _validate_flags
+from saiuncli._utils import _is_long_flag, _is_short_flag, _validate_flags
 
 
 class Option:

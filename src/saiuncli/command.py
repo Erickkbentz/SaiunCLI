@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from auracli.option import Option
-from auracli.argument import Argument
+from saiuncli.option import Option
+from saiuncli.argument import Argument
 
 
 class Command:
@@ -14,7 +14,6 @@ class Command:
         self,
         name: str,
         handler: callable,
-        usage: Optional[str] = None,
         description: Optional[str] = None,
         options: Optional[List[Option]] = None,
         inherit_options: Optional[bool] = False,

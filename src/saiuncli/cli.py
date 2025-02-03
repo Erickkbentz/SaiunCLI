@@ -8,13 +8,18 @@ from rich.panel import Panel
 from rich.theme import Theme as RichTheme
 from rich.table import Table
 
-from auracli.constants import _ROOT_COMMAND_NAME, _HELP_NAME, _VERSION_NAME, _GLOBAL_FLAGS
-from auracli.option import Option
-from auracli.argument import Argument
-from auracli.command import Command
-from auracli.theme import Theme
+from saiuncli.constants import _ROOT_COMMAND_NAME, _HELP_NAME, _VERSION_NAME, _GLOBAL_FLAGS
+from saiuncli.option import Option
+from saiuncli.argument import Argument
+from saiuncli.command import Command
+from saiuncli.theme import Theme
 
-from auracli._utils import _is_flag, _is_short_stack_flag, _split_short_stack_flags, _validate_flags
+from saiuncli._utils import (
+    _is_flag,
+    _is_short_stack_flag,
+    _split_short_stack_flags,
+    _validate_flags,
+)
 
 
 class ParsedCLI:
@@ -72,7 +77,7 @@ class OptionHighlighter(RegexHighlighter):
     highlights = [r"(?P<short_flag>\-\w)", r"(?P<long_flag>\-\-[\w\-]+)"]
 
 
-class AuraCLI(Command):
+class CLI(Command):
     def __init__(
         self,
         title: str,
