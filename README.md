@@ -39,7 +39,7 @@ pip install saiuncli
 
 ## Usage
 
-```
+```python
 from saiuncli.cli import CLI
 from saiuncli.command import Command
 from saiuncli.option import Option
