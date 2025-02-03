@@ -1,0 +1,34 @@
+site_name: SaiunCLI ✨
+site_url: https://erickkbentz.github.io/SaiunCLI/
+repo_url: https://github.com/Erickkbentz/SaiunCLI
+nav:
+  - Home: index.md
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: blue-grey
+      accent: light-blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - scheme: default
+      primary: blue-grey
+      accent: light-blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+  features:
+    - content.code.annotate
+    - content.code.copy
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+      pygments_lang_class: true
+      pygments_style: "monokai"
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
