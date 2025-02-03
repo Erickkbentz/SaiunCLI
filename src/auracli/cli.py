@@ -3,16 +3,17 @@ from typing import Optional, List, Dict, Any
 
 from rich.console import Console
 from rich.text import Text
-from rich.style import Style
 from rich.highlighter import RegexHighlighter
 from rich.panel import Panel
+from rich.theme import Theme as RichTheme
 from rich.table import Table
-from rich.theme import Theme
 
 from auracli.constants import _ROOT_COMMAND_NAME, _HELP_NAME, _VERSION_NAME, _GLOBAL_FLAGS
 from auracli.option import Option
 from auracli.argument import Argument
 from auracli.command import Command
+from auracli.theme import Theme
+
 from auracli._utils import _is_flag, _is_short_stack_flag, _split_short_stack_flags, _validate_flags
 
 
@@ -77,7 +78,6 @@ class AuraCLI(Command):
         title: str,
         version: Optional[str] = None,
         theme: Optional[Theme] = None,
-        console: Optional[Console] = None,
         handler: callable = None,
         description: Optional[str] = None,
         options: Optional[List[Option]] = None,
@@ -101,8 +101,6 @@ class AuraCLI(Command):
                 The version of the CLI tool.
             theme (Optional[Theme]):
                 The theme to use for the CLI tool.
-            console (Optional[Console]):
-                The console to use for the CLI tool.
             handler (callable):
                 The function to execute when the base CLI command is called.
             description (Optional[str]):
@@ -143,24 +141,22 @@ class AuraCLI(Command):
         )
         self.title = title
         self.version = version
-        self.theme = theme
+        self.theme = theme or Theme()
         self.global_options = global_options or []
         self.global_arguments = global_arguments or []
-        self.console = console
         self._cli_command = None
 
         highlighter = OptionHighlighter()
         self._highlighter = highlighter
-        if not self.console:
-            self.console = Console(
-                theme=Theme(
-                    {
-                        "long_flag": Style(color="cyan", bold=True),
-                        "short_flag": Style(color="green", bold=True),
-                    }
-                ),
-                highlighter=highlighter,
-            )
+        self.console = Console(
+            theme=RichTheme(
+                {
+                    "long_flag": self.theme.option_long,
+                    "short_flag": self.theme.option_short,
+                }
+            ),
+            highlighter=highlighter,
+        )
 
     def add_global_option(self, option: Option):
         self.global_options.append(option)
@@ -401,8 +397,12 @@ class AuraCLI(Command):
 
     def display_version(self):
         """Display the version of the CLI tool."""
+
         self.console.print(
-            f"[magenta][i]v{self.version}[/i][/magenta]\n",
+            Text(
+                f"v{self.version}",
+                style=self.theme.version,
+            ),
             justify="left",
         )
         pass
@@ -418,26 +418,40 @@ class AuraCLI(Command):
         arguments = command.all_arguments
         subcommands = command.subcommands
 
+        title = Text(self.title, style=self.theme.title)
+        if self.version:
+            version = Text(f"v{self.version}", style=self.theme.version)
+            title.pad_right(1)
+            title.append(version)
+
         self.console.print(
-            f"[b]{self.title}[/b] [magenta][i]v{self.version}[/i][/magenta]\n",
+            title,
             justify="center",
         )
-        self.console.print(
-            f"[dim]{self.description}[/dim]\n\n",
-            justify="center",
-        )
+        self.console.print()
+
+        if self.description:
+            title_description = Text(self.description, style=self.theme.title_description)
+            self.console.print(
+                title_description,
+                justify="center",
+            )
+            self.console.print()
+        self.console.print()
 
         # Display Usage
-        commands_string = f"[b]{self._cli_command}[/] "
+        commands_string = f"{self._cli_command} "
         current_command = command
         subcommand_string = ""
         while current_command and current_command.name != _ROOT_COMMAND_NAME:
-            subcommand_string += f"[b]{current_command.name}[/] " + subcommand_string
+            subcommand_string += f"{current_command.name} " + subcommand_string
             current_command = current_command._parent
         commands_string += subcommand_string
-        self.console.print(
-            f"Usage: {commands_string}[b][SUBCOMMANDS][/]|[b][OPTIONS][/]|[b][ARGUMENTS][/]\n"
+
+        usage = Text(
+            f"Usage: {commands_string} [SUBCOMMANDS][OPTIONS][ARGUMENTS]\n", style=self.theme.usage
         )
+        self.console.print(usage)
 
         # If subcommands are available, display them
         if subcommands:
@@ -446,8 +460,10 @@ class AuraCLI(Command):
                 help_message = (
                     Text.from_markup(subcommand.description) if subcommand.description else Text("")
                 )
+                help_message.style = self.theme.subcommand_description
+
                 if subcommand.description:
-                    subcommand_name = Text(subcommand.name, style=Style(color="magenta"))
+                    subcommand_name = Text(subcommand.name, style=self.theme.subcommand)
                     subcommand_name.pad_right(5)
 
                     subcommands_table.add_row(subcommand_name, help_message)
@@ -463,6 +479,7 @@ class AuraCLI(Command):
             help_message = Text("")
             if option.description:
                 help_message = Text.from_markup(option.description)
+                help_message.style = self.theme.option_description
             if len(option.flags) == 2:
                 opt1 = self._highlighter(option.flags[0])
                 opt2 = self._highlighter(option.flags[1])
@@ -480,7 +497,11 @@ class AuraCLI(Command):
             version_flag1 = self._highlighter(self._version_flags[0])
             version_flag2 = Text("")
         version_flag2.pad_right(5)
-        options_table.add_row(version_flag1, version_flag2, Text("Display the version."))
+        options_table.add_row(
+            version_flag1,
+            version_flag2,
+            Text("Display the version.", style=self.theme.option_description),
+        )
 
         if len(self._help_flags) == 2:
             help_flag1 = self._highlighter(self._help_flags[0])
@@ -489,7 +510,11 @@ class AuraCLI(Command):
             help_flag1 = self._highlighter(self._help_flags[0])
             help_flag2 = Text("")
         help_flag2.pad_right(5)
-        options_table.add_row(help_flag1, help_flag2, Text("Display this help message and exit."))
+        options_table.add_row(
+            help_flag1,
+            help_flag2,
+            Text("Display this help message and exit.", style=self.theme.option_description),
+        )
 
         self.console.print(
             Panel(options_table, border_style="dim", title_align="left", title="Options")
@@ -502,7 +527,9 @@ class AuraCLI(Command):
                 help_message = ""
                 if argument.description:
                     help_message = Text.from_markup(argument.description)
-                    argument_name = f"[magenta]{argument.name}[/magenta]"
+                    help_message.style = self.theme.argument_description
+
+                    argument_name = Text(argument.name, style=self.theme.argument)
                     argument_table.add_row(argument_name, help_message)
             self.console.print(
                 Panel(argument_table, border_style="dim", title_align="left", title="Arguments")
