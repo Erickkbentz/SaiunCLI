@@ -526,7 +526,7 @@ If both the short and long flags are provided, the long flag name will be used.<
         </li>
         <li class="doc-section-item field-body">
 <h2 id="saiuncli.option.Option(flags)" class="doc doc-heading doc-heading-parameter">              <b><code>flags</code></b>
-</h2>              (<code><span title="typing.List">List</span>[str]</code>, default:
+</h2>              (<code>Optional[List[str]</code>, default:
                   <code>None</code>
 )
           –
@@ -594,7 +594,7 @@ If not provided, the name parameter will be used as the long flag.</p>
         </li>
         <li class="doc-section-item field-body">
 <h2 id="saiuncli.option.Option(nargs)" class="doc doc-heading doc-heading-parameter">              <b><code>nargs</code></b>
-</h2>              (<code>Optional[Union[int, Literal[&#34;*&#34;]]</code>, default:
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[int, <span title="typing.Literal">Literal</span>[&#39;*&#39;]]]</code>, default:
                   <code>None</code>
 )
           –
@@ -727,7 +727,7 @@ if nargs is not None, the resolved value for the Option will be always be a list
 <a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">            This is the name of the option. The resolved value should be referenced by</span>
 <a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">            this name in the handler. If not provided, the flag name will be used.</span>
 <a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">            If both the short and long flags are provided, the long flag name will be used.</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">        flags (List[str]):</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">        flags (Optional[List[str]):</span>
 <a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">            The flags to use for the option. At most 1 short flag and 1 long flag are allowed.</span>
 <a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">            If not provided, the name parameter will be used as the long flag.</span>
 <a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">        description (Optional[str]):</span>
@@ -744,7 +744,7 @@ if nargs is not None, the resolved value for the Option will be always be a list
 <a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">            The choices available for the option.</span>
 <a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">        type (Optional[type]):</span>
 <a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">            The type of the option.</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">        nargs (Optional[Union[int, Literal[&quot;*&quot;]]):</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">        nargs (Optional[Union[int, Literal[&quot;*&quot;]]]):</span>
 <a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">            The number of arguments that should be consumed.</span>
 <a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">            This is only applicable for actions - &quot;store&quot;, &quot;append&quot;, and &quot;extend&quot;.</span>
 <a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">            if nargs is not None, the resolved value for the Option will be always be a list.</span>
