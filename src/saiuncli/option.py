@@ -1,3 +1,4 @@
+# flake8: noqa: E501
 from typing import Any, List, Optional, Literal, Union
 
 from saiuncli._utils import _is_long_flag, _is_short_flag, _validate_flags
@@ -33,9 +34,7 @@ class Option:
                 The description to display for the option.
             required (Optional[bool]):
                 Whether the option is required.
-            action (Optional[
-                Literal["store", "store_true", "store_false", "append", "extend", "count"]
-            ]):
+            action (Optional[Literal["store", "store_true", "store_false", "append", "extend", "count"]]):
                 The action to take with the option. Default is "store".
             default (Optional[str]):
                 The default value for the option.
