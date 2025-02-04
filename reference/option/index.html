@@ -488,7 +488,7 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.option.Option(flags)">flags</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="typing.List">List</span></span><span class="p">[</span><span class="n">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.option.Option(description)">description</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.option.Option(required)">required</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">action</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.option.Option(action)">action</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="n"><span title="typing.Literal">Literal</span></span><span class="p">[</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>            <span class="s2">&quot;store&quot;</span><span class="p">,</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>            <span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
@@ -556,8 +556,11 @@ If not provided, the name parameter will be used as the long flag.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="saiuncli.option.Option(]))" class="doc doc-heading doc-heading-parameter">              <b><code>])</code></b>
-</h2>          –
+<h2 id="saiuncli.option.Option(action)" class="doc doc-heading doc-heading-parameter">              <b><code>action</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="typing.Literal">Literal</span>[&#39;store&#39;, &#39;store_true&#39;, &#39;store_false&#39;, &#39;append&#39;, &#39;extend&#39;, &#39;count&#39;]]</code>, default:
+                  <code>&#39;store&#39;</code>
+)
+          –
           <div class="doc-md-description">
             <p>The action to take with the option. Default is "store".</p>
           </div>
@@ -643,8 +646,7 @@ if nargs is not None, the resolved value for the Option will be always be a list
 
                   <details class="quote">
                     <summary>Source code in <code>saiuncli/option.py</code></summary>
-                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-0-10">10</a></span>
 <span class="normal"><a href="#__codelineno-0-11">11</a></span>
@@ -704,70 +706,67 @@ if nargs is not None, the resolved value for the Option will be always be a list
 <span class="normal"><a href="#__codelineno-0-65">65</a></span>
 <span class="normal"><a href="#__codelineno-0-66">66</a></span>
 <span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="n">flags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="n">required</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13"></a>    <span class="n">action</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14"></a>        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="s2">&quot;store_false&quot;</span><span class="p">,</span> <span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="s2">&quot;extend&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;store&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16"></a>    <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="n">choices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="nb">type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">type</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19"></a>    <span class="n">nargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="p">):</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="sd">    Initialize an Option object.</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a>
-<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="sd">        name (Optional[str]):</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">            This is the name of the option. The resolved value should be referenced by</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">            this name in the handler. If not provided, the flag name will be used.</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">            If both the short and long flags are provided, the long flag name will be used.</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">        flags (Optional[List[str]):</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">            The flags to use for the option. At most 1 short flag and 1 long flag are allowed.</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">            If not provided, the name parameter will be used as the long flag.</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">        description (Optional[str]):</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">            The description to display for the option.</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        required (Optional[bool]):</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">            Whether the option is required.</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">        action (Optional[</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">            Literal[&quot;store&quot;, &quot;store_true&quot;, &quot;store_false&quot;, &quot;append&quot;, &quot;extend&quot;, &quot;count&quot;]</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">        ]):</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">            The action to take with the option. Default is &quot;store&quot;.</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">        default (Optional[str]):</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">            The default value for the option.</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">        choices (Optional[List[Any]]):</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">            The choices available for the option.</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">        type (Optional[type]):</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">            The type of the option.</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">        nargs (Optional[Union[int, Literal[&quot;*&quot;]]]):</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">            The number of arguments that should be consumed.</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">            This is only applicable for actions - &quot;store&quot;, &quot;append&quot;, and &quot;extend&quot;.</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">            if nargs is not None, the resolved value for the Option will be always be a list.</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">flags</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either flags or name must be provided.&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;--</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">short_name</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="n">required</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">action</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="n">choices</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">nargs</span> <span class="o">=</span> <span class="n">nargs</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="n">_validate_flags</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="n">flags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>    <span class="n">required</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>    <span class="n">action</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="s2">&quot;store_false&quot;</span><span class="p">,</span> <span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="s2">&quot;extend&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>    <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;store&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="n">choices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a>    <span class="nb">type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">type</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>    <span class="n">nargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="p">):</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="sd">    Initialize an Option object.</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">        name (Optional[str]):</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">            This is the name of the option. The resolved value should be referenced by</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">            this name in the handler. If not provided, the flag name will be used.</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">            If both the short and long flags are provided, the long flag name will be used.</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">        flags (Optional[List[str]):</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">            The flags to use for the option. At most 1 short flag and 1 long flag are allowed.</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">            If not provided, the name parameter will be used as the long flag.</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">        description (Optional[str]):</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">            The description to display for the option.</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">        required (Optional[bool]):</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">            Whether the option is required.</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">        action (Optional[Literal[&quot;store&quot;, &quot;store_true&quot;, &quot;store_false&quot;, &quot;append&quot;, &quot;extend&quot;, &quot;count&quot;]]):</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">            The action to take with the option. Default is &quot;store&quot;.</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">        default (Optional[str]):</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">            The default value for the option.</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">        choices (Optional[List[Any]]):</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">            The choices available for the option.</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">        type (Optional[type]):</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">            The type of the option.</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">        nargs (Optional[Union[int, Literal[&quot;*&quot;]]]):</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">            The number of arguments that should be consumed.</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">            This is only applicable for actions - &quot;store&quot;, &quot;append&quot;, and &quot;extend&quot;.</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">            if nargs is not None, the resolved value for the Option will be always be a list.</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">flags</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either flags or name must be provided.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">:</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;--</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">short_name</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="n">required</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">action</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="n">choices</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">nargs</span> <span class="o">=</span> <span class="n">nargs</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="n">_validate_flags</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -800,11 +799,11 @@ if nargs is not None, the resolved value for the Option will be always be a list
 
             <details class="quote">
               <summary>Source code in <code>saiuncli/option.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-93">93</a></span>
-<span class="normal"><a href="#__codelineno-0-94">94</a></span>
-<span class="normal"><a href="#__codelineno-0-95">95</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle the value of the option based on Option setup.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="k">pass</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-92">92</a></span>
+<span class="normal"><a href="#__codelineno-0-93">93</a></span>
+<span class="normal"><a href="#__codelineno-0-94">94</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle the value of the option based on Option setup.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -828,11 +827,11 @@ if nargs is not None, the resolved value for the Option will be always be a list
 
             <details class="quote">
               <summary>Source code in <code>saiuncli/option.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-89">89</a></span>
-<span class="normal"><a href="#__codelineno-0-90">90</a></span>
-<span class="normal"><a href="#__codelineno-0-91">91</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse the raw value from the command line.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a>    <span class="k">pass</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#__codelineno-0-89">89</a></span>
+<span class="normal"><a href="#__codelineno-0-90">90</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse the raw value from the command line.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -856,11 +855,11 @@ if nargs is not None, the resolved value for the Option will be always be a list
 
             <details class="quote">
               <summary>Source code in <code>saiuncli/option.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-85">85</a></span>
-<span class="normal"><a href="#__codelineno-0-86">86</a></span>
-<span class="normal"><a href="#__codelineno-0-87">87</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate the value of the option.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="k">pass</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-84">84</a></span>
+<span class="normal"><a href="#__codelineno-0-85">85</a></span>
+<span class="normal"><a href="#__codelineno-0-86">86</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate the value of the option.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>    <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
