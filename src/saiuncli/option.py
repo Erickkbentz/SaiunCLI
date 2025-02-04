@@ -26,7 +26,7 @@ class Option:
                 This is the name of the option. The resolved value should be referenced by
                 this name in the handler. If not provided, the flag name will be used.
                 If both the short and long flags are provided, the long flag name will be used.
-            flags (List[str]):
+            flags (Optional[List[str]):
                 The flags to use for the option. At most 1 short flag and 1 long flag are allowed.
                 If not provided, the name parameter will be used as the long flag.
             description (Optional[str]):
@@ -43,7 +43,7 @@ class Option:
                 The choices available for the option.
             type (Optional[type]):
                 The type of the option.
-            nargs (Optional[Union[int, Literal["*"]]):
+            nargs (Optional[Union[int, Literal["*"]]]):
                 The number of arguments that should be consumed.
                 This is only applicable for actions - "store", "append", and "extend".
                 if nargs is not None, the resolved value for the Option will be always be a list.

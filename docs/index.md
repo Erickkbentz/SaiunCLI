@@ -2,6 +2,8 @@
 
 [SaiunCLI](https://erickkbentz.github.io/SaiunCLI/) is a Python framework for creating visually appealing, user-friendly, and highly customizable Command-Line Interface (CLI) tools. It leverages the power of [`rich`](https://github.com/Textualize/rich?tab=readme-ov-file) for styling and formatting, making it easy to build modern CLI applications that are both functional and beautiful.
 
+> Inspired by [rich-cli](https://github.com/Textualize/rich-cli).
+
 ![preview image](https://raw.githubusercontent.com/Erickkbentz/SaiunCLI/main/public/saiun_cli_preview.png)
 
 ## **Installation**
