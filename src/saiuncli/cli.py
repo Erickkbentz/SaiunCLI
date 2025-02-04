@@ -412,17 +412,8 @@ class CLI(Command):
         )
         pass
 
-    def display_help(self, command: Command):
-        """Display help information for the CLI tool.
-
-        Args:
-            command (List[str]):
-                The command to display help for.
-        """
-        options = command.all_options
-        arguments = command.all_arguments
-        subcommands = command.subcommands
-
+    def _display_header(self):
+        """Display the header of the CLI tool."""
         title = Text(self.title, style=self.theme.title)
         if self.version:
             version = Text(f"v{self.version}", style=self.theme.version)
@@ -444,7 +435,15 @@ class CLI(Command):
             self.console.print()
         self.console.print()
 
-        # Display Usage
+    def _display_usage(self, command: Optional[Command] = None):
+        """Display the usage information for the CLI tool.
+
+        Args:
+            command (Optional[Command]):
+                The command to display usage for.
+        """
+        if not command:
+            command = self
         commands_string = f"{self._cli_command} "
         current_command = command
         subcommand_string = ""
@@ -458,28 +457,50 @@ class CLI(Command):
         )
         self.console.print(usage)
 
-        # If subcommands are available, display them
-        if subcommands:
-            subcommands_table = Table(highlight=True, box=None, show_header=False)
-            for subcommand in subcommands:
-                help_message = (
-                    Text.from_markup(subcommand.description) if subcommand.description else Text("")
-                )
-                help_message.style = self.theme.subcommand_description
+    def _display_subcommands_table(self, command: Optional[Command] = None):
+        """Display the subcommands table for the CLI tool.
 
-                if subcommand.description:
-                    subcommand_name = Text(subcommand.name, style=self.theme.subcommand)
-                    subcommand_name.pad_right(5)
+        Args:
+            command (Optional[Command]):
+                The command to display subcommands for.
+        """
+        if not command:
+            command = self
+        subcommands = command.subcommands
+        if not subcommands:
+            return
 
-                    subcommands_table.add_row(subcommand_name, help_message)
-            self.console.print(
-                Panel(
-                    subcommands_table, border_style="dim", title_align="left", title="Subcommands"
-                )
+        subcommands_table = Table(highlight=True, box=None, show_header=False)
+        for subcommand in subcommands:
+            help_message = (
+                Text.from_markup(subcommand.description) if subcommand.description else Text("")
             )
+            help_message.style = self.theme.subcommand_description
+
+            if subcommand.description:
+                subcommand_name = Text(subcommand.name, style=self.theme.subcommand)
+                subcommand_name.pad_right(5)
+
+                subcommands_table.add_row(subcommand_name, help_message)
+        self.console.print(
+            Panel(subcommands_table, border_style="dim", title_align="left", title="Subcommands")
+        )
+
+    def _display_options_table(self, command: Optional[Command] = None):
+        """Display the options table for the CLI tool.
+
+        Args:
+            command (Optional[Command]):
+                The command to display options for.
+        """
+
+        if not command:
+            command = self
+        options = command.all_options
+        if not options:
+            return
 
         options_table = Table(highlight=True, box=None, show_header=False)
-
         for option in options:
             help_message = Text("")
             if option.description:
@@ -493,8 +514,57 @@ class CLI(Command):
                 opt2 = Text("")
             opt2.pad_right(5)
             options_table.add_row(opt1, opt2, help_message)
+        self.console.print(
+            Panel(options_table, border_style="dim", title_align="left", title="Options")
+        )
 
-        # Add help and version flags to the options table
+    def _display_arguments_table(self, command: Optional[Command] = None):
+        """Display the arguments table for the CLI tool.
+
+        Args:
+            command (Optional[Command]):
+                The command to display arguments for.
+        """
+
+        if not command:
+            command = self
+        arguments = command.all_arguments
+        if not arguments:
+            return
+
+        arguments_table = Table(highlight=True, box=None, show_header=False)
+        for argument in arguments:
+            help_message = ""
+            if argument.description:
+                help_message = Text.from_markup(argument.description)
+                help_message.style = self.theme.argument_description
+
+                argument_name = Text(argument.name, style=self.theme.argument)
+                arguments_table.add_row(argument_name, help_message)
+        self.console.print(
+            Panel(arguments_table, border_style="dim", title_align="left", title="Arguments")
+        )
+
+    def _display_global_options_table(self):
+        """Display the global options table for the CLI tool."""
+        global_options_table = Table(highlight=True, box=None, show_header=False)
+
+        # Add global options to the Global Options table
+        for option in self.global_options:
+            help_message = Text("")
+            if option.description:
+                help_message = Text.from_markup(option.description)
+                help_message.style = self.theme.option_description
+            if len(option.flags) == 2:
+                opt1 = self._highlighter(option.flags[0])
+                opt2 = self._highlighter(option.flags[1])
+            else:
+                opt1 = self._highlighter(option.flags[0])
+                opt2 = Text("")
+            opt2.pad_right(5)
+            global_options_table.add_row(opt1, opt2, help_message)
+
+        # Always add version flags to the Global Options table
         if len(self._version_flags) == 2:
             version_flag1 = self._highlighter(self._version_flags[0])
             version_flag2 = self._highlighter(self._version_flags[1])
@@ -502,12 +572,13 @@ class CLI(Command):
             version_flag1 = self._highlighter(self._version_flags[0])
             version_flag2 = Text("")
         version_flag2.pad_right(5)
-        options_table.add_row(
+        global_options_table.add_row(
             version_flag1,
             version_flag2,
             Text("Display the version.", style=self.theme.option_description),
         )
 
+        # Always add help flags to the Global Options table
         if len(self._help_flags) == 2:
             help_flag1 = self._highlighter(self._help_flags[0])
             help_flag2 = self._highlighter(self._help_flags[1])
@@ -515,30 +586,56 @@ class CLI(Command):
             help_flag1 = self._highlighter(self._help_flags[0])
             help_flag2 = Text("")
         help_flag2.pad_right(5)
-        options_table.add_row(
+        global_options_table.add_row(
             help_flag1,
             help_flag2,
             Text("Display this help message and exit.", style=self.theme.option_description),
         )
-
         self.console.print(
-            Panel(options_table, border_style="dim", title_align="left", title="Options")
+            Panel(
+                global_options_table, border_style="dim", title_align="left", title="Global Options"
+            )
         )
 
-        # If subcommands are available, display them
-        if arguments:
-            argument_table = Table(highlight=True, box=None, show_header=False)
-            for argument in arguments:
-                help_message = ""
-                if argument.description:
-                    help_message = Text.from_markup(argument.description)
-                    help_message.style = self.theme.argument_description
+    def _display_global_arguments_table(self):
+        """Display the global arguments table for the CLI tool."""
+        if not self.global_arguments:
+            return
+        global_arguments_table = Table(highlight=True, box=None, show_header=False)
+        for argument in self.global_arguments:
+            help_message = ""
+            if argument.description:
+                help_message = Text.from_markup(argument.description)
+                help_message.style = self.theme.argument_description
 
-                    argument_name = Text(argument.name, style=self.theme.argument)
-                    argument_table.add_row(argument_name, help_message)
-            self.console.print(
-                Panel(argument_table, border_style="dim", title_align="left", title="Arguments")
+                argument_name = Text(argument.name, style=self.theme.argument)
+                global_arguments_table.add_row(argument_name, help_message)
+        self.console.print(
+            Panel(
+                global_arguments_table,
+                border_style="dim",
+                title_align="left",
+                title="Global Arguments",
             )
+        )
+
+    def display_help(self, command: Command):
+        """Display help information for the CLI tool.
+
+        Args:
+            command (Command):
+                The command to display help for.
+        """
+        self._display_header()
+
+        self._display_usage(command)
+
+        self._display_subcommands_table(command)
+        self._display_options_table(command)
+        self._display_arguments_table(command)
+
+        self._display_global_options_table()
+        self._display_global_arguments_table()
 
     def run(self, parsed_cli: Optional[ParsedCLI] = None):
         """Executes CLI tool based handlers, options, and arguments in
