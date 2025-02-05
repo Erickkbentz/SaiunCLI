@@ -5,3 +5,4 @@ _GLOBAL_FLAGS = {
     _HELP_NAME: ["-h", "--help"],
     _VERSION_NAME: ["-V", "--version"],
 }
+_DEFAULT_USAGE = "[SUBCOMMANDS][OPTIONS][ARGUMENTS]"

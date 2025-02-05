@@ -1,6 +1,7 @@
 from saiuncli.cli import CLI
 from saiuncli.command import Command
 from saiuncli.option import Option
+from saiuncli.argument import Argument
 from saiuncli.theme import Theme
 
 theme = Theme()
@@ -45,6 +46,13 @@ if __name__ == "__main__":
                 description="Enable debug output.",
                 action="store_true",
             ),
+        ],
+        arguments=[
+            Argument(
+                name="arg",
+                description="A positional argument.",
+                type=str,
+            )
         ],
     )
 

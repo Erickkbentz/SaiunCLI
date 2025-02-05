@@ -8,7 +8,7 @@ from rich.panel import Panel
 from rich.theme import Theme as RichTheme
 from rich.table import Table
 
-from saiuncli.constants import _ROOT_COMMAND_NAME, _HELP_NAME, _VERSION_NAME, _GLOBAL_FLAGS
+from saiuncli._constants import _ROOT_COMMAND_NAME, _HELP_NAME, _VERSION_NAME, _GLOBAL_FLAGS
 from saiuncli.option import Option
 from saiuncli.argument import Argument
 from saiuncli.command import Command
@@ -85,6 +85,7 @@ class CLI(Command):
         theme: Optional[Theme] = None,
         handler: Optional[callable] = None,
         description: Optional[str] = None,
+        usage: Optional[str] = None,
         options: Optional[List[Option]] = None,
         arguments: Optional[List[Argument]] = None,
         help_flags: Optional[List[str]] = None,
@@ -111,6 +112,9 @@ class CLI(Command):
                 If not provided, root command will only display help and version information.
             description (Optional[str]):
                 The description of the base CLI command.
+            usage (Optional[str]):
+                The usage information for the base CLI command.
+                Defaults to "[SUBCOMMANDS][OPTIONS][ARGUMENTS]" if not provided.
             options (Optional[List[Option]]):
                 The options available for the base CLI command.
             arguments (Optional[List[Argument]]):
@@ -139,6 +143,7 @@ class CLI(Command):
             name=_ROOT_COMMAND_NAME,
             handler=handler,
             description=description,
+            usage=usage,
             options=options,
             inherit_options=False,
             arguments=arguments,
@@ -463,9 +468,7 @@ class CLI(Command):
             current_command = current_command._parent
         commands_string += subcommand_string
 
-        usage = Text(
-            f"Usage: {commands_string} [SUBCOMMANDS][OPTIONS][ARGUMENTS]\n", style=self.theme.usage
-        )
+        usage = Text(f"Usage: {commands_string} {current_command.usage}\n", style=self.theme.usage)
         self.console.print(usage)
 
     def _display_subcommands_table(self, command: Optional[Command] = None):
@@ -507,7 +510,7 @@ class CLI(Command):
 
         if not command:
             command = self
-        options = command.all_options
+        options = command.all_options + self.global_options
         if not options:
             return
 
@@ -525,6 +528,32 @@ class CLI(Command):
                 opt2 = Text("")
             opt2.pad_right(5)
             options_table.add_row(opt1, opt2, help_message)
+        # Always add version flags to the Global Options table
+        if len(self._version_flags) == 2:
+            version_flag1 = self._highlighter(self._version_flags[0])
+            version_flag2 = self._highlighter(self._version_flags[1])
+        else:
+            version_flag1 = self._highlighter(self._version_flags[0])
+            version_flag2 = Text("")
+        version_flag2.pad_right(5)
+        options_table.add_row(
+            version_flag1,
+            version_flag2,
+            Text("Display the version.", style=self.theme.option_description),
+        )
+        # Always add help flags to the Global Options table
+        if len(self._help_flags) == 2:
+            help_flag1 = self._highlighter(self._help_flags[0])
+            help_flag2 = self._highlighter(self._help_flags[1])
+        else:
+            help_flag1 = self._highlighter(self._help_flags[0])
+            help_flag2 = Text("")
+        help_flag2.pad_right(5)
+        options_table.add_row(
+            help_flag1,
+            help_flag2,
+            Text("Display this help message and exit.", style=self.theme.option_description),
+        )
         self.console.print(
             Panel(options_table, border_style="dim", title_align="left", title="Options")
         )
@@ -539,7 +568,7 @@ class CLI(Command):
 
         if not command:
             command = self
-        arguments = command.all_arguments
+        arguments = self.global_arguments + command.all_arguments
         if not arguments:
             return
 
@@ -554,80 +583,6 @@ class CLI(Command):
                 arguments_table.add_row(argument_name, help_message)
         self.console.print(
             Panel(arguments_table, border_style="dim", title_align="left", title="Arguments")
-        )
-
-    def _display_global_options_table(self):
-        """Display the global options table for the CLI tool."""
-        global_options_table = Table(highlight=True, box=None, show_header=False)
-
-        # Add global options to the Global Options table
-        for option in self.global_options:
-            help_message = Text("")
-            if option.description:
-                help_message = Text.from_markup(option.description)
-                help_message.style = self.theme.option_description
-            if len(option.flags) == 2:
-                opt1 = self._highlighter(option.flags[0])
-                opt2 = self._highlighter(option.flags[1])
-            else:
-                opt1 = self._highlighter(option.flags[0])
-                opt2 = Text("")
-            opt2.pad_right(5)
-            global_options_table.add_row(opt1, opt2, help_message)
-
-        # Always add version flags to the Global Options table
-        if len(self._version_flags) == 2:
-            version_flag1 = self._highlighter(self._version_flags[0])
-            version_flag2 = self._highlighter(self._version_flags[1])
-        else:
-            version_flag1 = self._highlighter(self._version_flags[0])
-            version_flag2 = Text("")
-        version_flag2.pad_right(5)
-        global_options_table.add_row(
-            version_flag1,
-            version_flag2,
-            Text("Display the version.", style=self.theme.option_description),
-        )
-
-        # Always add help flags to the Global Options table
-        if len(self._help_flags) == 2:
-            help_flag1 = self._highlighter(self._help_flags[0])
-            help_flag2 = self._highlighter(self._help_flags[1])
-        else:
-            help_flag1 = self._highlighter(self._help_flags[0])
-            help_flag2 = Text("")
-        help_flag2.pad_right(5)
-        global_options_table.add_row(
-            help_flag1,
-            help_flag2,
-            Text("Display this help message and exit.", style=self.theme.option_description),
-        )
-        self.console.print(
-            Panel(
-                global_options_table, border_style="dim", title_align="left", title="Global Options"
-            )
-        )
-
-    def _display_global_arguments_table(self):
-        """Display the global arguments table for the CLI tool."""
-        if not self.global_arguments:
-            return
-        global_arguments_table = Table(highlight=True, box=None, show_header=False)
-        for argument in self.global_arguments:
-            help_message = ""
-            if argument.description:
-                help_message = Text.from_markup(argument.description)
-                help_message.style = self.theme.argument_description
-
-                argument_name = Text(argument.name, style=self.theme.argument)
-                global_arguments_table.add_row(argument_name, help_message)
-        self.console.print(
-            Panel(
-                global_arguments_table,
-                border_style="dim",
-                title_align="left",
-                title="Global Arguments",
-            )
         )
 
     def display_help(self, command: Optional[Command] = None, header: bool = True):
@@ -648,9 +603,6 @@ class CLI(Command):
         self._display_subcommands_table(command)
         self._display_options_table(command)
         self._display_arguments_table(command)
-
-        self._display_global_options_table()
-        self._display_global_arguments_table()
 
     def run(self, parsed_cli: Optional[ParsedCLI] = None):
         """Executes CLI tool based handlers, options, and arguments in

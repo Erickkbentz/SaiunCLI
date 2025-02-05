@@ -2,6 +2,7 @@ from typing import List, Optional
 
 from saiuncli.option import Option
 from saiuncli.argument import Argument
+from saiuncli._constants import _DEFAULT_USAGE
 
 
 class Command:
@@ -15,6 +16,7 @@ class Command:
         name: str,
         handler: callable,
         description: Optional[str] = None,
+        usage: Optional[str] = None,
         options: Optional[List[Option]] = None,
         inherit_options: Optional[bool] = False,
         arguments: Optional[List[Argument]] = None,
@@ -31,6 +33,9 @@ class Command:
                 The function to execute when the command is called.
             description (Optional[str]):
                 The description of the command.
+            usage (Optional[str]):
+                The usage information for the command.
+                Defaults to "[SUBCOMMANDS][OPTIONS][ARGUMENTS]" if not provided.
             options (Optional[List[Option]]):
                 The options available for the command.
             inherit_options (Optional[bool]):
@@ -45,6 +50,7 @@ class Command:
         self.name = name
         self.handler = handler
         self.description = description
+        self.usage = usage or _DEFAULT_USAGE
         self.options = options or []
         self.inherit_options = inherit_options
         self.arguments = arguments or []
