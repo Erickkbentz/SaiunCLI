@@ -633,5 +633,24 @@ class CLI(Command):
         if parsed_cli.version:
             self.display_version()
             return
+
+        missing_required_options = [
+            option.name
+            for option in command.all_options + self.global_options
+            if option.required and option.name not in parsed_cli.parsed_options
+        ]
+        if missing_required_options:
+            error = Text(f"Missing required options: {', '.join(missing_required_options)}")
+            self._cli_error(error)
+
+        missing_required_arguments = [
+            argument.name
+            for argument in command.all_arguments + self.global_arguments
+            if argument.required and argument.name not in parsed_cli.parsed_args
+        ]
+        if missing_required_arguments:
+            error = Text(f"Missing required arguments: {', '.join(missing_required_arguments)}")
+            self._cli_error(error)
+
         kwargs = parsed_cli.handler_kwargs_dict()
         command.handler(**kwargs)

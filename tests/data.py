@@ -101,7 +101,7 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
         },
         # Test Case 5 - Root with Arguments
         {
-            "cli_args": [
+            "cli_arguments": [
                 Argument(
                     name="arg1",
                     description="An argument.",
@@ -149,7 +149,7 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
                     default=1,
                 ),
             ],
-            "cli_args": [
+            "cli_arguments": [
                 Argument(
                     name="arg2",
                     description="An argument.",
@@ -381,5 +381,140 @@ PARSE_CLI_HAPPY_CASE_TESTS = {
         "subcommand_with_globals_and_options_arguments",
         "short_stacked_flags",
         "multiple_nested_subcommands_with_inheritance",
+    ],
+}
+
+PARSE_CLI_NEGATIVE_CASE_TESTS = {
+    "cases": [
+        # Test Case 0 - Root With Required Option
+        {
+            "command": ["root"],
+            "cli_options": [
+                Option(
+                    flags=["-v", "--verbose"],
+                    description="Enable verbose output.",
+                    required=True,
+                    action="store_true",
+                ),
+            ],
+        },
+        # Test Case 1 - Root With Required Argument
+        {
+            "command": ["root"],
+            "cli_arguments": [
+                Argument(
+                    name="arg1",
+                    description="An argument.",
+                    required=True,
+                ),
+            ],
+        },
+        # Test Case 2 - Root With Required Global Option
+        {
+            "command": ["root"],
+            "cli_global_options": [
+                Option(
+                    flags=["-v", "--verbose"],
+                    description="Enable verbose output.",
+                    required=True,
+                    action="store_true",
+                ),
+            ],
+        },
+        # Test Case 3 - Root With Required Global Argument
+        {
+            "command": ["root"],
+            "cli_global_arguments": [
+                Argument(
+                    name="arg1",
+                    description="An argument.",
+                    required=True,
+                ),
+            ],
+        },
+        # Test Case 4 - Subcommand With Required Option
+        {
+            "cli_subcommands": [
+                Command(
+                    name="subcommand",
+                    handler=dummy_handler,
+                    description="A subcommand.",
+                    options=[
+                        Option(
+                            flags=["-v", "--verbose"],
+                            description="Enable verbose output.",
+                            required=True,
+                            action="store_true",
+                        ),
+                    ],
+                )
+            ],
+            "command": ["root", "subcommand"],
+        },
+        # Test Case 5 - Subcommand With Required Argument
+        {
+            "cli_subcommands": [
+                Command(
+                    name="subcommand",
+                    handler=dummy_handler,
+                    description="A subcommand.",
+                    arguments=[
+                        Argument(
+                            name="arg1",
+                            description="An argument.",
+                            required=True,
+                        ),
+                    ],
+                )
+            ],
+            "command": ["root", "subcommand"],
+        },
+        # Test Case 6 - Subcommand With Required Global Option
+        {
+            "cli_subcommands": [
+                Command(
+                    name="subcommand",
+                    handler=dummy_handler,
+                    description="A subcommand.",
+                )
+            ],
+            "cli_global_options": [
+                Option(
+                    flags=["-v", "--verbose"],
+                    description="Enable verbose output.",
+                    action="store_true",
+                    required=True,
+                )
+            ],
+            "command": ["root", "subcommand"],
+        },
+        # Test Case 7 - Subcommand With Required Global Argument
+        {
+            "cli_subcommands": [
+                Command(
+                    name="subcommand",
+                    handler=dummy_handler,
+                    description="A subcommand.",
+                )
+            ],
+            "cli_global_arguments": [
+                Argument(
+                    name="arg1",
+                    description="An argument.",
+                    required=True,
+                )
+            ],
+            "command": ["root", "subcommand"],
+        },
+    ],
+    "ids": [
+        "root_with_required_option",
+        "root_with_required_argument",
+        "root_with_required_global_option",
+        "root_with_required_global_argument",
+        "subcommand_with_required_option",
+        "subcommand_with_required_argument",
+        "subcommand_with_required_global_option",
+        "subcommand_with_required_global_argument",
     ],
 }
