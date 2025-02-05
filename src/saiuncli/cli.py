@@ -195,8 +195,9 @@ class CLI(Command):
 
         option = latest_command.flag_to_option(flag) or self._flag_to_global_option(flag)
         if not option:
-            # TODO: This should automatically display the help message
-            raise ValueError(f"Invalid Option: {flag}, for available options use --help")
+            error = Text(f"Invalid option '{flag}'")
+            self._cli_error(error)
+
         flag_action = option.action
 
         if flag_action == "store_true":
@@ -213,9 +214,12 @@ class CLI(Command):
             resolved_value = option.type(value)
             if option.choices:
                 if resolved_value not in option.choices:
-                    raise ValueError(f"Invalid choice: {value}, for available choices use --help")
+                    error = Text(f"Invalid choice '{value}'")
+                    self._cli_error(error)
+
             if option.name in parsed["parsed_options"]:
-                raise ValueError(f"Duplicate option: {flag}.")
+                error = Text(f"Duplicate option '{flag}'.")
+                self._cli_error(error)
 
             if option.nargs:
                 resolved_value = [resolved_value]
@@ -226,21 +230,21 @@ class CLI(Command):
                             resolved_v = option.type(value)
                             if option.choices:
                                 if resolved_v not in option.choices:
-                                    raise ValueError(
-                                        f"Invalid choice: {value}, for available choices use --help"
-                                    )
+                                    error = Text(f"Invalid choice '{value}'")
+                                    self._cli_error(error)
                             resolved_value.append(option.type(value))
                         else:
-                            raise ValueError(f"Expected {option.nargs} arguments for {flag}")
+                            error = Text(f"Expected '{option.nargs}' arguments for {flag}")
+                            self._cli_error(error)
+
                 else:
                     while cli_args and not _is_flag(cli_args[0]):
                         value = cli_args.pop(0)
                         resolved_v = option.type(value)
                         if option.choices:
                             if resolved_v not in option.choices:
-                                raise ValueError(
-                                    f"Invalid choice: {value}, for available choices use --help"
-                                )
+                                error = Text(f"Invalid choice '{value}'")
+                                self._cli_error(error)
                         resolved_value.append(option.type(value))
 
             parsed["parsed_options"][option.name] = resolved_value
@@ -255,21 +259,20 @@ class CLI(Command):
                             resolved_v = option.type(value)
                             if option.choices:
                                 if resolved_v not in option.choices:
-                                    raise ValueError(
-                                        f"Invalid choice: {value}, for available choices use --help"
-                                    )
+                                    error = Text(f"Invalid choice '{value}'")
+                                    self._cli_error(error)
                             resolved_value.append(option.type(value))
                         else:
-                            raise ValueError(f"Expected {option.nargs} arguments for {flag}")
+                            error = Text(f"Expected {option.nargs} arguments for '{flag}'")
+                            self._cli_error(error)
                 else:
                     while cli_args and not _is_flag(cli_args[0]):
                         value = cli_args.pop(0)
                         resolved_v = option.type(value)
                         if option.choices:
                             if resolved_v not in option.choices:
-                                raise ValueError(
-                                    f"Invalid choice: {value}, for available choices use --help"
-                                )
+                                error = Text(f"Invalid choice '{value}'")
+                                self._cli_error(error)
                         resolved_value.append(option.type(value))
                 if option.name in parsed["parsed_options"]:
                     parsed["parsed_options"][option.name].append(resolved_value)
@@ -280,9 +283,8 @@ class CLI(Command):
                 resolved_value = option.type(value)
                 if option.choices:
                     if resolved_value not in option.choices:
-                        raise ValueError(
-                            f"Invalid choice: {value}, for available choices use --help"
-                        )
+                        error = Text(f"Invalid choice '{value}'")
+                        self._cli_error(error)
                 if option.name not in parsed["parsed_options"]:
                     parsed["parsed_options"][option.name] = []
                 parsed["parsed_options"][option.name].append(resolved_value)
@@ -296,21 +298,20 @@ class CLI(Command):
                             resolved_v = option.type(value)
                             if option.choices:
                                 if resolved_v not in option.choices:
-                                    raise ValueError(
-                                        f"Invalid choice: {value}, for available choices use --help"
-                                    )
+                                    error = Text(f"Invalid choice '{value}'")
+                                    self._cli_error(error)
                             resolved_value.append(option.type(value))
                         else:
-                            raise ValueError(f"Expected {option.nargs} arguments for {flag}")
+                            error = Text(f"Expected '{option.nargs}' arguments for {flag}")
+                            self._cli_error(error)
                 else:
                     while cli_args and not _is_flag(cli_args[0]):
                         value = cli_args.pop(0)
                         resolved_v = option.type(value)
                         if option.choices:
                             if resolved_v not in option.choices:
-                                raise ValueError(
-                                    f"Invalid choice: {value}, for available choices use --help"
-                                )
+                                error = Text(f"Invalid choice '{value}'")
+                                self._cli_error(error)
                         resolved_value.append(option.type(value))
                 if option.name in parsed["parsed_options"]:
                     parsed["parsed_options"][option.name].extend(resolved_value)
@@ -321,28 +322,31 @@ class CLI(Command):
                 resolved_value = option.type(value)
                 if option.choices:
                     if resolved_value not in option.choices:
-                        raise ValueError(
-                            f"Invalid choice: {value}, for available choices use --help"
-                        )
+                        error = Text(f"Invalid choice '{value}'")
+                        self._cli_error(error)
                 if option.name not in parsed["parsed_options"]:
                     parsed["parsed_options"][option.name] = []
                 parsed["parsed_options"][option.name].append(resolved_value)
         else:
-            raise ValueError(f"Invalid action: {flag_action}")
+            error = Text(f"Invalid action '{flag_action}'")
+            self._cli_error(error)
 
     def _process_argument(
         self, arg: str, latest_command: Command, parsed: Dict[str, Any], arg_index: int
     ):
         all_arguments = self.global_arguments + latest_command.all_arguments
         if not all_arguments:
-            raise ValueError(f"Invalid argument: {arg}")
+            error = Text(f"Invalid argument '{arg}'")
+            self._cli_error(error)
         if arg_index >= len(all_arguments):
-            raise ValueError(f"Too many arguments: {arg}")
+            error = Text(f"Too many arguments '{arg}'")
+            self._cli_error(error)
         argument: Argument = all_arguments[arg_index]
         resolved_value = argument.type(arg)
         if argument.choices:
             if resolved_value not in argument.choices:
-                raise ValueError(f"Invalid choice: {arg}, for available choices use --help")
+                error = Text(f"Invalid choice '{arg}'")
+                self._cli_error(error)
 
         parsed["parsed_args"][argument.name] = resolved_value
 
@@ -400,6 +404,12 @@ class CLI(Command):
             help=parsed[_HELP_NAME],
             version=parsed[_VERSION_NAME],
         )
+
+    def _cli_error(self, error: str):
+        """Display an error message and exit the CLI tool."""
+        self.console.print(f"[bold red]Error:[/bold red] {error}\n")
+        self.display_help(header=False)
+        sys.exit(1)
 
     def display_version(self):
         """Display the version of the CLI tool."""
