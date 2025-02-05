@@ -83,7 +83,7 @@ class CLI(Command):
         title: str,
         version: Optional[str] = None,
         theme: Optional[Theme] = None,
-        handler: callable = None,
+        handler: Optional[callable] = None,
         description: Optional[str] = None,
         options: Optional[List[Option]] = None,
         arguments: Optional[List[Argument]] = None,
@@ -106,8 +106,9 @@ class CLI(Command):
                 The version of the CLI tool.
             theme (Optional[Theme]):
                 The theme to use for the CLI tool.
-            handler (callable):
+            handler (Optional[callable]):
                 The function to execute when the base CLI command is called.
+                If not provided, root command will only display help and version information.
             description (Optional[str]):
                 The description of the base CLI command.
             options (Optional[List[Option]]):
@@ -619,14 +620,18 @@ class CLI(Command):
             )
         )
 
-    def display_help(self, command: Command):
+    def display_help(self, command: Optional[Command] = None, header: bool = True):
         """Display help information for the CLI tool.
 
         Args:
             command (Command):
                 The command to display help for.
         """
-        self._display_header()
+        if not command:
+            command = self
+
+        if header:
+            self._display_header()
 
         self._display_usage(command)
 
@@ -647,11 +652,16 @@ class CLI(Command):
                 If not provided, CLI will be parsed by calling `self.parse_cli()`
         """
         parsed_cli = parsed_cli or self.parse_cli()
-
         command_name = parsed_cli.commands[-1]
 
         if command_name == _ROOT_COMMAND_NAME:
             command = self
+            if not command.handler:
+                if parsed_cli.version:
+                    self.display_version()
+                    return
+                self.display_help()
+                return
         else:
             command = self.find_subcommand(command_name)
 
