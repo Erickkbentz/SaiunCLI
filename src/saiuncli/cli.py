@@ -1,3 +1,4 @@
+import os
 import sys
 from typing import Optional, List, Dict, Any
 
@@ -377,7 +378,7 @@ class CLI(Command):
             _VERSION_NAME: False,
             _HELP_NAME: False,
         }
-        self._cli_command = sys.argv[0]
+        self._cli_command = os.path.basename(sys.argv[0])
         cli_args = sys.argv[1:]
 
         latest_command = self
@@ -618,16 +619,10 @@ class CLI(Command):
 
         if command_name == _ROOT_COMMAND_NAME:
             command = self
-            if not command.handler:
-                if parsed_cli.version:
-                    self.display_version()
-                    return
-                self.display_help()
-                return
         else:
             command = self.find_subcommand(command_name)
 
-        if parsed_cli.help:
+        if parsed_cli.help or not command.handler:
             self.display_help(command)
             return
         if parsed_cli.version:
