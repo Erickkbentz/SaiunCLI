@@ -512,8 +512,6 @@ class CLI(Command):
         if not command:
             command = self
         options = command.all_options + self.global_options
-        if not options:
-            return
 
         options_table = Table(highlight=True, box=None, show_header=False)
         for option in options:
@@ -529,7 +527,7 @@ class CLI(Command):
                 opt2 = Text("")
             opt2.pad_right(5)
             options_table.add_row(opt1, opt2, help_message)
-        # Always add version flags to the Global Options table
+        # Always add version flags to the bottom of Global Options table
         if len(self._version_flags) == 2:
             version_flag1 = self._highlighter(self._version_flags[0])
             version_flag2 = self._highlighter(self._version_flags[1])
@@ -542,7 +540,7 @@ class CLI(Command):
             version_flag2,
             Text("Display the version.", style=self.theme.option_description),
         )
-        # Always add help flags to the Global Options table
+        # Always add help flags to the bottom Global Options table
         if len(self._help_flags) == 2:
             help_flag1 = self._highlighter(self._help_flags[0])
             help_flag2 = self._highlighter(self._help_flags[1])
