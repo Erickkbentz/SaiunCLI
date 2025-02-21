@@ -202,7 +202,7 @@ class CLI(Command):
         option = latest_command.flag_to_option(flag) or self._flag_to_global_option(flag)
         if not option:
             error = Text(f"Invalid option '{flag}'")
-            self._cli_error(error)
+            self._cli_error(error, command=latest_command)
 
         flag_action = option.action
 
@@ -221,11 +221,11 @@ class CLI(Command):
             if option.choices:
                 if resolved_value not in option.choices:
                     error = Text(f"Invalid choice '{value}'")
-                    self._cli_error(error)
+                    self._cli_error(error, command=latest_command)
 
             if option.name in parsed["parsed_options"]:
                 error = Text(f"Duplicate option '{flag}'.")
-                self._cli_error(error)
+                self._cli_error(error, command=latest_command)
 
             if option.nargs:
                 resolved_value = [resolved_value]
@@ -237,11 +237,11 @@ class CLI(Command):
                             if option.choices:
                                 if resolved_v not in option.choices:
                                     error = Text(f"Invalid choice '{value}'")
-                                    self._cli_error(error)
+                                    self._cli_error(error, command=latest_command)
                             resolved_value.append(option.type(value))
                         else:
                             error = Text(f"Expected '{option.nargs}' arguments for {flag}")
-                            self._cli_error(error)
+                            self._cli_error(error, command=latest_command)
 
                 else:
                     while cli_args and not _is_flag(cli_args[0]):
@@ -250,7 +250,7 @@ class CLI(Command):
                         if option.choices:
                             if resolved_v not in option.choices:
                                 error = Text(f"Invalid choice '{value}'")
-                                self._cli_error(error)
+                                self._cli_error(error, command=latest_command)
                         resolved_value.append(option.type(value))
 
             parsed["parsed_options"][option.name] = resolved_value
@@ -266,11 +266,11 @@ class CLI(Command):
                             if option.choices:
                                 if resolved_v not in option.choices:
                                     error = Text(f"Invalid choice '{value}'")
-                                    self._cli_error(error)
+                                    self._cli_error(error, command=latest_command)
                             resolved_value.append(option.type(value))
                         else:
                             error = Text(f"Expected {option.nargs} arguments for '{flag}'")
-                            self._cli_error(error)
+                            self._cli_error(error, command=latest_command)
                 else:
                     while cli_args and not _is_flag(cli_args[0]):
                         value = cli_args.pop(0)
@@ -278,7 +278,7 @@ class CLI(Command):
                         if option.choices:
                             if resolved_v not in option.choices:
                                 error = Text(f"Invalid choice '{value}'")
-                                self._cli_error(error)
+                                self._cli_error(error, command=latest_command)
                         resolved_value.append(option.type(value))
                 if option.name in parsed["parsed_options"]:
                     parsed["parsed_options"][option.name].append(resolved_value)
@@ -290,7 +290,7 @@ class CLI(Command):
                 if option.choices:
                     if resolved_value not in option.choices:
                         error = Text(f"Invalid choice '{value}'")
-                        self._cli_error(error)
+                        self._cli_error(error, command=latest_command)
                 if option.name not in parsed["parsed_options"]:
                     parsed["parsed_options"][option.name] = []
                 parsed["parsed_options"][option.name].append(resolved_value)
@@ -305,11 +305,11 @@ class CLI(Command):
                             if option.choices:
                                 if resolved_v not in option.choices:
                                     error = Text(f"Invalid choice '{value}'")
-                                    self._cli_error(error)
+                                    self._cli_error(error, command=latest_command)
                             resolved_value.append(option.type(value))
                         else:
                             error = Text(f"Expected '{option.nargs}' arguments for {flag}")
-                            self._cli_error(error)
+                            self._cli_error(error, command=latest_command)
                 else:
                     while cli_args and not _is_flag(cli_args[0]):
                         value = cli_args.pop(0)
@@ -317,7 +317,7 @@ class CLI(Command):
                         if option.choices:
                             if resolved_v not in option.choices:
                                 error = Text(f"Invalid choice '{value}'")
-                                self._cli_error(error)
+                                self._cli_error(error, command=latest_command)
                         resolved_value.append(option.type(value))
                 if option.name in parsed["parsed_options"]:
                     parsed["parsed_options"][option.name].extend(resolved_value)
@@ -329,13 +329,13 @@ class CLI(Command):
                 if option.choices:
                     if resolved_value not in option.choices:
                         error = Text(f"Invalid choice '{value}'")
-                        self._cli_error(error)
+                        self._cli_error(error, command=latest_command)
                 if option.name not in parsed["parsed_options"]:
                     parsed["parsed_options"][option.name] = []
                 parsed["parsed_options"][option.name].append(resolved_value)
         else:
             error = Text(f"Invalid action '{flag_action}'")
-            self._cli_error(error)
+            self._cli_error(error, command=latest_command)
 
     def _process_argument(
         self, arg: str, latest_command: Command, parsed: Dict[str, Any], arg_index: int
@@ -343,16 +343,16 @@ class CLI(Command):
         all_arguments = self.global_arguments + latest_command.all_arguments
         if not all_arguments:
             error = Text(f"Invalid argument '{arg}'")
-            self._cli_error(error)
+            self._cli_error(error, command=latest_command)
         if arg_index >= len(all_arguments):
             error = Text(f"Too many arguments '{arg}'")
-            self._cli_error(error)
+            self._cli_error(error, command=latest_command)
         argument: Argument = all_arguments[arg_index]
         resolved_value = argument.type(arg)
         if argument.choices:
             if resolved_value not in argument.choices:
                 error = Text(f"Invalid choice '{arg}'")
-                self._cli_error(error)
+                self._cli_error(error, command=latest_command)
 
         parsed["parsed_args"][argument.name] = resolved_value
 
@@ -411,10 +411,10 @@ class CLI(Command):
             version=parsed[_VERSION_NAME],
         )
 
-    def _cli_error(self, error: str):
+    def _cli_error(self, error: str, command: Optional[Command] = None):
         """Display an error message and exit the CLI tool."""
         self.console.print(f"[bold red]Error:[/bold red] {error}\n")
-        self.display_help(header=False)
+        self.display_help(command=command, header=False)
         sys.exit(1)
 
     def display_version(self):
@@ -634,7 +634,7 @@ class CLI(Command):
         ]
         if missing_required_options:
             error = Text(f"Missing required options: {', '.join(missing_required_options)}")
-            self._cli_error(error)
+            self._cli_error(error, command=command)
 
         missing_required_arguments = [
             argument.name
@@ -643,7 +643,7 @@ class CLI(Command):
         ]
         if missing_required_arguments:
             error = Text(f"Missing required arguments: {', '.join(missing_required_arguments)}")
-            self._cli_error(error)
+            self._cli_error(error, command=command)
 
         kwargs = parsed_cli.handler_kwargs_dict()
         command.handler(**kwargs)
