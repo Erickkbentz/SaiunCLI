@@ -9,6 +9,7 @@ nav:
       - Option: reference/option.md
       - Argument: reference/argument.md
       - Theme: reference/theme.md
+      - Console: reference/console.md
 
 
 plugins:
