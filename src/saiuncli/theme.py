@@ -53,6 +53,26 @@ class Theme:
         warning_prefix: Optional[PrefixStyle] = None,
         info_prefix: Optional[PrefixStyle] = None,
     ):
+        """
+        Initialize a Theme object with custom styles and prefixes.
+
+        Args:
+            version (Optional[Style]): Style for the version text.
+            title (Optional[Style]): Style for the title text.
+            title_description (Optional[Style]): Style for the title description text.
+            usage (Optional[Style]): Style for the usage text.
+            option_long (Optional[Style]): Style for long option flags.
+            option_short (Optional[Style]): Style for short option flags.
+            option_description (Optional[Style]): Style for option descriptions.
+            subcommand (Optional[Style]): Style for subcommand names.
+            subcommand_description (Optional[Style]): Style for subcommand descriptions.
+            argument (Optional[Style]): Style for argument names.
+            argument_description (Optional[Style]): Style for argument descriptions.
+            success_prefix (Optional[PrefixStyle]): Prefix style for success messages.
+            error_prefix (Optional[PrefixStyle]): Prefix style for error messages.
+            warning_prefix (Optional[PrefixStyle]): Prefix style for warning messages.
+            info_prefix (Optional[PrefixStyle]): Prefix style for info messages.
+        """
 
         self.version = version or self.DEFAULT_STYLES["version"]
         self.title = title or self.DEFAULT_STYLES["title"]

@@ -14,6 +14,11 @@ from saiuncli.argument import Argument
 
 class Console:
     def __init__(self, theme: Optional["Theme"] = None):
+        """Initialize the Console with a theme.
+
+        Args:
+            theme (Optional[Theme]): The theme to use for the console output.
+        """
         self.theme = theme or Theme()
 
         class OptionHighlighter(RegexHighlighter):
@@ -31,37 +36,43 @@ class Console:
         )
 
     def print(self, *objects: Any, style: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        Print a message to the console with the current theme.
+        """Display rich text in the console
+
+        Wraps the rich console print method to allow for custom styling.
 
         Args:
-            msg (str): The message to print.
-            **kwargs: Additional keyword arguments for RichConsole.print().
+            *objects (Any): The objects to print to the console.
+            style (Optional[str]): The style to apply to the text.
+            **kwargs (Any): Additional keyword arguments for the print method.
         """
         self._console.print(*objects, style=style, **kwargs)
 
-    def success(self, message: str):
+    def success(self, message: str) -> None:
+        """Display a success message in the console."""
         style = self.theme.success_prefix.style
         symbol = self.theme.success_prefix.symbol
         self.print(
             f"[{style}]{symbol}[/{style}] {message}",
         )
 
-    def error(self, message: str):
+    def error(self, message: str) -> None:
+        """Display an error message in the console."""
         style = self.theme.error_prefix.style
         symbol = self.theme.error_prefix.symbol
         self.print(
             f"[{style}]{symbol}[/{style}] {message}",
         )
 
-    def warning(self, message: str):
+    def warning(self, message: str) -> None:
+        """Display a warning message in the console."""
         style = self.theme.warning_prefix.style
         symbol = self.theme.warning_prefix.symbol
         self.print(
             f"[{style}]{symbol}[/{style}] {message}",
         )
 
-    def info(self, message: str):
+    def info(self, message: str) -> None:
+        """Display an informational message in the console."""
         style = self.theme.info_prefix.style
         symbol = self.theme.info_prefix.symbol
         self.print(
@@ -73,8 +84,14 @@ class Console:
         title: str,
         description: Optional[str] = None,
         version: Optional[str] = None,
-    ):
-        """Display the CLI tool Header Information."""
+    ) -> None:
+        """Display Header Information for a CLI tool.
+        Args:
+            title (str): The title of the CLI tool.
+            description (Optional[str]): A brief description of the CLI tool.
+            version (Optional[str]): The version of the CLI tool.
+        """
+
         title = Text(title, style=self.theme.title)
         if version:
             version = Text(f"v{version}", style=self.theme.version)
@@ -94,10 +111,18 @@ class Console:
             self.print()
         self.print()
 
-    def display_usage(self, usage: str = None):
+    def display_usage(self, usage: str = None) -> None:
+        """Display the usage information for the CLI tool.
+        Args:
+            usage (str): The usage information for the CLI tool.
+        """
         self.print(Text(f"Usage: {usage}"), style=self.theme.usage)
 
-    def display_version(self, version: str):
+    def display_version(self, version: str) -> None:
+        """Display the version of the CLI tool.
+        Args:
+            version (str): The version of the CLI tool.
+        """
         self.print(
             Text(
                 f"v{version}",
@@ -106,7 +131,12 @@ class Console:
             justify="left",
         )
 
-    def display_subcommands_table(self, subcommands: Optional[List[Command]] = None):
+    def display_subcommands_table(self, subcommands: Optional[List[Command]] = None) -> None:
+        """Display the subcommands table for the CLI tool.
+        Args:
+            subcommands (Optional[List[Command]]): The subcommands to display.
+        """
+
         if not subcommands:
             return
         subcommands_table = Table(highlight=True, box=None, show_header=False)
@@ -130,12 +160,13 @@ class Console:
         options: Optional[List[Option]],
         version_flags: Optional[List[str]] = None,
         help_flags: Optional[List[str]] = None,
-    ):
+    ) -> None:
         """Display the options table for the CLI tool.
 
         Args:
-            command (Optional[Command]):
-                The command to display options for.
+            options (Optional[List[Option]]): The options to display.
+            version_flags (Optional[List[str]]): The version flags for the CLI tool.
+            help_flags (Optional[List[str]]): The help flags for the CLI tool.
         """
         if not options:
             return
@@ -185,7 +216,11 @@ class Console:
     def display_arguments_table(
         self,
         arguments: Optional[List[Argument]] = None,
-    ):
+    ) -> None:
+        """Display the arguments table for the CLI tool.
+        Args:
+            arguments (Optional[List[Argument]]): The arguments to display.
+        """
         if not arguments:
             return
 
@@ -214,7 +249,22 @@ class Console:
         show_header: bool = True,
         help_flags: Optional[List[str]] = None,
         version_flags: Optional[List[str]] = None,
-    ):
+    ) -> None:
+        """
+        Display the help message for a CLI tool.
+
+        Args:
+            title (str): The title of the CLI tool.
+            usage (str): The usage information for the CLI tool.
+            description (Optional[str]): A brief description of the CLI tool.
+            version (Optional[str]): The version of the CLI tool.
+            options (Optional[List[Option]]): The options available for the CLI tool.
+            arguments (Optional[List[Argument]]): The arguments available for the CLI tool.
+            subcommands (Optional[List[Command]]): The subcommands available for the CLI tool.
+            show_header (bool): Whether to display the header information.
+            help_flags (Optional[List[str]]): The help flags for the CLI tool.
+            version_flags (Optional[List[str]]): The version flags for the CLI tool.
+        """
         if show_header and title:
             self.display_header(title, description, version)
 

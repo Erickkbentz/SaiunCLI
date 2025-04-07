@@ -15,9 +15,11 @@ test:
 	pytest tests
 
 docs-serve:
-	mkdocs serve
+	pip install ".[all]"
+	mkdocs serve --clean
 
 docs-deploy:
+	pip install ".[all]"
 	mkdocs gh-deploy --clean
 
 upload: build
