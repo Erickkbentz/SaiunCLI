@@ -508,7 +508,7 @@
 <div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">CLI</span><span class="p">(</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.cli.CLI(title)">title</a></span><span class="p">:</span> <span class="n">str</span><span class="p">,</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.cli.CLI(version)">version</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">console</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.console.Console" href="../console/#saiuncli.console.Console">Console</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.cli.CLI(console)">console</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.console.Console" href="../console/#saiuncli.console.Console">Console</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.cli.CLI(handler)">handler</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n">callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.cli.CLI(description)">description</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.cli.CLI(usage)">usage</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -550,8 +550,10 @@ and reserve the flags ["--help", "-h"] and ["--version", "-V"] respectively.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-<h2 id="saiuncli.cli.CLI(Console)" class="doc doc-heading doc-heading-parameter">              <b><code>Console</code></b>
-</h2>              (<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="saiuncli.console.Console" href="../console/#saiuncli.console.Console">Console</a>]</code>)
+<h2 id="saiuncli.cli.CLI(console)" class="doc doc-heading doc-heading-parameter">              <b><code>console</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="saiuncli.console.Console" href="../console/#saiuncli.console.Console">Console</a>]</code>, default:
+                  <code>None</code>
+)
           –
           <div class="doc-md-description">
             <p>The Console object to use for displaying outputs for the CLI tool.</p>
@@ -945,7 +947,7 @@ Defaults to ["-V", "--version"] if not provided.</p>
 <a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">            The title of the CLI tool.</span>
 <a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">        version (Optional[str]):</span>
 <a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="sd">            The version of the CLI tool.</span>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">        Console (Optional[Console]):</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">        console (Optional[Console]):</span>
 <a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="sd">            The Console object to use for displaying outputs for the CLI tool.</span>
 <a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="sd">        handler (Optional[callable]):</span>
 <a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="sd">            The function to execute when the base CLI command is called.</span>
