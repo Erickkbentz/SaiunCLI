@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.d7758b05.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -472,6 +472,28 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/console/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Console
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -562,203 +584,225 @@
 </div>
 </div>
 <h2 id="usage"><strong>Usage</strong></h2>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-2-10">10</a></span>
-<span class="normal"><a href="#__codelineno-2-11">11</a></span>
-<span class="normal"><a href="#__codelineno-2-12">12</a></span>
-<span class="normal"><a href="#__codelineno-2-13">13</a></span>
-<span class="normal"><a href="#__codelineno-2-14">14</a></span>
-<span class="normal"><a href="#__codelineno-2-15">15</a></span>
-<span class="normal"><a href="#__codelineno-2-16">16</a></span>
-<span class="normal"><a href="#__codelineno-2-17">17</a></span>
-<span class="normal"><a href="#__codelineno-2-18">18</a></span>
-<span class="normal"><a href="#__codelineno-2-19">19</a></span>
-<span class="normal"><a href="#__codelineno-2-20">20</a></span>
-<span class="normal"><a href="#__codelineno-2-21">21</a></span>
-<span class="normal"><a href="#__codelineno-2-22">22</a></span>
-<span class="normal"><a href="#__codelineno-2-23">23</a></span>
-<span class="normal"><a href="#__codelineno-2-24">24</a></span>
-<span class="normal"><a href="#__codelineno-2-25">25</a></span>
-<span class="normal"><a href="#__codelineno-2-26">26</a></span>
-<span class="normal"><a href="#__codelineno-2-27">27</a></span>
-<span class="normal"><a href="#__codelineno-2-28">28</a></span>
-<span class="normal"><a href="#__codelineno-2-29">29</a></span>
-<span class="normal"><a href="#__codelineno-2-30">30</a></span>
-<span class="normal"><a href="#__codelineno-2-31">31</a></span>
-<span class="normal"><a href="#__codelineno-2-32">32</a></span>
-<span class="normal"><a href="#__codelineno-2-33">33</a></span>
-<span class="normal"><a href="#__codelineno-2-34">34</a></span>
-<span class="normal"><a href="#__codelineno-2-35">35</a></span>
-<span class="normal"><a href="#__codelineno-2-36">36</a></span>
-<span class="normal"><a href="#__codelineno-2-37">37</a></span>
-<span class="normal"><a href="#__codelineno-2-38">38</a></span>
-<span class="normal"><a href="#__codelineno-2-39">39</a></span>
-<span class="normal"><a href="#__codelineno-2-40">40</a></span>
-<span class="normal"><a href="#__codelineno-2-41">41</a></span>
-<span class="normal"><a href="#__codelineno-2-42">42</a></span>
-<span class="normal"><a href="#__codelineno-2-43">43</a></span>
-<span class="normal"><a href="#__codelineno-2-44">44</a></span>
-<span class="normal"><a href="#__codelineno-2-45">45</a></span>
-<span class="normal"><a href="#__codelineno-2-46">46</a></span>
-<span class="normal"><a href="#__codelineno-2-47">47</a></span>
-<span class="normal"><a href="#__codelineno-2-48">48</a></span>
-<span class="normal"><a href="#__codelineno-2-49">49</a></span>
-<span class="normal"><a href="#__codelineno-2-50">50</a></span>
-<span class="normal"><a href="#__codelineno-2-51">51</a></span>
-<span class="normal"><a href="#__codelineno-2-52">52</a></span>
-<span class="normal"><a href="#__codelineno-2-53">53</a></span>
-<span class="normal"><a href="#__codelineno-2-54">54</a></span>
-<span class="normal"><a href="#__codelineno-2-55">55</a></span>
-<span class="normal"><a href="#__codelineno-2-56">56</a></span>
-<span class="normal"><a href="#__codelineno-2-57">57</a></span>
-<span class="normal"><a href="#__codelineno-2-58">58</a></span>
-<span class="normal"><a href="#__codelineno-2-59">59</a></span>
-<span class="normal"><a href="#__codelineno-2-60">60</a></span>
-<span class="normal"><a href="#__codelineno-2-61">61</a></span>
-<span class="normal"><a href="#__codelineno-2-62">62</a></span>
-<span class="normal"><a href="#__codelineno-2-63">63</a></span>
-<span class="normal"><a href="#__codelineno-2-64">64</a></span>
-<span class="normal"><a href="#__codelineno-2-65">65</a></span>
-<span class="normal"><a href="#__codelineno-2-66">66</a></span>
-<span class="normal"><a href="#__codelineno-2-67">67</a></span>
-<span class="normal"><a href="#__codelineno-2-68">68</a></span>
-<span class="normal"><a href="#__codelineno-2-69">69</a></span>
-<span class="normal"><a href="#__codelineno-2-70">70</a></span>
-<span class="normal"><a href="#__codelineno-2-71">71</a></span>
-<span class="normal"><a href="#__codelineno-2-72">72</a></span>
-<span class="normal"><a href="#__codelineno-2-73">73</a></span>
-<span class="normal"><a href="#__codelineno-2-74">74</a></span>
-<span class="normal"><a href="#__codelineno-2-75">75</a></span>
-<span class="normal"><a href="#__codelineno-2-76">76</a></span>
-<span class="normal"><a href="#__codelineno-2-77">77</a></span>
-<span class="normal"><a href="#__codelineno-2-78">78</a></span>
-<span class="normal"><a href="#__codelineno-2-79">79</a></span>
-<span class="normal"><a href="#__codelineno-2-80">80</a></span>
-<span class="normal"><a href="#__codelineno-2-81">81</a></span>
-<span class="normal"><a href="#__codelineno-2-82">82</a></span>
-<span class="normal"><a href="#__codelineno-2-83">83</a></span>
-<span class="normal"><a href="#__codelineno-2-84">84</a></span>
-<span class="normal"><a href="#__codelineno-2-85">85</a></span>
-<span class="normal"><a href="#__codelineno-2-86">86</a></span>
-<span class="normal"><a href="#__codelineno-2-87">87</a></span>
-<span class="normal"><a href="#__codelineno-2-88">88</a></span>
-<span class="normal"><a href="#__codelineno-2-89">89</a></span>
-<span class="normal"><a href="#__codelineno-2-90">90</a></span>
-<span class="normal"><a href="#__codelineno-2-91">91</a></span>
-<span class="normal"><a href="#__codelineno-2-92">92</a></span>
-<span class="normal"><a href="#__codelineno-2-93">93</a></span>
-<span class="normal"><a href="#__codelineno-2-94">94</a></span>
-<span class="normal"><a href="#__codelineno-2-95">95</a></span>
-<span class="normal"><a href="#__codelineno-2-96">96</a></span>
-<span class="normal"><a href="#__codelineno-2-97">97</a></span>
-<span class="normal"><a href="#__codelineno-2-98">98</a></span>
-<span class="normal"><a href="#__codelineno-2-99">99</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">saiuncli.cli</span><span class="w"> </span><span class="kn">import</span> <span class="n">CLI</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">saiuncli.command</span><span class="w"> </span><span class="kn">import</span> <span class="n">Command</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">saiuncli.option</span><span class="w"> </span><span class="kn">import</span> <span class="n">Option</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">saiuncli.theme</span><span class="w"> </span><span class="kn">import</span> <span class="n">Theme</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1"># Custom CLI Theme</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">theme</span> <span class="o">=</span> <span class="n">Theme</span><span class="p">()</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a>
-<a id="__codelineno-2-9" name="__codelineno-2-9"></a>
-<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1"># Define your command handlers</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">hello_handler</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-2-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-2-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-2-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-2-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-2-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-2-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-2-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-2-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-2-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-2-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-2-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-2-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-2-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-2-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-2-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-2-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-2-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-2-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-2-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-2-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-2-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-2-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-2-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-2-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-2-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-2-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-2-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-2-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-2-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-2-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-2-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-2-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-2-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-2-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-2-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-2-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-2-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-2-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-2-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-2-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-2-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-2-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-2-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-2-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-2-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-2-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-2-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-2-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-2-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-2-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-2-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-2-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-2-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-2-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-2-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-2-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-2-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-2-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-2-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-2-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-2-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-2-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-2-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-2-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-2-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-2-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-2-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-2-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-2-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-2-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-2-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-2-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-2-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-2-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-2-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-2-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-2-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-2-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-2-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-2-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-2-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-2-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-2-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-2-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-2-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-2-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-2-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-2-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-2-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-2-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-2-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-2-100">100</a></span>
+<span class="normal"><a href="#__codelineno-2-101">101</a></span>
+<span class="normal"><a href="#__codelineno-2-102">102</a></span>
+<span class="normal"><a href="#__codelineno-2-103">103</a></span>
+<span class="normal"><a href="#__codelineno-2-104">104</a></span>
+<span class="normal"><a href="#__codelineno-2-105">105</a></span>
+<span class="normal"><a href="#__codelineno-2-106">106</a></span>
+<span class="normal"><a href="#__codelineno-2-107">107</a></span>
+<span class="normal"><a href="#__codelineno-2-108">108</a></span>
+<span class="normal"><a href="#__codelineno-2-109">109</a></span>
+<span class="normal"><a href="#__codelineno-2-110">110</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">saiuncli.cli</span> <span class="kn">import</span> <span class="n">CLI</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span> <span class="nn">saiuncli.command</span> <span class="kn">import</span> <span class="n">Command</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">from</span> <span class="nn">saiuncli.option</span> <span class="kn">import</span> <span class="n">Option</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kn">from</span> <span class="nn">saiuncli.theme</span> <span class="kn">import</span> <span class="n">Theme</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="kn">from</span> <span class="nn">saiuncli.console</span> <span class="kn">import</span> <span class="n">Console</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1"># Custom theme and console for CLI outputs</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">theme</span> <span class="o">=</span> <span class="n">Theme</span><span class="p">()</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">(</span><span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="k">def</span> <span class="nf">hello_handler</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14"></a>
-<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">count_handler</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17"></a>
-<a id="__codelineno-2-18" name="__codelineno-2-18"></a>
-<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">base_handler</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">):</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Base command executed.&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>        <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>    <span class="n">console</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Succcessfully executed handler!&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="k">def</span> <span class="nf">count_handler</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>    <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Both &#39;a&#39; and &#39;b&#39; must be provided.&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>    <span class="n">console</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Succcessfully executed handler!&quot;</span><span class="p">)</span>
 <a id="__codelineno-2-22" name="__codelineno-2-22"></a>
 <a id="__codelineno-2-23" name="__codelineno-2-23"></a>
-<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-<a id="__codelineno-2-25" name="__codelineno-2-25"></a>
-<a id="__codelineno-2-26" name="__codelineno-2-26"></a>    <span class="c1"># Create CLI</span>
-<a id="__codelineno-2-27" name="__codelineno-2-27"></a>    <span class="n">mycli</span> <span class="o">=</span> <span class="n">CLI</span><span class="p">(</span>
-<a id="__codelineno-2-28" name="__codelineno-2-28"></a>        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;My Super Cool CLI Tool&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-29" name="__codelineno-2-29"></a>        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A simple tool to demonstrate saiuncli.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-30" name="__codelineno-2-30"></a>        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-31" name="__codelineno-2-31"></a>        <span class="n">handler</span><span class="o">=</span><span class="n">base_handler</span><span class="p">,</span> <span class="c1"># Command Handler</span>
-<a id="__codelineno-2-32" name="__codelineno-2-32"></a>        <span class="n">help_flags</span><span class="o">=</span><span class="p">[],</span>
-<a id="__codelineno-2-33" name="__codelineno-2-33"></a>        <span class="n">version_flags</span><span class="o">=</span><span class="p">[],</span>
-<a id="__codelineno-2-34" name="__codelineno-2-34"></a>        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-2-35" name="__codelineno-2-35"></a>            <span class="n">Option</span><span class="p">(</span>
-<a id="__codelineno-2-36" name="__codelineno-2-36"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">],</span>
-<a id="__codelineno-2-37" name="__codelineno-2-37"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable verbose output.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-38" name="__codelineno-2-38"></a>                <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-39" name="__codelineno-2-39"></a>            <span class="p">),</span>
-<a id="__codelineno-2-40" name="__codelineno-2-40"></a>            <span class="n">Option</span><span class="p">(</span>
-<a id="__codelineno-2-41" name="__codelineno-2-41"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="s2">&quot;--quiet&quot;</span><span class="p">],</span>
-<a id="__codelineno-2-42" name="__codelineno-2-42"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable quiet output.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-43" name="__codelineno-2-43"></a>                <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-44" name="__codelineno-2-44"></a>            <span class="p">),</span>
-<a id="__codelineno-2-45" name="__codelineno-2-45"></a>            <span class="n">Option</span><span class="p">(</span>
-<a id="__codelineno-2-46" name="__codelineno-2-46"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--debug&quot;</span><span class="p">],</span>
-<a id="__codelineno-2-47" name="__codelineno-2-47"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable debug output.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-48" name="__codelineno-2-48"></a>                <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-49" name="__codelineno-2-49"></a>            <span class="p">),</span>
-<a id="__codelineno-2-50" name="__codelineno-2-50"></a>        <span class="p">],</span>
-<a id="__codelineno-2-51" name="__codelineno-2-51"></a>    <span class="p">)</span>
-<a id="__codelineno-2-52" name="__codelineno-2-52"></a>
-<a id="__codelineno-2-53" name="__codelineno-2-53"></a>    <span class="c1"># Define Subcommands</span>
-<a id="__codelineno-2-54" name="__codelineno-2-54"></a>    <span class="n">hello_command</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span>
-<a id="__codelineno-2-55" name="__codelineno-2-55"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-56" name="__codelineno-2-56"></a>        <span class="n">handler</span><span class="o">=</span><span class="n">hello_handler</span><span class="p">,</span>
-<a id="__codelineno-2-57" name="__codelineno-2-57"></a>        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Prints &#39;Hello, world!&#39; to the console.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-58" name="__codelineno-2-58"></a>        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-2-59" name="__codelineno-2-59"></a>            <span class="n">Option</span><span class="p">(</span>
-<a id="__codelineno-2-60" name="__codelineno-2-60"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-n&quot;</span><span class="p">,</span> <span class="s2">&quot;--name&quot;</span><span class="p">],</span>
-<a id="__codelineno-2-61" name="__codelineno-2-61"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name to print.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-62" name="__codelineno-2-62"></a>                <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-2-63" name="__codelineno-2-63"></a>                <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<a id="__codelineno-2-64" name="__codelineno-2-64"></a>            <span class="p">),</span>
-<a id="__codelineno-2-65" name="__codelineno-2-65"></a>            <span class="n">Option</span><span class="p">(</span>
-<a id="__codelineno-2-66" name="__codelineno-2-66"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--count&quot;</span><span class="p">],</span>
-<a id="__codelineno-2-67" name="__codelineno-2-67"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The number of times to print the name.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-68" name="__codelineno-2-68"></a>                <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
-<a id="__codelineno-2-69" name="__codelineno-2-69"></a>                <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<a id="__codelineno-2-70" name="__codelineno-2-70"></a>            <span class="p">),</span>
-<a id="__codelineno-2-71" name="__codelineno-2-71"></a>        <span class="p">],</span>
-<a id="__codelineno-2-72" name="__codelineno-2-72"></a>    <span class="p">)</span>
-<a id="__codelineno-2-73" name="__codelineno-2-73"></a>
-<a id="__codelineno-2-74" name="__codelineno-2-74"></a>    <span class="n">count_command</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span>
-<a id="__codelineno-2-75" name="__codelineno-2-75"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-76" name="__codelineno-2-76"></a>        <span class="n">handler</span><span class="o">=</span><span class="n">count_handler</span><span class="p">,</span>
-<a id="__codelineno-2-77" name="__codelineno-2-77"></a>        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Adds two numbers together.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-78" name="__codelineno-2-78"></a>        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-2-79" name="__codelineno-2-79"></a>            <span class="n">Option</span><span class="p">(</span>
-<a id="__codelineno-2-80" name="__codelineno-2-80"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-a&quot;</span><span class="p">],</span>
-<a id="__codelineno-2-81" name="__codelineno-2-81"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The first number.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-82" name="__codelineno-2-82"></a>                <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
-<a id="__codelineno-2-83" name="__codelineno-2-83"></a>                <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<a id="__codelineno-2-84" name="__codelineno-2-84"></a>            <span class="p">),</span>
-<a id="__codelineno-2-85" name="__codelineno-2-85"></a>            <span class="n">Option</span><span class="p">(</span>
-<a id="__codelineno-2-86" name="__codelineno-2-86"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-b&quot;</span><span class="p">],</span>
-<a id="__codelineno-2-87" name="__codelineno-2-87"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The second number.&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-88" name="__codelineno-2-88"></a>                <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
-<a id="__codelineno-2-89" name="__codelineno-2-89"></a>                <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<a id="__codelineno-2-90" name="__codelineno-2-90"></a>            <span class="p">),</span>
-<a id="__codelineno-2-91" name="__codelineno-2-91"></a>        <span class="p">],</span>
-<a id="__codelineno-2-92" name="__codelineno-2-92"></a>    <span class="p">)</span>
-<a id="__codelineno-2-93" name="__codelineno-2-93"></a>
-<a id="__codelineno-2-94" name="__codelineno-2-94"></a>
-<a id="__codelineno-2-95" name="__codelineno-2-95"></a>    <span class="c1"># Append Subcommands</span>
-<a id="__codelineno-2-96" name="__codelineno-2-96"></a>    <span class="n">mycli</span><span class="o">.</span><span class="n">add_subcommands</span><span class="p">([</span><span class="n">hello_command</span><span class="p">,</span> <span class="n">count_command</span><span class="p">])</span>
-<a id="__codelineno-2-97" name="__codelineno-2-97"></a>
-<a id="__codelineno-2-98" name="__codelineno-2-98"></a>    <span class="c1"># Run your CLI Tool!</span>
-<a id="__codelineno-2-99" name="__codelineno-2-99"></a>    <span class="n">mycli</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="k">def</span> <span class="nf">base_handler</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">):</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a>    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Base command executed.&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a>    <span class="k">if</span> <span class="n">args</span><span class="p">:</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a>        <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a>    <span class="n">console</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Success Message&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a>    <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error Message&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a>    <span class="n">console</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning Message&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a>    <span class="n">console</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Info Message&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a>    <span class="c1"># Create CLI</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a>    <span class="n">mycli</span> <span class="o">=</span> <span class="n">CLI</span><span class="p">(</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a>        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;My Super Cool CLI Tool&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a>        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A simple tool to demonstrate saiuncli.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a>        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a>        <span class="n">console</span><span class="o">=</span><span class="n">console</span><span class="p">,</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a>        <span class="n">handler</span><span class="o">=</span><span class="n">base_handler</span><span class="p">,</span> <span class="c1"># Command Handler</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a>        <span class="n">help_flags</span><span class="o">=</span><span class="p">[],</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a>        <span class="n">version_flags</span><span class="o">=</span><span class="p">[],</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45"></a>        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46"></a>            <span class="n">Option</span><span class="p">(</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable verbose output.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49"></a>                <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50"></a>            <span class="p">),</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51"></a>            <span class="n">Option</span><span class="p">(</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="s2">&quot;--quiet&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable quiet output.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54"></a>                <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55"></a>            <span class="p">),</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56"></a>            <span class="n">Option</span><span class="p">(</span>
+<a id="__codelineno-2-57" name="__codelineno-2-57"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--debug&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-58" name="__codelineno-2-58"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable debug output.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59"></a>                <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-60" name="__codelineno-2-60"></a>            <span class="p">),</span>
+<a id="__codelineno-2-61" name="__codelineno-2-61"></a>        <span class="p">],</span>
+<a id="__codelineno-2-62" name="__codelineno-2-62"></a>    <span class="p">)</span>
+<a id="__codelineno-2-63" name="__codelineno-2-63"></a>
+<a id="__codelineno-2-64" name="__codelineno-2-64"></a>    <span class="c1"># Define Subcommands</span>
+<a id="__codelineno-2-65" name="__codelineno-2-65"></a>    <span class="n">hello_command</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span>
+<a id="__codelineno-2-66" name="__codelineno-2-66"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-67" name="__codelineno-2-67"></a>        <span class="n">handler</span><span class="o">=</span><span class="n">hello_handler</span><span class="p">,</span>
+<a id="__codelineno-2-68" name="__codelineno-2-68"></a>        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Prints &#39;Hello, world!&#39; to the console.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-69" name="__codelineno-2-69"></a>        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-2-70" name="__codelineno-2-70"></a>            <span class="n">Option</span><span class="p">(</span>
+<a id="__codelineno-2-71" name="__codelineno-2-71"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-n&quot;</span><span class="p">,</span> <span class="s2">&quot;--name&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-72" name="__codelineno-2-72"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name to print.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-73" name="__codelineno-2-73"></a>                <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-2-74" name="__codelineno-2-74"></a>                <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-2-75" name="__codelineno-2-75"></a>            <span class="p">),</span>
+<a id="__codelineno-2-76" name="__codelineno-2-76"></a>            <span class="n">Option</span><span class="p">(</span>
+<a id="__codelineno-2-77" name="__codelineno-2-77"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--count&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-78" name="__codelineno-2-78"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The number of times to print the name.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-79" name="__codelineno-2-79"></a>                <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-2-80" name="__codelineno-2-80"></a>                <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-2-81" name="__codelineno-2-81"></a>            <span class="p">),</span>
+<a id="__codelineno-2-82" name="__codelineno-2-82"></a>        <span class="p">],</span>
+<a id="__codelineno-2-83" name="__codelineno-2-83"></a>    <span class="p">)</span>
+<a id="__codelineno-2-84" name="__codelineno-2-84"></a>
+<a id="__codelineno-2-85" name="__codelineno-2-85"></a>    <span class="n">count_command</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span>
+<a id="__codelineno-2-86" name="__codelineno-2-86"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-87" name="__codelineno-2-87"></a>        <span class="n">handler</span><span class="o">=</span><span class="n">count_handler</span><span class="p">,</span>
+<a id="__codelineno-2-88" name="__codelineno-2-88"></a>        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Adds two numbers together.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-89" name="__codelineno-2-89"></a>        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-2-90" name="__codelineno-2-90"></a>            <span class="n">Option</span><span class="p">(</span>
+<a id="__codelineno-2-91" name="__codelineno-2-91"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-a&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-92" name="__codelineno-2-92"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The first number.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-93" name="__codelineno-2-93"></a>                <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-2-94" name="__codelineno-2-94"></a>                <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-2-95" name="__codelineno-2-95"></a>            <span class="p">),</span>
+<a id="__codelineno-2-96" name="__codelineno-2-96"></a>            <span class="n">Option</span><span class="p">(</span>
+<a id="__codelineno-2-97" name="__codelineno-2-97"></a>                <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-b&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-98" name="__codelineno-2-98"></a>                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The second number.&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-99" name="__codelineno-2-99"></a>                <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-2-100" name="__codelineno-2-100"></a>                <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-2-101" name="__codelineno-2-101"></a>            <span class="p">),</span>
+<a id="__codelineno-2-102" name="__codelineno-2-102"></a>        <span class="p">],</span>
+<a id="__codelineno-2-103" name="__codelineno-2-103"></a>    <span class="p">)</span>
+<a id="__codelineno-2-104" name="__codelineno-2-104"></a>
+<a id="__codelineno-2-105" name="__codelineno-2-105"></a>
+<a id="__codelineno-2-106" name="__codelineno-2-106"></a>    <span class="c1"># Append Subcommands</span>
+<a id="__codelineno-2-107" name="__codelineno-2-107"></a>    <span class="n">mycli</span><span class="o">.</span><span class="n">add_subcommands</span><span class="p">([</span><span class="n">hello_command</span><span class="p">,</span> <span class="n">count_command</span><span class="p">])</span>
+<a id="__codelineno-2-108" name="__codelineno-2-108"></a>
+<a id="__codelineno-2-109" name="__codelineno-2-109"></a>    <span class="c1"># Run your CLI Tool!</span>
+<a id="__codelineno-2-110" name="__codelineno-2-110"></a>    <span class="n">mycli</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 
 
@@ -809,7 +853,7 @@
     <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate", "content.code.copy"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.f13b1293.min.js"></script>
+      <script src="assets/javascripts/bundle.f1b6f286.min.js"></script>
       
     
   </body>
