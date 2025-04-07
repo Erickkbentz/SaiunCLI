@@ -14,5 +14,12 @@ test:
 	flake8
 	pytest tests
 
+docs-serve:
+	mkdocs serve
+
+docs-deploy:
+	mkdocs gh-deploy --clean
+
 upload: build
+	twine check --strict dist/*
 	twine upload dist/*

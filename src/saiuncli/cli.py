@@ -97,7 +97,7 @@ class CLI(Command):
                 The title of the CLI tool.
             version (Optional[str]):
                 The version of the CLI tool.
-            Console (Optional[Console]):
+            console (Optional[Console]):
                 The Console object to use for displaying outputs for the CLI tool.
             handler (Optional[callable]):
                 The function to execute when the base CLI command is called.
