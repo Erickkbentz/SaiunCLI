@@ -402,7 +402,6 @@ class CLI(Command):
         """Generate the full usage string for a command."""
         if not command:
             command = self
-        usage = command.usage
         commands_string = f"{self._cli_command} "
         current_command = command
         subcommand_string = ""
@@ -410,7 +409,7 @@ class CLI(Command):
             subcommand_string += f"{current_command.name} " + subcommand_string
             current_command = current_command._parent
         commands_string += subcommand_string.strip()
-        return f"{commands_string} {usage}"
+        return f"{commands_string} {current_command.usage}"
 
     def display_help(self, command: Optional[Command] = None, header: bool = True):
         """Display help information for the CLI tool.
@@ -456,7 +455,7 @@ class CLI(Command):
             self.display_help(command)
             return
         if parsed_cli.version:
-            self.console.display_version()
+            self.console.display_version(self.version)
             return
 
         missing_required_options = [
