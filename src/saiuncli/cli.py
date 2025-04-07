@@ -2,18 +2,13 @@ import os
 import sys
 from typing import Optional, List, Dict, Any
 
-from rich.console import Console
 from rich.text import Text
-from rich.highlighter import RegexHighlighter
-from rich.panel import Panel
-from rich.theme import Theme as RichTheme
-from rich.table import Table
 
 from saiuncli._constants import _ROOT_COMMAND_NAME, _HELP_NAME, _VERSION_NAME, _GLOBAL_FLAGS
 from saiuncli.option import Option
 from saiuncli.argument import Argument
 from saiuncli.command import Command
-from saiuncli.theme import Theme
+from saiuncli.console import Console
 
 from saiuncli._utils import (
     _is_flag,
@@ -74,16 +69,12 @@ class ParsedCLI:
         return {**self.parsed_options, **self.parsed_args}
 
 
-class OptionHighlighter(RegexHighlighter):
-    highlights = [r"(?P<short_flag>\-\w)", r"(?P<long_flag>\-\-[\w\-]+)"]
-
-
 class CLI(Command):
     def __init__(
         self,
         title: str,
         version: Optional[str] = None,
-        theme: Optional[Theme] = None,
+        console: Optional[Console] = None,
         handler: Optional[callable] = None,
         description: Optional[str] = None,
         usage: Optional[str] = None,
@@ -106,8 +97,8 @@ class CLI(Command):
                 The title of the CLI tool.
             version (Optional[str]):
                 The version of the CLI tool.
-            theme (Optional[Theme]):
-                The theme to use for the CLI tool.
+            Console (Optional[Console]):
+                The Console object to use for displaying outputs for the CLI tool.
             handler (Optional[callable]):
                 The function to execute when the base CLI command is called.
                 If not provided, root command will only display help and version information.
@@ -133,11 +124,11 @@ class CLI(Command):
             subcommands (Optional[List[Command]]):
                 The subcommands available for the base CLI command.
         """
-        self._version_flags = version_flags or _GLOBAL_FLAGS[_VERSION_NAME]
-        self._help_flags = help_flags or _GLOBAL_FLAGS[_HELP_NAME]
-        _validate_flags(self._help_flags)
-        _validate_flags(self._version_flags)
-        if any(flag in self._help_flags for flag in self._version_flags):
+        self.version_flags = version_flags or _GLOBAL_FLAGS[_VERSION_NAME]
+        self.help_flags = help_flags or _GLOBAL_FLAGS[_HELP_NAME]
+        _validate_flags(self.help_flags)
+        _validate_flags(self.version_flags)
+        if any(flag in self.help_flags for flag in self.version_flags):
             raise ValueError("Duplicate flags detected for help and version operations.")
 
         super().__init__(
@@ -153,22 +144,10 @@ class CLI(Command):
         )
         self.title = title
         self.version = version
-        self.theme = theme or Theme()
         self.global_options = global_options or []
         self.global_arguments = global_arguments or []
-        self._cli_command = None
-
-        highlighter = OptionHighlighter()
-        self._highlighter = highlighter
-        self.console = Console(
-            theme=RichTheme(
-                {
-                    "long_flag": self.theme.option_long,
-                    "short_flag": self.theme.option_short,
-                }
-            ),
-            highlighter=highlighter,
-        )
+        self._cli_command = ""
+        self.console = console or Console()
 
     def add_global_option(self, option: Option):
         self.global_options.append(option)
@@ -191,11 +170,11 @@ class CLI(Command):
     def _process_flag(
         self, flag: str, latest_command: Command, parsed: Dict[str, Any], cli_args: List[str]
     ):
-        if flag in self._help_flags:
+        if flag in self.help_flags:
             parsed[_HELP_NAME] = True
             return
 
-        if flag in self._version_flags:
+        if flag in self.version_flags:
             parsed[_VERSION_NAME] = True
             return
 
@@ -413,176 +392,25 @@ class CLI(Command):
 
     def _cli_error(self, error: str, command: Optional[Command] = None):
         """Display an error message and exit the CLI tool."""
+        if error is None or error == "":
+            error = "An unknown error occurred."
         self.console.print(f"[bold red]Error:[/bold red] {error}\n")
         self.display_help(command=command, header=False)
         sys.exit(1)
 
-    def display_version(self):
-        """Display the version of the CLI tool."""
-
-        self.console.print(
-            Text(
-                f"v{self.version}",
-                style=self.theme.version,
-            ),
-            justify="left",
-        )
-        pass
-
-    def _display_header(self):
-        """Display the header of the CLI tool."""
-        title = Text(self.title, style=self.theme.title)
-        if self.version:
-            version = Text(f"v{self.version}", style=self.theme.version)
-            title.pad_right(1)
-            title.append(version)
-
-        self.console.print(
-            title,
-            justify="center",
-        )
-        self.console.print()
-
-        if self.description:
-            title_description = Text(self.description, style=self.theme.title_description)
-            self.console.print(
-                title_description,
-                justify="center",
-            )
-            self.console.print()
-        self.console.print()
-
-    def _display_usage(self, command: Optional[Command] = None):
-        """Display the usage information for the CLI tool.
-
-        Args:
-            command (Optional[Command]):
-                The command to display usage for.
-        """
+    def _full_usage_string(self, command: Optional[Command]) -> str:
+        """Generate the full usage string for a command."""
         if not command:
             command = self
+        usage = command.usage
         commands_string = f"{self._cli_command} "
         current_command = command
         subcommand_string = ""
         while current_command and current_command.name != _ROOT_COMMAND_NAME:
             subcommand_string += f"{current_command.name} " + subcommand_string
             current_command = current_command._parent
-        commands_string += subcommand_string
-
-        usage = Text(f"Usage: {commands_string} {current_command.usage}\n", style=self.theme.usage)
-        self.console.print(usage)
-
-    def _display_subcommands_table(self, command: Optional[Command] = None):
-        """Display the subcommands table for the CLI tool.
-
-        Args:
-            command (Optional[Command]):
-                The command to display subcommands for.
-        """
-        if not command:
-            command = self
-        subcommands = command.subcommands
-        if not subcommands:
-            return
-
-        subcommands_table = Table(highlight=True, box=None, show_header=False)
-        for subcommand in subcommands:
-            help_message = (
-                Text.from_markup(subcommand.description) if subcommand.description else Text("")
-            )
-            help_message.style = self.theme.subcommand_description
-
-            if subcommand.description:
-                subcommand_name = Text(subcommand.name, style=self.theme.subcommand)
-                subcommand_name.pad_right(5)
-
-                subcommands_table.add_row(subcommand_name, help_message)
-        self.console.print(
-            Panel(subcommands_table, border_style="dim", title_align="left", title="Subcommands")
-        )
-
-    def _display_options_table(self, command: Optional[Command] = None):
-        """Display the options table for the CLI tool.
-
-        Args:
-            command (Optional[Command]):
-                The command to display options for.
-        """
-
-        if not command:
-            command = self
-        options = command.all_options + self.global_options
-
-        options_table = Table(highlight=True, box=None, show_header=False)
-        for option in options:
-            help_message = Text("")
-            if option.description:
-                help_message = Text.from_markup(option.description)
-                help_message.style = self.theme.option_description
-            if len(option.flags) == 2:
-                opt1 = self._highlighter(option.flags[0])
-                opt2 = self._highlighter(option.flags[1])
-            else:
-                opt1 = self._highlighter(option.flags[0])
-                opt2 = Text("")
-            opt2.pad_right(5)
-            options_table.add_row(opt1, opt2, help_message)
-        # Always add version flags to the bottom of Global Options table
-        if len(self._version_flags) == 2:
-            version_flag1 = self._highlighter(self._version_flags[0])
-            version_flag2 = self._highlighter(self._version_flags[1])
-        else:
-            version_flag1 = self._highlighter(self._version_flags[0])
-            version_flag2 = Text("")
-        version_flag2.pad_right(5)
-        options_table.add_row(
-            version_flag1,
-            version_flag2,
-            Text("Display the version.", style=self.theme.option_description),
-        )
-        # Always add help flags to the bottom Global Options table
-        if len(self._help_flags) == 2:
-            help_flag1 = self._highlighter(self._help_flags[0])
-            help_flag2 = self._highlighter(self._help_flags[1])
-        else:
-            help_flag1 = self._highlighter(self._help_flags[0])
-            help_flag2 = Text("")
-        help_flag2.pad_right(5)
-        options_table.add_row(
-            help_flag1,
-            help_flag2,
-            Text("Display this help message and exit.", style=self.theme.option_description),
-        )
-        self.console.print(
-            Panel(options_table, border_style="dim", title_align="left", title="Options")
-        )
-
-    def _display_arguments_table(self, command: Optional[Command] = None):
-        """Display the arguments table for the CLI tool.
-
-        Args:
-            command (Optional[Command]):
-                The command to display arguments for.
-        """
-
-        if not command:
-            command = self
-        arguments = self.global_arguments + command.all_arguments
-        if not arguments:
-            return
-
-        arguments_table = Table(highlight=True, box=None, show_header=False)
-        for argument in arguments:
-            help_message = ""
-            if argument.description:
-                help_message = Text.from_markup(argument.description)
-                help_message.style = self.theme.argument_description
-
-                argument_name = Text(argument.name, style=self.theme.argument)
-                arguments_table.add_row(argument_name, help_message)
-        self.console.print(
-            Panel(arguments_table, border_style="dim", title_align="left", title="Arguments")
-        )
+        commands_string += subcommand_string.strip()
+        return f"{commands_string} {usage}"
 
     def display_help(self, command: Optional[Command] = None, header: bool = True):
         """Display help information for the CLI tool.
@@ -593,15 +421,19 @@ class CLI(Command):
         """
         if not command:
             command = self
-
-        if header:
-            self._display_header()
-
-        self._display_usage(command)
-
-        self._display_subcommands_table(command)
-        self._display_options_table(command)
-        self._display_arguments_table(command)
+        cli_usage = self._full_usage_string(command)
+        self.console.display_help(
+            title=self.title,
+            description=command.description,
+            version=self.version,
+            usage=cli_usage,
+            options=command.all_options + self.global_options,
+            arguments=command.all_arguments + self.global_arguments,
+            subcommands=command.subcommands,
+            show_header=header,
+            version_flags=self.version_flags,
+            help_flags=self.help_flags,
+        )
 
     def run(self, parsed_cli: Optional[ParsedCLI] = None):
         """Executes CLI tool based handlers, options, and arguments in
@@ -624,7 +456,7 @@ class CLI(Command):
             self.display_help(command)
             return
         if parsed_cli.version:
-            self.display_version()
+            self.console.display_version()
             return
 
         missing_required_options = [
@@ -646,4 +478,7 @@ class CLI(Command):
             self._cli_error(error, command=command)
 
         kwargs = parsed_cli.handler_kwargs_dict()
-        command.handler(**kwargs)
+        try:
+            command.handler(**kwargs)
+        except Exception as e:
+            self._cli_error(str(e), command=command)

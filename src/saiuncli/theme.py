@@ -1,9 +1,18 @@
-from typing import Dict, Optional
+from typing import Optional
+from dataclasses import dataclass
+
 from rich.style import Style
+
+__all__ = ["Theme", "Style", "PrefixStyle"]
+
+
+@dataclass
+class PrefixStyle:
+    symbol: str
+    style: str
 
 
 class Theme:
-    BASE_THEME_FILE = ".auracli-theme"
 
     DEFAULT_STYLES = {
         "version": Style(color="magenta", bold=True, italic=True),
@@ -19,9 +28,15 @@ class Theme:
         "argument_description": Style(color="white"),
     }
 
+    DEFAULT_PREFIXES = {
+        "success": PrefixStyle("✔", "bold green"),
+        "error": PrefixStyle("✖", "bold red"),
+        "warning": PrefixStyle("!", "bold yellow"),
+        "info": PrefixStyle("ℹ", "bold blue"),
+    }
+
     def __init__(
         self,
-        styles: Optional[Dict[str, Style]] = None,
         version: Optional[Style] = None,
         title: Optional[Style] = None,
         title_description: Optional[Style] = None,
@@ -33,8 +48,11 @@ class Theme:
         subcommand_description: Optional[Style] = None,
         argument: Optional[Style] = None,
         argument_description: Optional[Style] = None,
+        success_prefix: Optional[PrefixStyle] = None,
+        error_prefix: Optional[PrefixStyle] = None,
+        warning_prefix: Optional[PrefixStyle] = None,
+        info_prefix: Optional[PrefixStyle] = None,
     ):
-        self.styles = styles or {}
 
         self.version = version or self.DEFAULT_STYLES["version"]
         self.title = title or self.DEFAULT_STYLES["title"]
@@ -51,19 +69,7 @@ class Theme:
         self.argument_description = (
             argument_description or self.DEFAULT_STYLES["argument_description"]
         )
-
-        for key in self.DEFAULT_STYLES:
-            if key not in self.styles:
-                self.styles[key] = getattr(self, key)
-
-    @classmethod
-    def load_theme(cls, theme_file: str = BASE_THEME_FILE) -> "Theme":
-        """_summary_
-
-        Args:
-            theme_file (str, optional): _description_. Defaults to BASE_THEME_FILE.
-
-        Returns:
-            Theme: _description_
-        """
-        pass
+        self.success_prefix = success_prefix or self.DEFAULT_PREFIXES["success"]
+        self.error_prefix = error_prefix or self.DEFAULT_PREFIXES["error"]
+        self.warning_prefix = warning_prefix or self.DEFAULT_PREFIXES["warning"]
+        self.info_prefix = info_prefix or self.DEFAULT_PREFIXES["info"]

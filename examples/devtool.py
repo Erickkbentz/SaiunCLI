@@ -3,22 +3,35 @@ from saiuncli.command import Command
 from saiuncli.option import Option
 from saiuncli.argument import Argument
 from saiuncli.theme import Theme
+from saiuncli.console import Console
 
+# Custom theme and console for CLI outputs
 theme = Theme()
+console = Console(theme=theme)
 
 
 def hello_handler(name: str, count: int):
     for i in range(count):
-        print(f"Hello, {name}!")
+        console.print(f"Hello, {name}!")
+    console.success("Succcessfully executed handler!")
 
 
 def count_handler(a: int, b: int):
-    print(f"{a} + {b} = {a + b}")
+    if a is None or b is None:
+        raise ValueError("Both 'a' and 'b' must be provided.")
+    console.print(f"{a} + {b} = {a + b}")
+    console.success("Succcessfully executed handler!")
 
 
 def base_handler(**args):
-    print("Base command executed.")
-    print(f"{args}")
+    console.print("Base command executed.")
+    if args:
+        console.print(f"{args}")
+
+    console.success("Success Message")
+    console.error("Error Message")
+    console.warning("Warning Message")
+    console.info("Info Message")
 
 
 if __name__ == "__main__":
@@ -27,6 +40,7 @@ if __name__ == "__main__":
         title="My Super Cool CLI Tool",
         description="A simple tool to demonstrate saiuncli.",
         version="1.0.0",
+        console=console,
         handler=base_handler,
         help_flags=[],
         version_flags=[],

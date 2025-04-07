@@ -4,6 +4,10 @@ clean:
 build: clean
 	python -m build
 
+format:
+	black .
+	flake8
+
 test:
 	pip install ".[all]"
 	black --check .
