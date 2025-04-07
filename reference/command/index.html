@@ -667,6 +667,13 @@ Defaults to "[SUBCOMMANDS][OPTIONS][ARGUMENTS]" if not provided.</p>
             </div>
           </li>
           <li class="doc-section-item field-body">
+            <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.execute" href="#saiuncli.command.Command.execute">execute</a></code></b>
+            –
+            <div class="doc-md-description">
+              
+            </div>
+          </li>
+          <li class="doc-section-item field-body">
             <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.find_subcommand" href="#saiuncli.command.Command.find_subcommand">find_subcommand</a></code></b>
             –
             <div class="doc-md-description">
@@ -752,6 +759,41 @@ Defaults to "[SUBCOMMANDS][OPTIONS][ARGUMENTS]" if not provided.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.arguments" href="#saiuncli.command.Command.arguments">arguments</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.description" href="#saiuncli.command.Command.description">description</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.handler" href="#saiuncli.command.Command.handler">handler</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.inherit_arguments" href="#saiuncli.command.Command.inherit_arguments">inherit_arguments</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.inherit_options" href="#saiuncli.command.Command.inherit_options">inherit_options</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
           <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.inherited_arguments" href="#saiuncli.command.Command.inherited_arguments">inherited_arguments</a></code></b>
               (<code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="saiuncli.argument.Argument" href="../argument/#saiuncli.argument.Argument">Argument</a>]</code>)
           –
@@ -765,6 +807,34 @@ Defaults to "[SUBCOMMANDS][OPTIONS][ARGUMENTS]" if not provided.</p>
           –
           <div class="doc-md-description">
             <p>Gather options inherited from parent commands if inheritance is enabled.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.name" href="#saiuncli.command.Command.name">name</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.options" href="#saiuncli.command.Command.options">options</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.subcommands" href="#saiuncli.command.Command.subcommands">subcommands</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.command.Command.usage" href="#saiuncli.command.Command.usage">usage</a></code></b>
+          –
+          <div class="doc-md-description">
+            
           </div>
         </li>
     </ul>
@@ -1075,6 +1145,111 @@ Defaults to "[SUBCOMMANDS][OPTIONS][ARGUMENTS]" if not provided.</p>
 
 
 
+<h2 id="saiuncli.command.Command.arguments" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">arguments</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">arguments</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(arguments)" href="#saiuncli.command.Command(arguments)">arguments</a></span> <span class="ow">or</span> <span class="p">[]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.command.Command.description" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">description</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">description</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(description)" href="#saiuncli.command.Command(description)">description</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.command.Command.handler" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">handler</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">handler</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(handler)" href="#saiuncli.command.Command(handler)">handler</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.command.Command.inherit_arguments" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">inherit_arguments</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">inherit_arguments</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(inherit_arguments)" href="#saiuncli.command.Command(inherit_arguments)">inherit_arguments</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.command.Command.inherit_options" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">inherit_options</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">inherit_options</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(inherit_options)" href="#saiuncli.command.Command(inherit_options)">inherit_options</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
 <h2 id="saiuncli.command.Command.inherited_arguments" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">inherited_arguments</span>
 
@@ -1113,6 +1288,90 @@ Defaults to "[SUBCOMMANDS][OPTIONS][ARGUMENTS]" if not provided.</p>
     <div class="doc doc-contents ">
 
         <p>Gather options inherited from parent commands if inheritance is enabled.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.command.Command.name" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">name</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">name</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(name)" href="#saiuncli.command.Command(name)">name</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.command.Command.options" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">options</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">options</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(options)" href="#saiuncli.command.Command(options)">options</a></span> <span class="ow">or</span> <span class="p">[]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.command.Command.subcommands" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">subcommands</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">subcommands</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(subcommands)" href="#saiuncli.command.Command(subcommands)">subcommands</a></span> <span class="ow">or</span> <span class="p">[]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.command.Command.usage" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">usage</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">usage</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.command.Command(usage)" href="#saiuncli.command.Command(usage)">usage</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli._constants._DEFAULT_USAGE">_DEFAULT_USAGE</span></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
     </div>
 
 </div>
@@ -1303,6 +1562,30 @@ Defaults to "[SUBCOMMANDS][OPTIONS][ARGUMENTS]" if not provided.</p>
 <a id="__codelineno-0-223" name="__codelineno-0-223"></a>        <span class="n">subcommand</span><span class="o">.</span><span class="n">_version_flags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_version_flags</span>
 <a id="__codelineno-0-224" name="__codelineno-0-224"></a>        <span class="n">subcommand</span><span class="o">.</span><span class="n">_help_flags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_help_flags</span>
 <a id="__codelineno-0-225" name="__codelineno-0-225"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">subcommands</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">subcommands</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="saiuncli.command.Command.execute" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">execute</span>
+
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">execute</span><span class="p">(</span><span class="o">**</span><span class="n">handler_args</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+            <details class="quote">
+              <summary>Source code in <code>saiuncli/command.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-241">241</a></span>
+<span class="normal"><a href="#__codelineno-0-242">242</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-241" name="__codelineno-0-241"></a><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">handler_args</span><span class="p">):</span>
+<a id="__codelineno-0-242" name="__codelineno-0-242"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">handler</span><span class="p">(</span><span class="o">**</span><span class="n">handler_args</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

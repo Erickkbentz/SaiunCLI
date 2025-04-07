@@ -506,21 +506,21 @@
 
 </h1>
 <div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">Theme</span><span class="p">(</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">version</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">title</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">title_description</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">usage</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">option_long</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">option_short</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">option_description</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">subcommand</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">subcommand_description</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">argument</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">argument_description</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">success_prefix</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">error_prefix</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">warning_prefix</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">info_prefix</span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(version)">version</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(title)">title</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(title_description)">title_description</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(usage)">usage</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(option_long)">option_long</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(option_short)">option_short</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(option_description)">option_description</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(subcommand)">subcommand</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(subcommand_description)">subcommand_description</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(argument)">argument</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(argument_description)">argument_description</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><span title="rich.style.Style">Style</span></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(success_prefix)">success_prefix</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(error_prefix)">error_prefix</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(warning_prefix)">warning_prefix</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n"><a class="autorefs autorefs-internal" href="#saiuncli.theme.Theme(info_prefix)">info_prefix</a></span><span class="p">:</span> <span class="n"><span title="typing.Optional">Optional</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">)</span>
 </code></pre></div>
 
@@ -529,12 +529,292 @@
 
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(version)" class="doc doc-heading doc-heading-parameter">              <b><code>version</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for the version text.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(title)" class="doc doc-heading doc-heading-parameter">              <b><code>title</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for the title text.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(title_description)" class="doc doc-heading doc-heading-parameter">              <b><code>title_description</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for the title description text.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(usage)" class="doc doc-heading doc-heading-parameter">              <b><code>usage</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for the usage text.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(option_long)" class="doc doc-heading doc-heading-parameter">              <b><code>option_long</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for long option flags.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(option_short)" class="doc doc-heading doc-heading-parameter">              <b><code>option_short</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for short option flags.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(option_description)" class="doc doc-heading doc-heading-parameter">              <b><code>option_description</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for option descriptions.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(subcommand)" class="doc doc-heading doc-heading-parameter">              <b><code>subcommand</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for subcommand names.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(subcommand_description)" class="doc doc-heading doc-heading-parameter">              <b><code>subcommand_description</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for subcommand descriptions.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(argument)" class="doc doc-heading doc-heading-parameter">              <b><code>argument</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for argument names.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(argument_description)" class="doc doc-heading doc-heading-parameter">              <b><code>argument_description</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<span title="rich.style.Style">Style</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Style for argument descriptions.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(success_prefix)" class="doc doc-heading doc-heading-parameter">              <b><code>success_prefix</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Prefix style for success messages.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(error_prefix)" class="doc doc-heading doc-heading-parameter">              <b><code>error_prefix</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Prefix style for error messages.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(warning_prefix)" class="doc doc-heading doc-heading-parameter">              <b><code>warning_prefix</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Prefix style for warning messages.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+<h2 id="saiuncli.theme.Theme(info_prefix)" class="doc doc-heading doc-heading-parameter">              <b><code>info_prefix</code></b>
+</h2>              (<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Prefix style for info messages.</p>
+          </div>
+        </li>
+    </ul>
 
 
 
 
 
 
+
+
+
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.DEFAULT_PREFIXES" href="#saiuncli.theme.Theme.DEFAULT_PREFIXES">DEFAULT_PREFIXES</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.DEFAULT_STYLES" href="#saiuncli.theme.Theme.DEFAULT_STYLES">DEFAULT_STYLES</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.argument" href="#saiuncli.theme.Theme.argument">argument</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.argument_description" href="#saiuncli.theme.Theme.argument_description">argument_description</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.error_prefix" href="#saiuncli.theme.Theme.error_prefix">error_prefix</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.info_prefix" href="#saiuncli.theme.Theme.info_prefix">info_prefix</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.option_description" href="#saiuncli.theme.Theme.option_description">option_description</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.option_long" href="#saiuncli.theme.Theme.option_long">option_long</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.option_short" href="#saiuncli.theme.Theme.option_short">option_short</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.subcommand" href="#saiuncli.theme.Theme.subcommand">subcommand</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.subcommand_description" href="#saiuncli.theme.Theme.subcommand_description">subcommand_description</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.success_prefix" href="#saiuncli.theme.Theme.success_prefix">success_prefix</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.title" href="#saiuncli.theme.Theme.title">title</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.title_description" href="#saiuncli.theme.Theme.title_description">title_description</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.usage" href="#saiuncli.theme.Theme.usage">usage</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.version" href="#saiuncli.theme.Theme.version">version</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme.warning_prefix" href="#saiuncli.theme.Theme.warning_prefix">warning_prefix</a></code></b>
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+    </ul>
 
                   <details class="quote">
                     <summary>Source code in <code>saiuncli/theme.py</code></summary>
@@ -575,7 +855,27 @@
 <span class="normal"><a href="#__codelineno-0-72">72</a></span>
 <span class="normal"><a href="#__codelineno-0-73">73</a></span>
 <span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal"><a href="#__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#__codelineno-0-79">79</a></span>
+<span class="normal"><a href="#__codelineno-0-80">80</a></span>
+<span class="normal"><a href="#__codelineno-0-81">81</a></span>
+<span class="normal"><a href="#__codelineno-0-82">82</a></span>
+<span class="normal"><a href="#__codelineno-0-83">83</a></span>
+<span class="normal"><a href="#__codelineno-0-84">84</a></span>
+<span class="normal"><a href="#__codelineno-0-85">85</a></span>
+<span class="normal"><a href="#__codelineno-0-86">86</a></span>
+<span class="normal"><a href="#__codelineno-0-87">87</a></span>
+<span class="normal"><a href="#__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#__codelineno-0-89">89</a></span>
+<span class="normal"><a href="#__codelineno-0-90">90</a></span>
+<span class="normal"><a href="#__codelineno-0-91">91</a></span>
+<span class="normal"><a href="#__codelineno-0-92">92</a></span>
+<span class="normal"><a href="#__codelineno-0-93">93</a></span>
+<span class="normal"><a href="#__codelineno-0-94">94</a></span>
+<span class="normal"><a href="#__codelineno-0-95">95</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
 <a id="__codelineno-0-39" name="__codelineno-0-39"></a>    <span class="bp">self</span><span class="p">,</span>
 <a id="__codelineno-0-40" name="__codelineno-0-40"></a>    <span class="n">version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Style</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Style</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -593,26 +893,46 @@
 <a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="n">warning_prefix</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PrefixStyle</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-54" name="__codelineno-0-54"></a>    <span class="n">info_prefix</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PrefixStyle</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="p">):</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">title_description</span> <span class="o">=</span> <span class="n">title_description</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;title_description&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;usage&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">option_long</span> <span class="o">=</span> <span class="n">option_long</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;option_long&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">option_short</span> <span class="o">=</span> <span class="n">option_short</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;option_short&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">option_description</span> <span class="o">=</span> <span class="n">option_description</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;option_description&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">subcommand</span> <span class="o">=</span> <span class="n">subcommand</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;subcommand&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">subcommand_description</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>        <span class="n">subcommand_description</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;subcommand_description&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="p">)</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">argument</span> <span class="o">=</span> <span class="n">argument</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;argument&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">argument_description</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>        <span class="n">argument_description</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;argument_description&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>    <span class="p">)</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">success_prefix</span> <span class="o">=</span> <span class="n">success_prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PREFIXES</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">error_prefix</span> <span class="o">=</span> <span class="n">error_prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PREFIXES</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">warning_prefix</span> <span class="o">=</span> <span class="n">warning_prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PREFIXES</span><span class="p">[</span><span class="s2">&quot;warning&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">info_prefix</span> <span class="o">=</span> <span class="n">info_prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PREFIXES</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">    Initialize a Theme object with custom styles and prefixes.</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        version (Optional[Style]): Style for the version text.</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        title (Optional[Style]): Style for the title text.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        title_description (Optional[Style]): Style for the title description text.</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">        usage (Optional[Style]): Style for the usage text.</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">        option_long (Optional[Style]): Style for long option flags.</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">        option_short (Optional[Style]): Style for short option flags.</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">        option_description (Optional[Style]): Style for option descriptions.</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">        subcommand (Optional[Style]): Style for subcommand names.</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">        subcommand_description (Optional[Style]): Style for subcommand descriptions.</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">        argument (Optional[Style]): Style for argument names.</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">        argument_description (Optional[Style]): Style for argument descriptions.</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">        success_prefix (Optional[PrefixStyle]): Prefix style for success messages.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">        error_prefix (Optional[PrefixStyle]): Prefix style for error messages.</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">        warning_prefix (Optional[PrefixStyle]): Prefix style for warning messages.</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        info_prefix (Optional[PrefixStyle]): Prefix style for info messages.</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">title_description</span> <span class="o">=</span> <span class="n">title_description</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;title_description&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">usage</span> <span class="o">=</span> <span class="n">usage</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;usage&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">option_long</span> <span class="o">=</span> <span class="n">option_long</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;option_long&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">option_short</span> <span class="o">=</span> <span class="n">option_short</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;option_short&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">option_description</span> <span class="o">=</span> <span class="n">option_description</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;option_description&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">subcommand</span> <span class="o">=</span> <span class="n">subcommand</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;subcommand&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">subcommand_description</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>        <span class="n">subcommand_description</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;subcommand_description&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="p">)</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">argument</span> <span class="o">=</span> <span class="n">argument</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;argument&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">argument_description</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>        <span class="n">argument_description</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_STYLES</span><span class="p">[</span><span class="s2">&quot;argument_description&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>    <span class="p">)</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">success_prefix</span> <span class="o">=</span> <span class="n">success_prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PREFIXES</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">error_prefix</span> <span class="o">=</span> <span class="n">error_prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PREFIXES</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">warning_prefix</span> <span class="o">=</span> <span class="n">warning_prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PREFIXES</span><span class="p">[</span><span class="s2">&quot;warning&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">info_prefix</span> <span class="o">=</span> <span class="n">info_prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PREFIXES</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -625,6 +945,401 @@
 
 
 
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.DEFAULT_PREFIXES" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">DEFAULT_PREFIXES</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">DEFAULT_PREFIXES</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">(</span><span class="s2">&quot;✔&quot;</span><span class="p">,</span> <span class="s2">&quot;bold green&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">(</span><span class="s2">&quot;✖&quot;</span><span class="p">,</span> <span class="s2">&quot;bold red&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">&quot;warning&quot;</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">(</span><span class="s2">&quot;!&quot;</span><span class="p">,</span> <span class="s2">&quot;bold yellow&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle" href="#saiuncli.theme.PrefixStyle">PrefixStyle</a></span><span class="p">(</span><span class="s2">&quot;ℹ&quot;</span><span class="p">,</span> <span class="s2">&quot;bold blue&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.DEFAULT_STYLES" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">DEFAULT_STYLES</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">DEFAULT_STYLES</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;magenta&quot;</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(bold)">bold</span></span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(italic)">italic</span></span><span class="o">=</span><span class="kc">True</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">),</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(bold)">bold</span></span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="s2">&quot;title_description&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(dim)">dim</span></span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">&quot;usage&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(bold)">bold</span></span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">&quot;option_long&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(bold)">bold</span></span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">&quot;option_short&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(bold)">bold</span></span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s2">&quot;option_description&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">&quot;subcommand&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(bold)">bold</span></span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="s2">&quot;subcommand_description&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="s2">&quot;argument&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span> <span class="n"><span title="rich.style.Style(bold)">bold</span></span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="s2">&quot;argument_description&quot;</span><span class="p">:</span> <span class="n"><span title="rich.style.Style">Style</span></span><span class="p">(</span><span class="n"><span title="rich.style.Style(color)">color</span></span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.argument" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">argument</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">argument</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(argument)" href="#saiuncli.theme.Theme(argument)">argument</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s1">&#39;argument&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.argument_description" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">argument_description</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">argument_description</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(argument_description)" href="#saiuncli.theme.Theme(argument_description)">argument_description</a></span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s2">&quot;argument_description&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.error_prefix" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">error_prefix</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">error_prefix</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(error_prefix)" href="#saiuncli.theme.Theme(error_prefix)">error_prefix</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_PREFIXES">DEFAULT_PREFIXES</span></span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.info_prefix" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">info_prefix</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">info_prefix</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(info_prefix)" href="#saiuncli.theme.Theme(info_prefix)">info_prefix</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_PREFIXES">DEFAULT_PREFIXES</span></span><span class="p">[</span><span class="s1">&#39;info&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.option_description" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">option_description</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">option_description</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(option_description)" href="#saiuncli.theme.Theme(option_description)">option_description</a></span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s2">&quot;option_description&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.option_long" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">option_long</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">option_long</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(option_long)" href="#saiuncli.theme.Theme(option_long)">option_long</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s1">&#39;option_long&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.option_short" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">option_short</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">option_short</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(option_short)" href="#saiuncli.theme.Theme(option_short)">option_short</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s2">&quot;option_short&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.subcommand" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">subcommand</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">subcommand</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(subcommand)" href="#saiuncli.theme.Theme(subcommand)">subcommand</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s1">&#39;subcommand&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.subcommand_description" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">subcommand_description</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">subcommand_description</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(subcommand_description)" href="#saiuncli.theme.Theme(subcommand_description)">subcommand_description</a></span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s2">&quot;subcommand_description&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.success_prefix" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">success_prefix</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">success_prefix</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(success_prefix)" href="#saiuncli.theme.Theme(success_prefix)">success_prefix</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_PREFIXES">DEFAULT_PREFIXES</span></span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.title" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">title</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">title</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(title)" href="#saiuncli.theme.Theme(title)">title</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.title_description" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">title_description</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">title_description</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(title_description)" href="#saiuncli.theme.Theme(title_description)">title_description</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s2">&quot;title_description&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.usage" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">usage</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">usage</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(usage)" href="#saiuncli.theme.Theme(usage)">usage</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s1">&#39;usage&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.version" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">version</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">version</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(version)" href="#saiuncli.theme.Theme(version)">version</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_STYLES">DEFAULT_STYLES</span></span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.Theme.warning_prefix" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">warning_prefix</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">warning_prefix</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n"><a class="autorefs autorefs-internal" title="saiuncli.theme.Theme(warning_prefix)" href="#saiuncli.theme.Theme(warning_prefix)">warning_prefix</a></span> <span class="ow">or</span> <span class="n"><span title="saiuncli.theme.Theme(self).DEFAULT_PREFIXES">DEFAULT_PREFIXES</span></span><span class="p">[</span><span class="s2">&quot;warning&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
 
 
 
@@ -665,6 +1380,27 @@
 
 
 
+<p><span class="doc-section-title">Attributes:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle.style" href="#saiuncli.theme.PrefixStyle.style">style</a></code></b>
+              (<code>str</code>)
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="saiuncli.theme.PrefixStyle.symbol" href="#saiuncli.theme.PrefixStyle.symbol">symbol</a></code></b>
+              (<code>str</code>)
+          –
+          <div class="doc-md-description">
+            
+          </div>
+        </li>
+    </ul>
+
+
 
 
   <div class="doc doc-children">
@@ -674,6 +1410,48 @@
 
 
 
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.PrefixStyle.style" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">style</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">style</span><span class="p">:</span> <span class="n">str</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="saiuncli.theme.PrefixStyle.symbol" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">symbol</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h2>
+<div class="language-python doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">symbol</span><span class="p">:</span> <span class="n">str</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+    </div>
+
+</div>
 
 
 
