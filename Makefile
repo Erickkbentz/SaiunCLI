@@ -1,5 +1,8 @@
 clean:
-	rm -rf dist/ build/ *.egg-info
+	rm -rf build/ dist/ *.egg-info .pytest_cache/ __pycache__/ .mypy_cache/ .coverage htmlcov .tox .venv venv/
+	find . -type d -name '__pycache__' -exec rm -rf {} +
+	find . -type d -name '*.egg-info' -exec rm -rf {} +
+
 
 build: clean
 	python -m build
