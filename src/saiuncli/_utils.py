@@ -27,7 +27,9 @@ def _is_long_flag(flag: str) -> bool:
     """
     Check if a string is a long flag.
     """
-    return len(flag) > 2 and flag[:2] == "--" and flag[2:].isalpha()
+    if len(flag) <= 2 or not flag.startswith("--"):
+        return False
+    return all(c.isalnum() or c == "-" for c in flag[2:])
 
 
 def _split_short_stack_flags(flag: str) -> List[str]:

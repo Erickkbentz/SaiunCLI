@@ -71,7 +71,8 @@ class Option:
     def long_name(self) -> str:
         long_flag = next((flag for flag in self.flags if _is_long_flag(flag)), None)
         if long_flag and long_flag.startswith("--"):
-            return long_flag[2:]
+            long_flag = long_flag[2:]
+            return long_flag.replace("-", "_")
         return None
 
     @property
@@ -80,15 +81,3 @@ class Option:
         if short_flag and short_flag.startswith("-"):
             return short_flag[1:]
         return None
-
-    def validate(self, value: Any) -> bool:
-        """Validate the value of the option."""
-        pass
-
-    def parse(self, raw_value: str) -> Any:
-        """Parse the raw value from the command line."""
-        pass
-
-    def handle(self, value: Optional[Any]) -> Any:
-        """Handle the value of the option based on Option setup."""
-        pass

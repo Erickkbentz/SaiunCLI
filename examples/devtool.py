@@ -10,9 +10,9 @@ theme = Theme()
 console = Console(theme=theme)
 
 
-def hello_handler(name: str, count: int):
+def hello_handler(full_name: str, count: int):
     for i in range(count):
-        console.print(f"Hello, {name}!")
+        console.print(f"Hello, {full_name}!")
     console.success("Succcessfully executed handler!")
 
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         description="Prints 'Hello, world!' to the console.",
         options=[
             Option(
-                flags=["-n", "--name"],
+                flags=["-n", "--full-name"],
                 description="The name to print.",
                 type=str,
                 required=True,
